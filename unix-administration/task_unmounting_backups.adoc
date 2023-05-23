@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/task_unmounting_backups.html 
+sidebar: sidebar 
+keywords: snapmanager, automatic, unmount, backup, unavailable, host, server, asm, smo 
+summary: 'SnapManager disinstalla automaticamente il backup per renderlo non disponibile sul server host. SnapManager consente inoltre di disinstallare se si utilizza un tool esterno, ad esempio Oracle Recovery Manager, per accedere ai file nel backup e modificare lo stato del backup per rimuovere l"accesso.' 
+---
+= Smontare i backup
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager disinstalla automaticamente il backup per renderlo non disponibile sul server host. SnapManager consente inoltre di disinstallare se si utilizza uno strumento esterno, ad esempio Gestione ripristino Oracle (RMAN), per accedere ai file nel backup e modificare lo stato del backup per rimuovere l'accesso.
+
+Se si dismonta un backup del database da un host remoto, assicurarsi che le credenziali di Automatic Storage Management (ASM) siano le stesse su entrambi gli host.
+
+È possibile raccogliere i file dump dopo un'operazione di disinstallazione di backup riuscita o non riuscita.
+
+L'operazione di disinstallazione potrebbe non riuscire con un messaggio di errore se il punto di montaggio è occupato, ad esempio --[ERRORE] FLOW-11019: Errore in Disconnect: SD-10046: Non è possibile smontare il backup poiché il punto di montaggio è occupato con i seguenti percorsi di montaggio e PID: /Opt/NetApp/smo/mnt/-Nuse_nfsvrdb_Arch-20120427052319903_0 con PID 6598.
+
+È necessario identificare il PID della sessione che causa il guasto dell'operazione di disinstallazione. Interrompere la sessione eseguendo il seguente comando: `kill pid`
+
+È quindi possibile eseguire l'operazione di disinstallazione.
+
+. Immettere il seguente comando:
+`smo backup unmount -profile profile_name {labellabel [data | -archivelogs] | -idid} [-quiet | -verbose] -dump-force-verbose`
+
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapbackup_unmount_command.adoc[Il comando smo backup unmount]

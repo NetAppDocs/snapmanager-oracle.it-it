@@ -1,0 +1,51 @@
+---
+permalink: windows/task_performing_backup_restore_and_clone_operations_using_prescript_and_post_scripts.html 
+sidebar: sidebar 
+keywords: script, initiating, initiate, backup, restore, clone, operation, snapmanager, task-enabling, perform, post-script 
+summary: 'È possibile utilizzare il proprio script durante l"avvio di un"operazione di backup, ripristino o clonazione. SnapManager visualizza una pagina di abilitazione attività nella procedura guidata di creazione backup, ripristino o ripristino o creazione clone, in cui è possibile selezionare lo script e fornire i valori per i parametri richiesti dallo script.' 
+---
+= Esecuzione di operazioni di backup, ripristino e clonazione utilizzando script prescrittivi e post-script
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare il proprio script durante l'avvio di un'operazione di backup, ripristino o clonazione. SnapManager visualizza una pagina di abilitazione attività nella procedura guidata di creazione backup, ripristino o ripristino o creazione clone, in cui è possibile selezionare lo script e fornire i valori per i parametri richiesti dallo script.
+
+* Installare gli script dei plug-in nel percorso di installazione corretto di SnapManager.
+* Verificare che i plug-in siano installati correttamente utilizzando il comando di controllo del plug-in smsap.
+* Assicurarsi di utilizzare LA shell BASH.
+
+
+Nell'interfaccia della riga di comando (CLI), elencare il nome dello script, selezionare i parametri e impostare i valori.
+
+. Per verificare che si stia utilizzando LA shell BASH, immettere il seguente comando al prompt dei comandi:bash
++
+In alternativa, è possibile immettere il comando quale-bash al prompt e utilizzare il comando output come parametro di avvio dello script.
+
++
+La shell BASH funziona correttamente se non viene visualizzato un errore.
+
+. Per l'operazione di backup, inserire l'opzione -taskspec e fornire il percorso assoluto del file XML delle specifiche dell'attività per eseguire un'attività di pre-elaborazione o post-elaborazione prima o dopo l'operazione di backup: smo backup create -profile_name {[-full {-online | -offline | -auto} [-retain {-hourly | [-daily | -settimanale | -mensile | -illimitato}] [-verify] | [-data [[-filesfiles [files]] | [-tablespaces-tablespaces-tablespaces] [-datalabellabellabellabel | -settimanale | -{-}-{-}--online | -verify [-sharly] -verify [-sharly] | -sharly] -sharly | -sharing [--untary | -sharly] -sharly | --untary [- [-backup-destpath1 [,[path2]]] [-exclude-destpath1 [,path2]]] [-prunelogs {-all | -untilSCtilSCN | -before {-dateyyyy-MM-dd HH:mm:ss | -months | -days | -weeks | -hs | -hours}} -hours} -prune-destprune_1,[dept-spare] -depf-spacing-spacing-spacing] -share -depf] -spacing-spacing-spacing-spacing [-spacing-spacing] -
++
+Se l'operazione del plug-in di backup non riesce, vengono visualizzati solo il nome del plug-in e il codice di ritorno. Lo script del plug-in deve includere i messaggi di log e reindirizzare i messaggi ai file di log definiti dall'utente.
+
+. Per l'operazione di ripristino del backup, immettere l'opzione -taskspec e specificare il percorso assoluto del file XML delle specifiche dell'attività per eseguire un'attività di pre-elaborazione o post-elaborazione prima o dopo l'operazione di ripristino: smo backup restore -profileprofile_name {-labfive <label> | -<id>} {-} <files>|-<tablespaces> | -complete | -controlfiles} [-recover {-alllogs | -nologs | -until <until>][-restoresporesblog] require [-taskdump][-force] restore -off |-dequiet <taskspec> |-verse-back |] | -preview | -falldump |] [-<restorespec>
++
+Se l'operazione di ripristino del plug-in non riesce, vengono visualizzati solo il nome del plug-in e il codice di ritorno. Lo script del plug-in deve includere i messaggi di log e reindirizzare i messaggi ai file di log definiti dall'utente.
+
+. Per l'operazione di creazione del clone, immettere l'opzione -taskspec e fornire il percorso assoluto del file XML della specifica del task per eseguire una pre-elaborazione o un'attività di post-elaborazione prima o dopo l'operazione di clonazione: smo create -profileprofile_name {-backup-labelbackup_name | -backup-{| -current} -newsidnew_sid-clonespecfull_path_to_clonespecfile [-reservaresfile] [-reservaresfile <yes, no, inherit>] [-labclone <host>] [-labloboset <backup-id> <label>] [-taskse <comment>] -dump [-taskline-<taskspec>
++
+Se l'operazione del plug-in clone non riesce, vengono visualizzati solo il nome del plug-in e il codice di ritorno. Lo script del plug-in deve includere i messaggi di log e reindirizzare i messaggi ai file di log definiti dall'utente.
+
+
+
+
+
+== Esempio di creazione di un backup utilizzando il file XML delle specifiche dell'attività
+
+[listing]
+----
+smo backup create -profile SALES1 -full -online -taskspec sales1_taskspec.xml -force -verify
+----

@@ -1,0 +1,40 @@
+---
+permalink: unix-installation-cmode/task_accessing_the_snapmanager_user_interface.html 
+sidebar: sidebar 
+keywords: acess, snapmanager, user, interface, ui, remote, web, browser, system, operating, system, smogui 
+summary: 'È possibile accedere all"interfaccia utente di SnapManager in remoto utilizzando un browser Web da qualsiasi sistema in esecuzione su un sistema operativo supportato da SnapManager. È inoltre possibile accedere all"interfaccia utente di SnapManager dall"host del database di destinazione eseguendo il comando smogui.' 
+---
+= Accesso all'interfaccia utente di SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile accedere all'interfaccia utente (UI) di SnapManager in remoto utilizzando un browser Web da qualsiasi sistema in esecuzione su un sistema operativo supportato da SnapManager. È inoltre possibile accedere all'interfaccia utente di SnapManager dall'host del database di destinazione eseguendo il comando smogui.
+
+* Assicurarsi che SnapManager sia in esecuzione.
+* Assicurarsi che il sistema operativo supportato e Java siano installati sul sistema in cui si desidera accedere all'interfaccia utente di SnapManager.
++
+Per informazioni sul sistema operativo supportato e su Java, consultare il tool Interoperability Matrix.
+
++
+.. Nella finestra del browser Web, immettere quanto segue:https://server_name.domain.com:port_number
++
+*** Nome_server è il nome dell'host del database di destinazione in cui è installato SnapManager.
++
+È inoltre possibile immettere l'indirizzo IP dell'host del database di destinazione.
+
+*** Numero_porta è la porta su cui viene eseguito SnapManager.
++
+Il valore predefinito è 27214.
+
+
+
+.. Fare clic sul collegamento *Launch SnapManager for Oracle*.
++
+Viene visualizzata l'interfaccia utente SnapManager per Oracle.
+
+
+
+

@@ -1,0 +1,93 @@
+---
+permalink: windows/reference_the_smosmsapbackup_delete_command.html 
+sidebar: sidebar 
+keywords: run, backup, delete, command, remove, remove, create, clone, retention, class, smo 
+summary: È possibile eseguire il comando di eliminazione del backup per rimuovere i backup che non vengono rimossi automaticamente, ad esempio i backup utilizzati per creare un clone o i backup che non sono riusciti. È possibile eliminare i backup conservati senza limiti senza modificare la classe di conservazione. 
+---
+= Il comando smo backup delete
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di eliminazione del backup per rimuovere i backup che non vengono rimossi automaticamente, ad esempio i backup utilizzati per creare un clone o i backup che non sono riusciti. È possibile eliminare i backup conservati senza limiti senza modificare la classe di conservazione.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo backup delete
+-profile profile_name
+[-label label \[-data \| -archivelogs\] \| \[-id guid \| -all\]
+-force
+\[-dump\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il database associato al backup che si desidera rimuovere. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-id guid*
++
+Specifica il backup con il GUID specificato. Il GUID viene generato da SnapManager quando si crea un backup. È possibile utilizzare il comando smo backup list per visualizzare il GUID per ciascun backup.
+
+* etichetta **
++
+Specifica il backup con l'etichetta specificata. Facoltativamente, specificare l'ambito del backup come file di dati o log di archiviazione.
+
+* *-dati*
++
+Specifica i file di dati.
+
+* *-archivelogs*
++
+Specifica i file di log dell'archivio.
+
+* *-tutto*
++
+Specifica tutti i backup. Per eliminare solo i backup specificati, utilizzare l'opzione -id o -label.
+
+* *-dump*
++
+Raccoglie i file dump dopo un'operazione di eliminazione del backup riuscita o non riuscita.
+
+* *-force*
++
+Forza la rimozione del backup. SnapManager rimuove il backup anche in caso di problemi di liberare le risorse associate al backup. Ad esempio, se il backup è stato catalogato con Oracle Recovery Manager (RMAN), ma il database RMAN non esiste più, incluso -force elimina il backup anche se non riesce a connettersi con RMAN.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Il seguente esempio elimina il backup:
+
+[listing]
+----
+smo backup delete -profile SALES1 -label full_backup_sales_May
+Operation Id [8abc01ec0e79004b010e79006da60001] succeeded.
+----
+*Informazioni correlate*
+
+xref:task_deleting_backups.adoc[Eliminazione dei backup]
+
+xref:reference_the_smosmsapprofile_create_command.adoc[Il comando di creazione del profilo smo]
+
+xref:reference_the_smosmsapprofile_update_command.adoc[Il comando di aggiornamento del profilo smo]

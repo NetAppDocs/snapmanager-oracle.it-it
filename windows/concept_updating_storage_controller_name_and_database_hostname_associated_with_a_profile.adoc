@@ -1,0 +1,14 @@
+---
+permalink: windows/concept_updating_storage_controller_name_and_database_hostname_associated_with_a_profile.html 
+sidebar: sidebar 
+keywords: storage, system, host, name, address, target, database, profile, update, updating 
+summary: 'SnapManager 3.3 o versione successiva consente di aggiornare il nome host del sistema di storage o l"indirizzo del sistema di storage e il nome host del database di destinazione associato a un profilo SnapManager.' 
+---
+= Aggiornamento del nome del sistema di storage e del nome host del database di destinazione associati a un profilo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager 3.3 o versione successiva consente di aggiornare il nome host del sistema di storage o l'indirizzo del sistema di storage e il nome host del database di destinazione associato a un profilo SnapManager.

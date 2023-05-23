@@ -1,0 +1,25 @@
+---
+permalink: unix-administration/task_stopping_the_clone_split_process.html 
+sidebar: sidebar 
+keywords: stop, run, clone, split, process, smo 
+summary: È possibile interrompere il processo di suddivisione dei cloni in esecuzione. 
+---
+= Interruzione del processo di suddivisione dei cloni
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile interrompere il processo di suddivisione dei cloni in esecuzione.
+
+Una volta interrotto il processo di divisione, non è possibile ripristinarlo.
+
+. Per interrompere l'operazione di suddivisione dei cloni, immettere il seguente comando:
+`smo clone split-stop -profileprofile [-hosthostname] [-labelsplit-label | -idsplit-id] [-quiet | -verbose]`
+
+
+[listing]
+----
+smo clone split-stop -profile p1 -id 8abc01ec0e78f3e2010e78f3fdd00001
+----

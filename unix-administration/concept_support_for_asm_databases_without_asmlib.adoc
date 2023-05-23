@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/concept_support_for_asm_databases_without_asmlib.html 
+sidebar: sidebar 
+keywords: snapmanager, asm, asmlib, requirement, asm, disk, group, primary, storage, vbsr, secondary 
+summary: Per impostazione predefinita, SnapManager supporta ASM senza ASMLib. Il requisito di base è che i dispositivi utilizzati per i gruppi di dischi ASM devono essere partizionati. 
+---
+= Supporto per database ASM senza ASMLib
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per impostazione predefinita, SnapManager supporta ASM senza ASMLib. Il requisito di base è che i dispositivi utilizzati per i gruppi di dischi ASM devono essere partizionati.
+
+Quando ASMLib non è installato, le autorizzazioni dei dispositivi relative ai gruppi di dischi ASM vengono modificate in root:disk quando si eseguono le seguenti operazioni:
+
+* Riavviare l'host
+* Ripristinare un database dallo storage primario utilizzando VBSR (Volume-Based SnapRestore)
+* Ripristinare un database dallo storage secondario
+
+
+È possibile impostare le autorizzazioni appropriate per il dispositivo assegnando true alla variabile di configurazione oracleasm.support.without.asmlib in smo.conf I dispositivi relativi ai gruppi di dischi ASM vengono aggiunti o rimossi dal file initasmdisks ogni volta che vengono aggiunti o rimossi nuovi dispositivi dall'host. Il file initasmdisks si trova in /etc/initasmdisks.
+
+Ad esempio, se si imposta oracleasm.support.without.asmlib=true e si esegue un montaggio di backup, i nuovi dispositivi vengono aggiunti agli initasmdisks. Quando l'host viene riavviato, le autorizzazioni e la proprietà del dispositivo vengono mantenute dagli script di avvio.
+
+
+NOTE: Il valore predefinito per oracleasm.support.without.asmlib è false.
+
+*Informazioni correlate*
+
+xref:reference_supported_partition_devices.adoc[Periferiche di partizione supportate]

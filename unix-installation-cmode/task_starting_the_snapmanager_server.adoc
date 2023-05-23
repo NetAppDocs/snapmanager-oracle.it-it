@@ -1,0 +1,29 @@
+---
+permalink: unix-installation-cmode/task_starting_the_snapmanager_server.html 
+sidebar: sidebar 
+keywords: start, snapmanager, server, target, database, host, smo 
+summary: 'È necessario avviare il server SnapManager dall"host del database di destinazione.' 
+---
+= Avvio del server SnapManager in corso
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario avviare il server SnapManager dall'host del database di destinazione.
+
+. Accedere all'host del database di destinazione e avviare il server SnapManager:
+`smo_server start`
++
+Viene visualizzato il seguente messaggio: Server SnapManager avviato su porta sicura numero_porta con numero_PID.
+
++
+
+NOTE: La porta predefinita è 27214.
+
+
+
+È possibile verificare che SnapManager funzioni correttamente: Verifica del sistema smo
+
+Viene visualizzato il seguente messaggio: Operation Id Operation_ID_Number successed.

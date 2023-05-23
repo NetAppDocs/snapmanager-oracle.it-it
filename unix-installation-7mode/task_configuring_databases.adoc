@@ -1,0 +1,14 @@
+---
+permalink: unix-installation-7mode/task_configuring_databases.html 
+sidebar: sidebar 
+keywords: configure, oracle, database, snapmanager, online 
+summary: È necessario configurare almeno due database Oracle, un database di destinazione di cui si desidera eseguire il backup utilizzando SnapManager e un database di repository per memorizzare i metadati del database di destinazione. Il database di destinazione e il database del repository SnapManager devono essere configurati e online prima di eseguire le operazioni SnapManager. 
+---
+= Configurazione dei database
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario configurare almeno due database Oracle: Un database di destinazione di cui si desidera eseguire il backup utilizzando SnapManager e un database di repository per memorizzare i metadati del database di destinazione. Il database di destinazione e il database del repository SnapManager devono essere configurati e online prima di eseguire le operazioni SnapManager.

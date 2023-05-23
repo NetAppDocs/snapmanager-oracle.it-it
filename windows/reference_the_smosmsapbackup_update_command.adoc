@@ -1,0 +1,89 @@
+---
+permalink: windows/reference_the_smosmsapbackup_update_command.html 
+sidebar: sidebar 
+keywords: run, backup, update, command, retention, policy, smo 
+summary: È possibile eseguire il comando di aggiornamento del backup per aggiornare il criterio di conservazione del backup. 
+---
+= Il comando smo backup update
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di aggiornamento del backup per aggiornare il criterio di conservazione del backup.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo backup update
+-profile profile_name
+[-label label \[-data \| -archivelogs\] \| \[-id guid\]
+\[-retain \{-hourly \| -daily \| -weekly \| -monthly \| -unlimited\}\]
+\[-comment comment_text\]
+[-quiet | -verbose]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il profilo per cui aggiornare i backup. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-id guid*
++
+Verifica il backup con il GUID specificato. Il GUID viene generato da SnapManager quando si crea un backup. È possibile utilizzare il comando smo backup list per visualizzare il GUID per ciascun backup.
+
+* etichetta **
++
+Specifica l'etichetta di backup e l'ambito del backup come file di dati o log di archiviazione.
+
+* *-dati*
++
+Specifica i file di dati.
+
+* *-archivelogs*
++
+Specifica i file di log dell'archivio.
+
+* *-comment comment_text*
++
+Inserire testo (fino a 200 caratteri) sull'aggiornamento del backup. È possibile includere spazi.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+* *-retain {-hourly | -giornaliero | -settimanale | -mensile | -illimitato}*
++
+Specifica se il backup deve essere conservato su base oraria, giornaliera, settimanale, mensile o illimitata. Se non viene specificato -retain, il valore predefinito della classe retention è -hourly. Per conservare i backup per sempre, utilizza l'opzione -Unlimited. L'opzione -Unlimited rende il backup non idoneo per l'eliminazione.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente viene aggiornato il backup per impostare il criterio di conservazione su Unlimited:
+
+[listing]
+----
+smo backup update -profile SALES1 -label full_backup_sales_May
+-retain -unlimited -comment save_forever_monthly_backup
+----
+*Informazioni correlate*
+
+xref:task_changing_the_backup_retention_policy.adoc[Modifica del criterio di conservazione del backup]
+
+xref:task_retaining_backups_forever.adoc[Conservazione dei backup per sempre]
+
+xref:task_freeing_or_deleting_retention_policy_exempt_backups.adoc[Liberare o eliminare i backup esenti dai criteri di conservazione]

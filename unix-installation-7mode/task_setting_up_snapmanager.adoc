@@ -1,0 +1,14 @@
+---
+permalink: unix-installation-7mode/task_setting_up_snapmanager.html 
+sidebar: sidebar 
+keywords: start, snapmanager, access, user, interface, ui, command-line, interface, cli, operation 
+summary: 'È possibile avviare SnapManager e accedervi utilizzando l"interfaccia utente (UI) o l"interfaccia della riga di comando (CLI). Dopo aver effettuato l"accesso a SnapManager, è necessario creare il repository SnapManager prima di eseguire qualsiasi operazione SnapManager.' 
+---
+= Configurazione di SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile avviare SnapManager e accedervi utilizzando l'interfaccia utente (UI) o l'interfaccia della riga di comando (CLI). Dopo aver effettuato l'accesso a SnapManager, è necessario creare il repository SnapManager prima di eseguire qualsiasi operazione SnapManager.

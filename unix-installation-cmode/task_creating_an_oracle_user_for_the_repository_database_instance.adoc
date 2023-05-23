@@ -1,0 +1,25 @@
+---
+permalink: unix-installation-cmode/task_creating_an_oracle_user_for_the_repository_database_instance.html 
+sidebar: sidebar 
+keywords: oracle, user, require, repository, database, instance, create, user, connect, resource, privilege 
+summary: 'Un utente Oracle deve effettuare l"accesso all"istanza del database del repository e accedervi. È necessario creare questo utente con privilegi di connessione e risorse.' 
+---
+= Creazione di un utente Oracle per l'istanza del database del repository
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un utente Oracle deve effettuare l'accesso all'istanza del database del repository e accedervi. È necessario creare questo utente con i privilegi _Connect_ e _resource_.
+
+. Accedere a SQL *Plus: Sqlplus '/ as sysdbal'
+. Creare un nuovo utente e assegnare una password di amministratore a tale utente: Create useruser_name identificato da admin_password default tablespace tablespace_name quota illimitata su tablespace_name;
++
+** user_name è il nome dell'utente che si sta creando per il database del repository.
+** admin_password è la password che si desidera assegnare all'utente.
+** tablespace_name è il nome della tablespace creata per il database del repository.
+
+
+. Assegnare i privilegi _Connect_ e _resource_ al nuovo utente Oracle: Grant Connect, resource to user_name;
+

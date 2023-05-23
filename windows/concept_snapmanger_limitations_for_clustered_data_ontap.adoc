@@ -1,0 +1,22 @@
+---
+permalink: windows/concept_snapmanger_limitations_for_clustered_data_ontap.html 
+sidebar: sidebar 
+keywords: limitation, functionalities, functionality, operation, cluster, data, ontap 
+summary: Se si utilizza Clustered Data ONTAP, è necessario conoscere i limiti di alcune funzionalità e delle operazioni SnapManager. 
+---
+= Limitazioni di SnapManager per Clustered Data ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si utilizza Clustered Data ONTAP, è necessario conoscere i limiti di alcune funzionalità e delle operazioni SnapManager.
+
+Le seguenti funzionalità non sono supportate se si utilizza SnapManager su Clustered Data ONTAP:
+
+* LUN (Logical Unit Number) RDM (Raw Device Mapping) per le macchine virtuali di storage (SVM)
+* Database in cui un LUN appartiene a un sistema che esegue Data ONTAP in modalità 7 e l'altro LUN appartiene a un sistema che esegue Clustered Data ONTAP
+* SnapManager per Oracle non supporta la migrazione di un Vserver, che non è supportato da Clustered Data ONTAP
+* SnapManager per Oracle non supporta la funzionalità Clustered Data ONTAP 8.2.1 per specificare criteri di esportazione diversi per volumi e qtree
+

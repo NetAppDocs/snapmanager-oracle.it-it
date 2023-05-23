@@ -1,0 +1,76 @@
+---
+permalink: unix-administration/concept_database_state_needed_for_restore_process.html 
+sidebar: sidebar 
+keywords: state, database, restore, process, file 
+summary: Lo stato del database da ripristinare dipende dal tipo di processo di ripristino che si desidera eseguire e dal tipo di file da includere. 
+---
+= Stato del database necessario per il processo di ripristino
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lo stato del database da ripristinare dipende dal tipo di processo di ripristino che si desidera eseguire e dal tipo di file da includere.
+
+La tabella seguente elenca lo stato in cui il database deve essere in base all'opzione di ripristino selezionata e al tipo di file che si desidera includere nel ripristino:
+
+|===
+| Tipo di ripristino | File inclusi | Stato del database per questa istanza | Stato del database per un'altra istanza (solo RAC) 
+
+
+ a| 
+Solo ripristino
+ a| 
+File di controllo
+ a| 
+Spegnere
+ a| 
+Spegnere
+
+
+
+ a| 
+File di sistema
+ a| 
+Montare o spegnere
+ a| 
+Montare o spegnere
+ a| 
+Nessun file di sistema
+
+
+
+ a| 
+Qualsiasi stato
+ a| 
+Qualsiasi stato
+ a| 
+Ripristino e ripristino
+ a| 
+File di controllo
+
+
+
+ a| 
+Spegnere
+ a| 
+Spegnere
+ a| 
+File di sistema
+ a| 
+Montare
+
+
+
+ a| 
+Montare o spegnere
+ a| 
+Nessun file di sistema
+ a| 
+Montare o aprire
+ a| 
+Qualsiasi
+
+|===
+Lo stato del database richiesto da SnapManager per un'operazione di ripristino dipende dal tipo di ripristino eseguito (file completi, parziali o di controllo). SnapManager non sposta il database in uno stato inferiore (ad esempio, da aperto a montaggio) a meno che non sia specificata l'opzione force.

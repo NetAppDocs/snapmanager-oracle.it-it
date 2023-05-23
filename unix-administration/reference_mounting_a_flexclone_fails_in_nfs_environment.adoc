@@ -1,0 +1,31 @@
+---
+permalink: unix-administration/reference_mounting_a_flexclone_fails_in_nfs_environment.html 
+sidebar: sidebar 
+keywords: snapmanager, flexclone, volume, nfs, environment, clone, backup, flexvol, ha, pair, configuration, export 
+summary: Quando SnapManager crea un FlexClone di un volume in un ambiente NFS, viene aggiunta una voce nel file /etc/exports. Impossibile montare il clone o il backup su un host SnapManager con un messaggio di errore. 
+---
+= Il montaggio di un volume FlexClone non riesce in ambiente NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando SnapManager crea un FlexClone di un volume in un ambiente NFS, viene aggiunta una voce nel file /etc/exports. Impossibile montare il clone o il backup su un host SnapManager con un messaggio di errore.
+
+Il messaggio di errore è: 0001-034 errore di comando: Montaggio non riuscito: Montaggio: Filer1:/vol/SnapManager_20090914112850837_vol14 su /opt/NTAPsmo/mnt/-ora_data02-20090914112850735_1 - AVVISO opzione sconosciuta "zone=vol14" montaggio nfs: Filer1:/vol/SnapManager_20090914112850837_vol14: Permesso negato.
+
+Allo stesso tempo, sulla console del sistema di storage viene generato il seguente messaggio: LUN Sep 14 23:58:37 PDT [filer1: export.auto.update.disabled: warning]: /Etc/exports non è stato aggiornato per il vol14 quando è stato eseguito il comando di creazione del clone vol. Aggiornare manualmente /etc/exports o copiare /etc/exports.new in esso.
+
+Questo messaggio potrebbe non essere acquisito nei messaggi AutoSupport.
+
+
+NOTE: Potrebbero verificarsi problemi simili durante la clonazione di volumi FlexVol su NFS. Per attivare l'opzione nfs.export.auto-update, seguire la stessa procedura.
+
+*Cosa fare*
+
+. Impostare l'opzione nfs.export.auto-update su on in modo che il file /etc/exports venga aggiornato automaticamente. opzioni nfs.export.auto-updateon
+
+
+
+NOTE: Nella configurazione ha Pair, assicurarsi di impostare l'opzione NFS exports (esportazioni NFS) su on per entrambi i sistemi storage.

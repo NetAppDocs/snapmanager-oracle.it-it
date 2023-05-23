@@ -1,0 +1,21 @@
+---
+permalink: windows/task_deleting_profiles.html 
+sidebar: sidebar 
+keywords: delete, profile, anytime, successful, incomplete, backup, delete 
+summary: È possibile eliminare un profilo in qualsiasi momento, a condizione che non contenga backup completi o riusciti. È possibile eliminare i profili che contengono backup liberati o cancellati. 
+---
+= Eliminazione dei profili
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eliminare un profilo in qualsiasi momento, a condizione che non contenga backup completi o riusciti. È possibile eliminare i profili che contengono backup liberati o cancellati.
+
+. Per eliminare un profilo, immettere il comando:smo profile delete -profile_name
+
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapprofile_delete_command.adoc[Il comando smo profile delete]

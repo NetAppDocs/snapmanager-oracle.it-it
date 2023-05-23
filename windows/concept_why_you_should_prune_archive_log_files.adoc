@@ -1,0 +1,19 @@
+---
+permalink: windows/concept_why_you_should_prune_archive_log_files.html 
+sidebar: sidebar 
+keywords: oracle, enable, delete, archive, log, file, back, up, prune 
+summary: 'SnapManager per Oracle consente di eliminare i file di log dell"archivio dal file system attivo di cui è già stato eseguito il backup.' 
+---
+= Perché è necessario ridurre i file di log dell'archivio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager per Oracle consente di eliminare i file di log dell'archivio dal file system attivo di cui è già stato eseguito il backup.
+
+L'eliminazione consente a SnapManager di creare backup di file di log di archivio distinti. L'eliminazione, insieme alla policy di conservazione del backup, libera spazio nel log di archiviazione quando i backup vengono eliminati.
+
+
+NOTE: Non è possibile eseguire l'eliminazione dei file di log dell'archivio quando Flash Recovery Area (fra) è abilitata per i file di log dell'archivio. Se si specifica la posizione del registro di archiviazione nell'area di ripristino flash, è necessario specificare anche la posizione del registro di archiviazione nel parametro archive_log_dest.

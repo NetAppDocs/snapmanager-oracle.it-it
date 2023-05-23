@@ -1,0 +1,28 @@
+---
+permalink: unix-administration/task_freeing_or_deleting_retention_policy_exempt_backups.html 
+sidebar: sidebar 
+keywords: backup, retention, class, unlimited, delete, free, directly, policy, exempt, smo 
+summary: 'I backup con la classe di conservazione "illimitata" non possono essere cancellati o liberati direttamente. Per eliminare o liberare questi backup, è necessario prima assegnare un"altra classe di conservazione, ad esempio oraria, giornaliera, settimanale o mensile. Per eliminare o liberare un backup esente dal criterio di conservazione, è necessario prima aggiornare il backup per renderlo idoneo per l"eliminazione o liberarlo.' 
+---
+= Liberare o eliminare i backup esenti dai criteri di conservazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I backup con la classe di conservazione "illimitata" non possono essere cancellati o liberati direttamente. Per eliminare o liberare questi backup, è necessario prima assegnare un'altra classe di conservazione, ad esempio oraria, giornaliera, settimanale o mensile. Per eliminare o liberare un backup esente dal criterio di conservazione, è necessario prima aggiornare il backup per renderlo idoneo per l'eliminazione o liberarlo.
+
+. Per aggiornare il backup in modo che sia idoneo per l'eliminazione in base al criterio di conservazione, immettere il seguente comando:
+`smo backup update -profileprofile_name {-labellabel [data | -archivelogs] | -idid} -retain [-hourly | -daily | -weekly | -monthly]`
+. Dopo aver aggiornato il backup in modo che sia idoneo per l'eliminazione, è possibile eliminare il backup o liberare le risorse di backup.
++
+** Per eliminare il backup, immettere il seguente comando: smo backup delete -profileprofile_name {-labellabel [data | -archivelogs] | -idid | -all}
+** Per liberare le risorse di backup, invece di eliminare il backup, immettere questo comando:smo backup free -profileprofile_name {-labellabel [data | -archivelogs] | -idid | -all} [-force] [ -dump] [-quiet | -verbose]
+
+
+
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapbackup_update_command.adoc[Il comando smo backup update]

@@ -1,0 +1,34 @@
+---
+permalink: unix-administration/task_protecting_archive_log_backups.html 
+sidebar: sidebar 
+keywords: creating, profile, enable, protection, archive, log, backup, base, policy 
+summary: Durante la creazione dei profili, è possibile attivare la protezione per i backup del registro di archiviazione in base ai criteri di protezione del registro di archiviazione. 
+---
+= Protezione dei backup dei log di archiviazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante la creazione dei profili, è possibile attivare la protezione per i backup del registro di archiviazione in base ai criteri di protezione del registro di archiviazione.
+
+. Immettere il seguente comando:
+`smo profile create -profileprofile [-profile-passwordprofile_password] -repository-dbnamerepo_dbname-hostrepo_host-portrepo_port-login-usernamerepo_username-database-dbnamedb_dbname-hostdb_host [-siddb_sid] [-login-usernamedb_username-passworddb_password-portdb_port] [-rman {-controlfile | {-login-usernamerman_username-passwordrman_password-tnsnamerman_tnsname} } ] -osaccountosaccount-osgrouposgroup [-retain [-hourly [-countn] [-durationm]] [-daily [-countn] [-durationm]] [-weekly [-countn] [-durationm]] [-monthly [-countn] [-durationm]]] [-commentcomment][-snapname-patternpattern][-protect [-protection-policypolicy_name]] [-summary-notification] [-notification [-success-emailemail_address1, email_address2-subjectsubject_pattern] [-failure-emailemail_address1, email_address2-subjectsubject_pattern]][-separate-archivelog-backups-retain-archivelog-backups-hourshours | -daysdays | -weeksweeks| -monthsmonths [-protect [-protection-policypolicy_name] | -noprotect] [-include-with-online-backups | -no-include-with-online-backups]] [-dump]`
++
+|===
+| Se... | Quindi... 
+
+
+ a| 
+*Si desidera eseguire il backup dei backup dei log di archiviazione separatamente e proteggere i file di log di archiviazione*
+ a| 
+Specificare le seguenti opzioni:
+
+** -separate-archivelog-backups consente di separare i file di log dell'archivio dai file di dati.
+** -protect assegna una policy di protezione separata per i backup del log di archiviazione del log.
+** -protection-policy assegna il criterio di protezione per i backup del log di archiviazione.
+
+
+|===
+

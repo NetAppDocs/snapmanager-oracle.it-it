@@ -1,0 +1,74 @@
+---
+permalink: unix-administration/task_ensuring_that_asm_discovers_imported_disks.html 
+sidebar: sidebar 
+keywords: automatic, storage, management, asm, nfs, environment, install, snapmanager, discover, import, disk, snapmanager 
+summary: Se si utilizza la gestione automatica dello storage in un ambiente NFS, dopo aver installato SnapManager, è necessario assicurarsi che ASM sia in grado di rilevare i dischi importati da SnapManager. A tale scopo, aggiungere il percorso della directory ASM al parametro ASM_DISKSTRING. 
+---
+= Assicurarsi che ASM scopra i dischi importati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si utilizza la gestione automatica dello storage (ASM) in un ambiente NFS, dopo l'installazione di SnapManager, è necessario assicurarsi che ASM sia in grado di rilevare i dischi importati da SnapManager. A tale scopo, aggiungere il percorso della directory ASM al parametro ASM_DISKSTRING.
+
+È possibile utilizzare gli strumenti Oracle per modificare il parametro ASM_DISKSTRING. Per informazioni sulla modifica di ASM_DISKSTRING, consultare la documentazione Oracle.
+
+Il percorso del disco ASM /opt/NetApp/smo/mnt/*/*/disk*' deve essere aggiunto al percorso esistente definito nel parametro ASM_DISKSTRING. Ad esempio, se il percorso definito in ASM_DISKSTRING era /mnt/my-asm-disks/dir1/disk*, dopo aver aggiunto il percorso del disco ASM, il percorso aggiornato sarà '/mnt/my-asm-disks/dir1/disk*,/opt/NetApp/smo/mnt/*/*/disk*'.
+
+
+NOTE: Il parametro ASM_DISKSTRING deve corrispondere solo ai file del disco ASM e non ad altri file.
+
+* Il primo asterisco (*) indica il nome generato da SnapManager per il punto di montaggio root.
+* Il secondo * indica la directory all'interno del punto di montaggio.
+* Il terzo * indica il nome del file NFS.
+
+
+Se il disco è montato nelle directory sotto /opt/NetApp/smo/mnt/<smo-generated-name>/, è necessario assicurarsi che il simbolo * corrisponda alla topologia del file system NFS.
+
+. Se si utilizzano dischi ASM con NFS nell'ambiente NAS (Network Attached Storage), modificare il parametro ASM_DISKSTRING in modo che punti al percorso di directory ASM corrente.
++
+Se il punto di montaggio dei dischi ASM è /mnt/my-asm-disks/*/disk*, dopo aver modificato ASM_DISKSTRING, il percorso aggiornato è /opt/NetApp/smo/mnt/my-asm-disks-20081012/disk1.nfs. Il parametro ASM_DISKSTRING è nel formato /opt/NetApp/smo/mnt/*/disk*.
+
++
+** Il primo * corrisponde a my-asm-disks-20081012.
+** Il disco* corrisponde a disk1.nfs. Dopo aver modificato il parametro ASM_DISKSTRING, i risultati del rilevamento dei dischi importati da SnapManager sono i seguenti:
+** Il clone di ASM su NFS disk1 è /opt/NetApp/smo/mnt/-mnt-my-asm-disks-20081012/dir1/disk1.nfs.
+** Il clone di ASM su NFS disk2 è /opt/NetApp/smo/mnt/-mnt-my-asm-disks-20081012/dir1/disk2.nfs. Il parametro ASM_DISKSTRING è nel formato /opt/NetApp/smo/mnt/*/*/disk*.
+** Il primo * corrisponde a -mnt-my-asm-disks-20081012.
+** Il secondo * corrisponde a dir1.
+** Il terzo * corrisponde a disk1.nfs e disk2.nfs.
+
+
+. Se si utilizzano dischi ASM nell'ambiente SAN (Storage Area Network), a seconda dell'ambiente, eseguire una delle seguenti operazioni:
++
+|===
+| Se si utilizzano dischi ASM con... | Quindi... 
+
+
+ a| 
+ASMLib su FCP e iSCSI su Linux
+ a| 
+Modificare l'autorizzazione del proprietario del software Oracle e del gruppo primario dell'utente utilizzando solo il dispositivo a caratteri. Il percorso ASM_DISKSTRING deve essere ASM DISKSTRING = ORCL:*.
+
+
+
+ a| 
+FCP e iSCSI su AIX
+ a| 
+Aggiungere il nome del percorso per il parametro ASM_DISKSTRING fino al percorso della directory ASM. Il percorso ASM_DISKSTRING deve essere ASM DISKSTRING = /dev/hdsk/*, dove * indica il nome del disco ASM.
+
+
+
+ a| 
+FCP e iSCSI su Solaris
+ a| 
+Aggiungere il nome del percorso per il parametro ASM_DISKSTRING fino al percorso della directory ASM. Il percorso ASM_DISKSTRING deve essere ASM DISKSTRING = /dev/rdsk/*, dove * indica il nome del disco ASM.
+
++
+
+|===
+
+
+http://www.oracle.com/technetwork/indexes/documentation/index.html["Documentazione Oracle: www.oracle.com/technetwork/indexes/documentation/index.html"]

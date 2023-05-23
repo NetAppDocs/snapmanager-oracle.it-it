@@ -1,0 +1,191 @@
+---
+permalink: windows/concept_variables_available_in_custom_script_for_restore_operation.html 
+sidebar: sidebar 
+keywords: provide, context, information, form, environment, variable, restore, operation, perform, backup 
+summary: 'SnapManager fornisce informazioni di contesto sotto forma di variabili di ambiente correlate all"operazione di ripristino in corso. Ad esempio, lo script può recuperare il nome dell"host originale e l"etichetta del backup ripristinato.' 
+---
+= Variabili disponibili negli script delle operazioni per l'operazione di ripristino
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager fornisce informazioni di contesto sotto forma di variabili di ambiente correlate all'operazione di ripristino in corso. Ad esempio, lo script può recuperare il nome dell'host originale e l'etichetta del backup ripristinato.
+
+La tabella seguente elenca le variabili di ambiente che è possibile utilizzare negli script:
+
+|===
+| Variabili | Descrizione | Formato 
+
+
+ a| 
+ID_OPERAZIONE_SM
+ a| 
+Specifica l'ID dell'operazione corrente
+ a| 
+stringa
+
+
+
+ a| 
+NOME_PROFILO_SM
+ a| 
+Specifica il nome del profilo utilizzato
+ a| 
+stringa
+
+
+
+ a| 
+SM_HOST
+ a| 
+Specifica il nome host del database
+ a| 
+stringa
+
+
+
+ a| 
+SM_OS_USER
+ a| 
+Specifica il proprietario del sistema operativo del database
+ a| 
+stringa
+
+
+
+ a| 
+SM_OS_GROUP
+ a| 
+Specifica il gruppo di sistemi operativi del database
+ a| 
+stringa
+
+
+
+ a| 
+SM_BACKUP_TYPE
+ a| 
+Specifica il tipo di backup (online, offline o automatico)
+ a| 
+stringa
+
+
+
+ a| 
+SM_BACKUP_LABEL
+ a| 
+Specifica l'etichetta di backup
+ a| 
+stringa
+
+
+
+ a| 
+SM_BACKUP_ID
+ a| 
+Specifica l'ID del backup
+ a| 
+stringa
+
+
+
+ a| 
+SM_BACKUP_PROFILE
+ a| 
+Specifica il profilo utilizzato per il backup
+ a| 
+stringa
+
+
+
+ a| 
+SM_RECOVERY_TYPE
+ a| 
+Specifica le informazioni di configurazione del ripristino
+ a| 
+stringa
+
+
+
+ a| 
+SM_VOLUME_RESTORE_MODE
+ a| 
+Specifica la configurazione di ripristino del volume
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_FILER_NAME
+ a| 
+Specifica il nome del sistema di storage di destinazione *Nota:* se vengono utilizzati più sistemi di storage, i nomi dei sistemi di storage devono essere separati da virgole.
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_VOLUME_NAME
+ a| 
+Specifica il nome del volume di destinazione *Nota:* il nome del volume di destinazione deve essere preceduto dal nome del dispositivo di archiviazione, ad esempio SM_TARGET_FILER_NAME/SM_TARGET_VOLUME_NAME.
+ a| 
+stringa
+
+
+
+ a| 
+SM_HOST_FILE_SYSTEM
+ a| 
+Specifica il file system host
+ a| 
+stringa
+
+
+
+ a| 
+SM_SNAPSHOT_NAMES
+ a| 
+Specifica l'elenco Snapshot *Nota:* il nome delle copie Snapshot deve essere preceduto dal nome del sistema di storage e dal nome del volume. I nomi delle copie Snapshot sono separati da virgole.
+ a| 
+array di stringhe
+
+
+
+ a| 
+SM_ARCHIVE_LOGS_DIRECTORY
+ a| 
+Specifica la directory dei log di archiviazione *Nota:* se i log di archiviazione si trovano in più di una directory, i nomi di tali directory sono separati da virgole.
+ a| 
+array di stringhe
+
+
+
+ a| 
+SM_REDO_LOGS_DIRECTORY
+ a| 
+Specifica la directory dei log di ripristino *Nota:* se i log di ripristino si trovano in più directory, i nomi di tali directory sono separati da virgole.
+ a| 
+array di stringhe
+
+
+
+ a| 
+SM_CONTROL_FILES_DIRECTORY
+ a| 
+Specifica la directory dei file di controllo *Nota:* se i file di controllo si trovano in più di una directory, i nomi di tali directory sono separati da virgole.
+ a| 
+array di stringhe
+
+
+
+ a| 
+SM_DATA_FILES_DIRECTORY
+ a| 
+Specifica la directory dei file di dati *Nota:* se i file di dati si trovano in più di una directory, i nomi di tali directory sono separati da virgole.
+ a| 
+array di stringhe
+
+|===

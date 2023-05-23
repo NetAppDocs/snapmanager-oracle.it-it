@@ -1,0 +1,33 @@
+---
+permalink: unix-administration/concept_prerequisites_for_data_protection.html 
+sidebar: sidebar 
+keywords: consideration, peform, data, protection, netapp, snapdrive, post-script, support 
+summary: 'È necessario conoscere alcune considerazioni per l"esecuzione della protezione dei dati.' 
+---
+= Considerazioni per l'esecuzione della protezione dei dati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario conoscere alcune considerazioni per l'esecuzione della protezione dei dati.
+
+* Per eseguire operazioni di cloning o ripristino da sistemi secondari, è necessario montare il volume di destinazione nello spazio dei nomi ed esportarlo correttamente.
+* È necessario disattivare il parametro di configurazione SnapDrive check-export-permission-nfs-clone impostando il valore su Off.
++
+La documentazione di SnapDrive per UNIX sul sito di supporto NetApp contiene informazioni aggiuntive sul parametro check-export-permission-nfs-clone.
+
+* È necessario configurare la relazione di SnapMirror per i volumi di storage secondari richiesti nel sistema di storage secondario.
+* È necessario configurare la relazione SnapVault per i qtree dello storage secondario richiesti nel sistema di storage secondario per Data ONTAP che opera in 7-Mode.
+* È necessario definire un criterio e regole per l'etichetta SnapMirror definita dall'utente se si utilizza SnapVault post-script per Clustered Data ONTAP.
++
+SnapVault post-script supporta i volumi Data ONTAP in cluster e i tipi di relazione SnapMirror DP e XDP. La documentazione di ONTAP sul sito del supporto NetApp contiene informazioni sulla configurazione di SnapMirror e SnapVault.
+
+* Negli ambienti NAS, è necessario configurare il percorso dei dati NAS primario e secondario utilizzando il comando SnapDrive config set-mgmtpathmanagement_pathmanagement_pathmanagement_pathmanagement_pathmanagement_pathdatapath_path.
++
+Ad esempio, SnapDrive config set -mgmtpath f3050-197-91 f3050-197-91 f3050-197-91 f3050-220-91, dove `f3050-197-91` è il percorso di gestione e. `f3050-220-91` è il percorso dei dati.
+
+
+
+http://mysupport.netapp.com/["Documentazione sul sito di supporto NetApp: mysupport.netapp.com"]

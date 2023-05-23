@@ -1,0 +1,104 @@
+---
+permalink: unix-administration/task_freeing_backups.html 
+sidebar: sidebar 
+keywords: free, backup, delete, snapshot, copies, deleting, metadata, function 
+summary: È possibile liberare i backup, eliminando le copie Snapshot senza eliminare i metadati di backup. Questa funzione libera lo spazio occupato dal backup. È possibile utilizzare il comando smo backup free per liberare i backup. 
+---
+= Liberare i backup
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile liberare i backup, eliminando le copie Snapshot senza eliminare i metadati di backup. Questa funzione libera lo spazio occupato dal backup. È possibile utilizzare il comando smo backup free per liberare i backup.
+
+Affinché un backup possa essere liberato, è necessario assicurarsi di quanto segue:
+
+* Backup riuscito
+* Il backup non deve essere montato
+* Il backup non ha cloni
+* Il backup non deve essere conservato utilizzando una policy di conservazione illimitata
+* Il backup non è già stato liberato
+
+
+Se la protezione è attivata sul profilo e il criterio di protezione contiene connessioni dal nodo primario che utilizzano una relazione mirror, le copie Snapshot vengono eliminate sul nodo primario quando viene liberato un backup. Le copie Snapshot vengono eliminate anche dai nodi mirror quando si verifica il successivo trasferimento allo storage secondario.
+
+Quando si libera un backup protetto, SnapManager richiede a Protection Manager di rimuovere le copie Snapshot locali per il backup. Se l'operazione senza backup viene eseguita correttamente per i backup protetti, le copie Snapshot vengono eliminate da Protection Manager in modo asincrono.
+
+|===
+| Stato di protezione | Stato locale | Azione sullo storage primario | Azione sullo storage secondario | Spiegazione 
+
+
+ a| 
+Non richiesto (da proteggere)
+ a| 
+Esiste
+ a| 
+Libera il backup
+ a| 
+Non è richiesta alcuna azione
+ a| 
+SnapManager libera il backup locale.
+
+
+
+ a| 
+Liberato
+ a| 
+Non è richiesta alcuna azione
+ a| 
+Non è richiesta alcuna azione
+ a| 
+Il backup locale è già stato liberato.
+ a| 
+Non protetto
+
+
+
+ a| 
+Esiste
+ a| 
+Libera il backup
+ a| 
+Non è richiesta alcuna azione
+ a| 
+SnapManager libera il backup locale anche se sullo storage secondario non sono presenti copie.
+ a| 
+Liberato
+
+
+
+ a| 
+Non è richiesta alcuna azione
+ a| 
+Non è richiesta alcuna azione
+ a| 
+Il backup locale è già stato liberato.
+ a| 
+Protetto
+ a| 
+Esiste
+
+
+
+ a| 
+Libera il backup
+ a| 
+Nessuna azione richiesta; il backup su secondario rimane
+ a| 
+SnapManager libera il backup locale. Le copie rimangono sullo storage secondario.
+ a| 
+Liberato
+ a| 
+Non è richiesta alcuna azione
+
+|===
+È possibile specificare l'opzione -dump come parametro facoltativo per raccogliere i file dump dopo l'operazione senza backup riuscita o non riuscita.
+
+. Immettere il seguente comando: smo backup free -profileprofile_name {-labellabel [data | -archivelogs] | -idid | -all} -force [-dump] [-quiet] [-force]
+
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapbackup_free_command.adoc[Il comando smo backup free]

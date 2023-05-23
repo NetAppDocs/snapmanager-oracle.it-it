@@ -1,0 +1,35 @@
+---
+permalink: windows/reference_the_smosmsap_schedule_list_command.html 
+sidebar: sidebar 
+keywords: command, list, schedule, operation, associate, profile, smo 
+summary: Questo comando elenca le operazioni pianificate associate a un profilo. 
+---
+= Il comando smo schedule list
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando elenca le operazioni pianificate associate a un profilo.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo schedule list
+-profile profile_name
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il nome del profilo correlato al database, utilizzando il quale è possibile visualizzare un elenco di operazioni pianificate. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+

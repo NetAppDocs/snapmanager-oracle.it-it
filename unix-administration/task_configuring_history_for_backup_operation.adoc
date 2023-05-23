@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/task_configuring_history_for_backup_operation.html 
+sidebar: sidebar 
+keywords: snapmanager, oracle, enable, maintain, history, snapmanager, operation, cli, gui, view, history, smo, set 
+summary: 'SnapManager per Oracle consente di mantenere la cronologia delle operazioni SnapManager dalla CLI o dall"interfaccia grafica utente di SnapManager. È possibile visualizzare la cronologia dell"operazione SnapManager come report.' 
+---
+= Configurazione della cronologia per il funzionamento di SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager per Oracle consente di mantenere la cronologia delle operazioni SnapManager dalla CLI o dall'interfaccia grafica utente di SnapManager. È possibile visualizzare la cronologia dell'operazione SnapManager come report.
+
+. Per configurare la cronologia delle operazioni SnapManager, immettere il seguente comando: smo history set -profile {-name, profile_name [profile_name1, profile_name2] | -all-repository-login [-passwordrepo_password] -usernamerepo_dbnamerepo_dbname-ostrepo_host-portrepo_port} -operation {-conserve -nomesignone -lythemonthesimanale |}_operazione -nomesignone_2_operazioni_manutenzione_settimanale | {_manutenzione -nomesignone_settimanale |}_operazioni_manutenzione_settimanale |_manutenzione_manutenzione_settimanale |_operazioni_settimanale | manutenzione_settimanale -nomesignone_manutenzione_settimanale |_operazioni_manutenzione_settimanale
+
+
+[listing]
+----
+
+        smo
+history set -profile -name PROFILE1 -operation -operations backup -retain -daily 6 -verbose
+----
+[listing]
+----
+
+        smo
+history set -profile -name PROFILE1 -operation -all -retain -weekly 3 -verbose
+----

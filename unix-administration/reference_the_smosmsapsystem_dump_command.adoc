@@ -1,0 +1,50 @@
+---
+permalink: unix-administration/reference_the_smosmsapsystem_dump_command.html 
+sidebar: sidebar 
+keywords: run, system, dump, command, create, jar, file, contain, diagnostic, information, server, environment, smo 
+summary: 'È possibile eseguire il comando dump del sistema per creare un file JAR contenente informazioni diagnostiche sull"ambiente del server.' 
+---
+= Il comando di dump del sistema smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando dump del sistema per creare un file JAR contenente informazioni diagnostiche sull'ambiente del server.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo system dump
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio del comando dump di sistema
+
+Nell'esempio seguente viene utilizzato il comando di dump del sistema smo per creare un file JAR:
+
+[listing]
+----
+smo system dump
+Path:/userhomedirectory/.netapp/smo/3.3.0/smo_dump_hostname.jar
+----

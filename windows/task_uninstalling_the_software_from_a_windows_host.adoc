@@ -1,0 +1,23 @@
+---
+permalink: windows/task_uninstalling_the_software_from_a_windows_host.html 
+sidebar: sidebar 
+keywords: uninstall, snapmanager, host, server 
+summary: È possibile disinstallare SnapManager dal server host. 
+---
+= Disinstallazione di SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile disinstallare SnapManager dal server host.
+
+* Arrestare il server host prima di disinstallare SnapManager.
++
+.. Fare clic su *Start* > *pannello di controllo* > *Installazione applicazioni*.
+.. Selezionare *SnapManager per Oracle*.
+.. Fare clic su *Disinstalla*.
+
+
+

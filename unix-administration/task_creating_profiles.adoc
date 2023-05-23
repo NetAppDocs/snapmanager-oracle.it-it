@@ -1,0 +1,221 @@
+---
+permalink: unix-administration/task_creating_profiles.html 
+sidebar: sidebar 
+keywords: creating, profile, assign, particular, oracle, database, user, account 
+summary: Durante la creazione dei profili, è possibile assegnare un account utente del database Oracle specifico al profilo. È possibile impostare il criterio di conservazione per il profilo, attivare la protezione del backup sullo storage secondario per tutti i backup utilizzando questo profilo e impostare il numero e la durata di conservazione per ciascuna classe di conservazione. 
+---
+= Creazione di profili
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante la creazione dei profili, è possibile assegnare un account utente del database Oracle specifico al profilo. È possibile impostare il criterio di conservazione per il profilo, attivare la protezione del backup sullo storage secondario per tutti i backup utilizzando questo profilo e impostare il numero di conservazione e la durata per ciascuna classe di conservazione.
+
+Se non si forniscono i valori dei parametri -login, -password e -port del database, la modalità di autenticazione del sistema operativo utilizza le credenziali predefinite.
+
+Durante la creazione di un profilo, SnapManager esegue un controllo dell'idoneità al ripristino per determinare il meccanismo di ripristino che può essere utilizzato per ripristinare il database. Se il database si trova su un qtree e il volume padre non è idoneo per un ripristino rapido o basato su volume, l'analisi potrebbe essere errata.
+
+SnapManager (3.2 o versione successiva) consente di separare i file di log dell'archivio dai file di dati durante la creazione di un nuovo profilo o l'aggiornamento di un profilo esistente. Dopo aver separato il backup utilizzando il profilo, è possibile creare solo il backup dei file di dati o il backup del database solo log di archiviazione. È possibile utilizzare il nuovo profilo o il profilo aggiornato per creare il backup contenente sia i file di dati che i file di log dell'archivio. Tuttavia, non è possibile utilizzare il profilo per creare il backup completo o ripristinare le impostazioni.
+
+*Profili per la creazione di backup completi e parziali*
+
+È possibile creare profili per creare il backup completo del database contenente i file di dati, i file di controllo e i file di log dell'archivio e il backup parziale del database contenente file di dati o tablespace specifici, tutti i file di controllo e tutti i file di log dell'archivio. SnapManager non consente di creare backup separati del registro di archiviazione utilizzando i profili creati per backup completi e parziali.
+
+*Profili per la creazione di backup solo file di dati e backup solo archivio*
+
+Quando si crea un nuovo profilo, è possibile includere -separate-archivelog-backups per separare il backup del registro di archiviazione dal backup del file di dati. È inoltre possibile aggiornare il profilo esistente per separare il backup del registro di archiviazione dal backup del file di dati.
+
+Utilizzando le nuove opzioni del profilo per separare i backup del registro di archiviazione, è possibile eseguire le seguenti operazioni SnapManager:
+
+* Creare un backup del registro di archiviazione
+* Eliminare un backup del registro di archiviazione
+* Montare un backup del registro di archiviazione
+* Liberare un backup del registro di archiviazione
+
+
+Durante la creazione del profilo per separare i backup del log di archiviazione dal backup dei file di dati, se i file di log di archiviazione non esistono nel database per cui è stato creato il profilo, nel file system attivo non esiste un messaggio di avviso file di log archiviato. Vengono visualizzate le versioni dei file di log archiviati precedenti al file di log di <archive log thread version> non incluse nel backup. Anche se si creano backup per questo database, i file di log dell'archivio non sono disponibili nei backup del database.
+
+
+NOTE: Se si verifica un errore durante la creazione di un profilo, utilizzare il comando smosystem dump. Dopo aver creato un profilo, se si verifica un errore, utilizzare i comandi smooperation dump e smoprofile dump.
+
+. Per creare un profilo con nome utente, password e porta (autenticazione Oracle), immettere il seguente comando: 'Mo profile create -profileprofile [-profile-passwordprofile_password] -repository-dbnamerepo_dbname-hostrepo_host-portrepo_port-login-username] [-durasm-nomesellutoconto] [-nomesellutoconto] [-nomesello{] [-nomesellutoconto] [-nomesellutoconto]_{] [-nomeselloconto]_nome_utente] [-nomeselloconto] [-nomeselloconto]_} }] [-nomeselloconto]_]_nomeselloconto] [-nomeselloconto] [-nomeselloconto]_nome_nome_utente] [-nomeselloconto] [-nomeselloconto]_]_nomeselloconto] [-nomeselloconto]_nome_nomeselloconto] [-nomeselloconto] [-nomeselloconto]_]_nome_nome_utente]_nomeselloconto]
++
+Le altre opzioni per questo comando sono le seguenti:
+
++
+'[-force] [-noprompt]'
+
++
+'[quiet | verbose]'
+
++
+
+NOTE: Per gli ambienti RAC (Real Application Clusters), quando si crea un nuovo profilo, è necessario fornire il valore del parametro db_unique_name come db_dbname.
+
++
+È inoltre possibile includere altre opzioni durante la creazione dei profili, a seconda di come si desidera accedere al database.
+
++
+|===
+
+
+| Se... | Quindi... 
+
+
+ a| 
+*Si desidera utilizzare l'autenticazione del sistema operativo per creare il profilo*
+ a| 
+Specificare le variabili per un account del sistema operativo nel gruppo DBA (in genere l'account utilizzato per installare Oracle). Invece di aggiungere il nome utente, la password e la porta, specificare quanto segue:
+
+** -osaccountaccount_name come nome dell'account del sistema operativo
+** -osgrouposgroup come gruppo associato all'account del sistema operativo
+
+
+
+
+ a| 
+*Si desidera utilizzare l'autenticazione dell'istanza di Automatic Storage Management (ASM) per creare il profilo*
+ a| 
+Specificare le credenziali per l'autenticazione dell'istanza ASM.
+
+** -Asmusernameasmintance_Username è il nome utente utilizzato per accedere all'istanza di ASM.
+** -Asmpasswordasminstance_password è la password utilizzata per accedere all'istanza di ASM.
+
+
+
+
+ a| 
+*Si desidera utilizzare l'autenticazione del database per creare un profilo*
+ a| 
+Specificare i dettagli di accesso al database. Se la password contiene caratteri speciali come punto esclamativo (!), simbolo del dollaro (`) o accento grave (), SnapManager non consente di creare il profilo autenticato dal database dall'interfaccia della riga di comando (CLI).
+
+
+
+ a| 
+*Stai utilizzando un catalogo come repository di Oracle Recovery Manager (RMAN)*
+ a| 
+Specificare le seguenti opzioni e variabili:
+
+** -tnsnametnsname come nome tnsname definito nel file tnsnames.ora.
+** -Login -username nome utente come nome utente richiesto per la connessione al catalogo RMAN.
++
+Se non specificato, SnapManager utilizza le informazioni di autenticazione del sistema operativo. Non è possibile utilizzare l'autenticazione del sistema operativo con i database RAC.
+
+** -Passwordpassword come password RMAN necessaria per la connessione al catalogo RMAN.
+
+
+
+
+ a| 
+*Il file di controllo viene utilizzato come repository RMAN*
+ a| 
+Specificare l'opzione -controlfile.
+
+
+
+ a| 
+*Specificare un criterio di conservazione del backup per i backup*
+ a| 
+Specificare il numero di conservazione o la durata di una classe di conservazione o entrambi. La durata è espressa in unità della classe (ad esempio, ore per ora, giorni per giorno).
+
+** -hourly è la classe di conservazione oraria, per la quale [-count n] [-duration m] sono rispettivamente il conteggio di conservazione e la durata di conservazione.
+** -daily è la classe di conservazione giornaliera, per la quale [-count n] [-durationm] sono rispettivamente il conteggio di conservazione e la durata di conservazione.
+** -settimanale è la classe di conservazione settimanale, per la quale [-count n] [-duration m] sono rispettivamente il conteggio di conservazione e la durata di conservazione.
+** -mensile è la classe di conservazione mensile, per la quale [-count n] [-durationm] sono rispettivamente il conteggio e la durata della conservazione.
+
+
+
+
+ a| 
+*Si desidera attivare la protezione di backup per il profilo*
+ a| 
+Specificare le seguenti opzioni e variabili:
+
+** -protect consente la protezione del backup.
++
+Se si utilizza Data ONTAP in 7-Mode, questa opzione crea un set di dati dell'applicazione nel server DFM (Data Fabric Manager) e aggiunge membri correlati al database, al file di dati, ai file di controllo e ai registri di archiviazione. Se il dataset esiste già, lo stesso dataset viene riutilizzato quando viene creato un profilo.
+
+** il criterio -protection-policy consente di specificare il criterio di protezione.
++
+Se si utilizza Data ONTAP in 7-Mode e SnapManager è integrato con Protection Manager, è necessario specificare uno dei criteri di Protection Manager.
+
++
+
+NOTE: Per elencare i possibili criteri di protezione, utilizzare il comando smo Protection-policy list.
+
++
+Se si utilizza Clustered Data ONTAP, selezionare _SnapManager_cDOT_Mirror_ o _SnapManager_cDOT_Vault_.
+
++
+
+NOTE: L'operazione di creazione del profilo non riesce nei seguenti scenari:
+
++
+*** Se si utilizza Clustered Data ONTAP ma si seleziona il criterio Gestione protezione
+*** Se si utilizza Data ONTAP in 7-Mode ma si seleziona il criterio _SnapManager_cDOT_Mirror_ o _SnapManager_cDOT_Vault_
+*** Se è stata creata una relazione SnapMirror ma è stata selezionata la policy _SnapManager_cDOT_Vault_ o è stata creata una relazione SnapVault, ma è stata selezionata la policy _SnapManager_cDOT_Mirror_
+*** Se non è stata creata una relazione SnapMirror o SnapVault ma è stata selezionata la policy _SnapManager_cDOT_Vault_ o _SnapManager_cDOT_Mirror_
+
+
+** -noprotect indica di non proteggere i backup del database creati utilizzando il profilo. *Nota:* se -Protect viene specificato senza -Protection-policy, il dataset non avrà una policy di protezione. Se viene specificato -Protect e -Protection-policy non viene impostato al momento della creazione del profilo, è possibile impostarlo in un secondo momento mediante il comando di aggiornamento del profilo smo o impostarlo dall'amministratore dello storage utilizzando la console di Protection Manager.
+
+
+
+
+ a| 
+*Si desidera attivare la notifica via email per lo stato di completamento delle operazioni del database*
+ a| 
+Specificare le seguenti opzioni e variabili:
+
+** -summary-notification consente di configurare una notifica email di riepilogo per più profili in un database repository.
+** -notification consente di ricevere una notifica via email per lo stato di completamento dell'operazione del database per un profilo.
+** -success-emailemail_address2 consente di ricevere una notifica via email sull'operazione di database eseguita correttamente utilizzando un profilo nuovo o esistente.
+** -failure-emailemail_address2 consente di ricevere una notifica via email sull'operazione di database non riuscita eseguita utilizzando un profilo nuovo o esistente.
+** -subjectsubject_text specifica il testo dell'oggetto della notifica e-mail durante la creazione di un nuovo profilo o di un profilo esistente. Se le impostazioni di notifica non sono configurate per il repository e si tenta di configurare le notifiche di profilo o di riepilogo utilizzando l'interfaccia CLI, nel registro della console viene registrato il seguente messaggio: "MO-14577: Notification Settings Not configured" (Impostazioni di notifica non configurate).
++
+Se sono state configurate le impostazioni di notifica e si tenta di configurare la notifica di riepilogo utilizzando l'interfaccia CLI senza attivare la notifica di riepilogo per il repository, nel log della console viene visualizzato il seguente messaggio: "MO-14575: Summary notification Configuration not available for this repository___**_"
+
+
+
+
+
+ a| 
+*Si desidera eseguire il backup dei file di log dell'archivio separatamente dai file di dati*
+ a| 
+Specificare le seguenti opzioni e variabili:
+
+** -separate-archivelog-backups consente di separare il backup del log di archiviazione dal backup del file di dati.
+** -retain-archivelog-backups imposta la durata di conservazione per i backup del registro di archiviazione. Specificare una durata di conservazione positiva.
++
+I backup del registro di archiviazione vengono conservati in base alla durata della conservazione del registro di archiviazione. I backup dei file di dati vengono conservati in base alle policy di conservazione esistenti.
+
+** -protect consente di proteggere i backup dei log di archiviazione.
+** -protection-policy imposta il criterio di protezione sui backup del registro di archiviazione.
++
+I backup del registro di archiviazione sono protetti in base alla policy di protezione del registro di archiviazione. I backup dei file di dati sono protetti in base alle policy di protezione esistenti.
+
+** -include-with-online-backups include il backup del log di archiviazione insieme al backup del database online.
++
+Questa opzione consente di creare insieme un backup dei file di dati online e un backup dei registri di archiviazione per la clonazione. Quando questa opzione è impostata, ogni volta che si crea un backup dei file di dati online, i backup dei registri dell'archivio vengono creati immediatamente insieme ai file di dati.
+
+** -no-include-with-online-backups non include il backup del log di archiviazione insieme al backup del database.
+
+
+
+
+ a| 
+*È possibile raccogliere i file dump dopo l'operazione di creazione del profilo riuscita*
+ a| 
+Specificare l'opzione -dump alla fine del comando di creazione del profilo.
+
+|===
++
+Quando si crea un profilo, SnapManager analizza i file nel caso in cui si desideri eseguire un'operazione di ripristino basata su volume sui file specificati nel profilo.
+
+
+
+*Informazioni correlate*
+
+xref:concept_how_to_collect_dump_files.adoc[Come raccogliere i file dump]

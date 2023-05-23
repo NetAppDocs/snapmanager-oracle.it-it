@@ -1,0 +1,58 @@
+---
+permalink: unix-administration/reference_the_smosmsap_history_operation_show_command.html 
+sidebar: sidebar 
+keywords: command, enable, history, specific, snapmanager, operation, associated, profile 
+summary: 'Questo comando consente di visualizzare la cronologia di un"operazione SnapManager specifica associata a un profilo.' 
+---
+= Il comando di visualizzazione delle operazioni della cronologia smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando consente di visualizzare la cronologia di un'operazione SnapManager specifica associata a un profilo.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo history operation-show
+-profile profile
+\{-label label \| -id id\}
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il nome del profilo. Questo nome può contenere fino a 30 caratteri e deve essere univoco all'interno dell'host.
+
+* etichetta * | -id*
++
+Specifica l'ID o l'etichetta dell'operazione SnapManager per la quale si desidera visualizzare la cronologia.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio di comando
+
+[listing]
+----
+
+          smo  history operation-show -profile PROFILE1 -label backup1 -verbose
+----

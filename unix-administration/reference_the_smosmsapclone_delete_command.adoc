@@ -1,0 +1,114 @@
+---
+permalink: unix-administration/reference_the_smosmsapclone_delete_command.html 
+sidebar: sidebar 
+keywords: run, clone, delete, command, operation, smo 
+summary: 'È possibile eseguire il comando di eliminazione dei cloni per eliminare un clone. Non è possibile eliminare un clone se utilizzato da un"operazione.' 
+---
+= Il comando di eliminazione del clone smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di eliminazione dei cloni per eliminare un clone. Non è possibile eliminare un clone se utilizzato da un'operazione.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo clone delete
+-profile profile_name
+\[-id guid \| -label clone_name\]
+[-login
+\[-username db_username -password db_password -port db_port\]
+ \[-asminstance -asmusername asminstance_username  -asmpassword asminstance_password\]]
+\[-syspassword syspassword\]
+-force
+\[-dump\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il nome del profilo contenente il clone da eliminare. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-force*
++
+Elimina il clone anche se sono presenti risorse associate al clone.
+
+* *-id guid*
++
+Specifica il GUID per il clone da eliminare. Il GUID viene generato da SnapManager quando si crea un clone. È possibile utilizzare il comando smo clone list per visualizzare il GUID per ciascun clone.
+
+* *-label name*
++
+Specifica l'etichetta per il clone da eliminare.
+
+* *-preminenza*
++
+Specifica le credenziali utilizzate per accedere all'istanza di Automatic Storage Management (ASM).
+
+* *-asmusername asminstance_username*
++
+Specifica il nome utente utilizzato per accedere all'istanza di ASM.
+
+* *-asmpassword asminstance_password*
++
+Specifica la password utilizzata per accedere all'istanza di ASM.
+
+* *-syspassword syspassword*
++
+Specifica la password per l'utente con privilegi sys.
+
++
+
+NOTE: È necessario fornire la password per l'utente con privilegi di sistema se le credenziali del database fornite non sono le stesse per l'utente con privilegi di sistema.
+
+* *-login*
++
+Consente di immettere i dettagli di accesso al database.
+
+* *-nome utente db_nome utente*
++
+Specifica il nome utente richiesto per accedere al database.
+
+* *-password db_password*
++
+Specifica la password richiesta per accedere al database.
+
+* *-port db_port*
++
+Specifica il numero di porta TCP utilizzato per accedere al database descritto dal profilo.
+
+* *-dump*
++
+Specifica di raccogliere i file dump dopo l'operazione di eliminazione del clone.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Il seguente esempio elimina il clone:
+
+[listing]
+----
+smo clone delete -profile SALES1 -label SALES_May
+Operation Id [8abc01ec0e79004b010e79006da60001] succeeded.
+----

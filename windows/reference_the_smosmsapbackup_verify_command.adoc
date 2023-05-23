@@ -1,0 +1,81 @@
+---
+permalink: windows/reference_the_smosmsapbackup_verify_command.html 
+sidebar: sidebar 
+keywords: run, backup, verify, command, valid, oracle, smo 
+summary: È possibile eseguire il comando di verifica del backup per verificare se il backup è in un formato valido per Oracle. 
+---
+= Il comando di verifica del backup smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di verifica del backup per verificare se il backup è in un formato valido per Oracle.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo backup verify
+-profile profile_name
+[-label backup_name \| \[-id guid\]
+\[-retain \{-hourly \| -daily \| -weekly \| -monthly \| -unlimited\}\]
+\[-force\]
+\[-dump\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il profilo per il quale si desidera verificare un backup. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-id guid*
++
+Verifica il backup con il GUID specificato. Il GUID viene generato da SnapManager quando si crea un backup. È possibile utilizzare il comando smo backup list per visualizzare il GUID per ciascun backup.
+
+* *-label label nome_etichetta*
++
+Verifica il backup con l'etichetta specificata.
+
+* *-dump*
++
+Raccoglie i file dump dopo l'operazione di verifica del backup riuscita o non riuscita.
+
+* *-force*
++
+Forza il database nello stato necessario per eseguire l'operazione di verifica.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Di seguito viene riportato un esempio di verifica del backup:
+
+[listing]
+----
+smo backup verify -profile SALES1 -label full_backup_sales_May -quiet
+----
+[listing]
+----
+DBVERIFY - Verification starting : FILE = C:\SnapManager_auto_mounts\H-2012071400592312_0\smo\datafile\data
+----
+*Informazioni correlate*
+
+xref:task_verifying_database_backups.adoc[Verifica dei backup del database]

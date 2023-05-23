@@ -1,0 +1,22 @@
+---
+permalink: unix-administration/concept_restoring_protected_backups_from_secondary_storage.html 
+sidebar: sidebar 
+keywords: restore, protect, backup, secondary, storage 
+summary: È possibile ripristinare backup protetti dallo storage secondario. Tuttavia, non è possibile ripristinare i backup dallo storage secondario se il backup esiste anche sullo storage primario. 
+---
+= Ripristino dei backup protetti dallo storage secondario
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile ripristinare backup protetti dallo storage secondario. Tuttavia, non è possibile ripristinare i backup dallo storage secondario se il backup esiste anche sullo storage primario.
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapbackup_restore_command.adoc[Il comando di ripristino del backup smo]
+
+xref:task_restoring_backups_from_an_alternate_location.adoc[Ripristino dei backup da una posizione alternativa]
+
+xref:task_creating_restore_specifications.adoc[Creazione di specifiche di ripristino]

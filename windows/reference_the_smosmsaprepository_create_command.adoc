@@ -1,0 +1,95 @@
+---
+permalink: windows/reference_the_smosmsaprepository_create_command.html 
+sidebar: sidebar 
+keywords: smo, repository, data, profile, block, size, smo 
+summary: Questo comando crea un repository in cui memorizzare i profili di database e le credenziali associate. Questo comando verifica inoltre che la dimensione del blocco sia adeguata. 
+---
+= Il comando di creazione del repository smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== Sintassi
+
+Questo comando crea un repository in cui memorizzare i profili di database e le credenziali associate. Questo comando verifica inoltre che la dimensione del blocco sia adeguata.
+
+[listing]
+----
+
+        smo repository create
+-repository
+-port repo_port
+-dbname repo_service_name
+-host repo_host
+-login -username repo_username
+[-force] [-noprompt]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-repository*
++
+Le opzioni che seguono -repository specificano i dettagli del database per il repository
+
+* *-port repo_port*
++
+Specifica il numero di porta TCP utilizzato per accedere al database in cui è memorizzato il repository.
+
+* *-dbname repo_service_name*
++
+Specifica il nome del database in cui è memorizzato il repository. Utilizzare il nome globale o il SID.
+
+* *-host repo_host*
++
+Specifica il nome o l'indirizzo IP del computer host su cui viene eseguito il database del repository.
+
+* *-login*
++
+Avvia i dettagli di accesso al repository.
+
+* *-nome utente repo_nome utente*
++
+Specifica il nome utente necessario per accedere al database in cui è memorizzato il repository.
+
+* *-force*
++
+Tenta di forzare la creazione del repository. L'utilizzo di questa opzione comporta la richiesta di SnapManager di eseguire il backup del repository prima di creare il repository.
+
+* *-noprompt*
++
+Se si utilizza l'opzione -force, non viene visualizzato il prompt per eseguire il backup del repository prima della creazione. L'opzione -noprompt consente di evitare la visualizzazione del prompt, semplificando la creazione di repository utilizzando uno script.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio di comando
+
+Nell'esempio seguente viene creato un repository nel database SMOREPO sull'host hotspur.
+
+[listing]
+----
+smo repository create -repository -port 1521 -dbname SMOREPO -host hotspur -login -username grabal21 -verbose
+SMO-09202 [INFO ]: Creating new schema as grabal21 on jdbc:oracle:thin:@//hotspur:1521/SMOREPO.
+SMO-09205 [INFO ]: Schema generation complete.
+SMO-09209 [INFO ]: Performing repository version INSERT.
+SMO-09210 [INFO ]: Repository created with version: 30
+SMO-13037 [INFO ]: Successfully completed operation: Repository Create
+SMO-13049 [INFO ]: Elapsed Time: 0:00:08.844
+----
+*Informazioni correlate*
+
+xref:task_creating_repositories.adoc[Creazione di repository]

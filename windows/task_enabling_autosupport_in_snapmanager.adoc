@@ -1,0 +1,29 @@
+---
+permalink: windows/task_enabling_autosupport_in_snapmanager.html 
+sidebar: sidebar 
+keywords: autosupport, storage, system, receive, message, snapmanager, succesful, backup, operation, enabling 
+summary: È necessario abilitare AutoSupport, in modo che i sistemi storage ricevano messaggi dal server SnapManager per ogni operazione di backup riuscita. 
+---
+= Abilitazione di AutoSupport in SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario abilitare AutoSupport, in modo che i sistemi storage ricevano messaggi dal server SnapManager per ogni operazione di backup riuscita.
+
+AutoSupport può essere attivato in due modi:
+
+* Per impostazione predefinita, la nuova installazione di SnapManager non contiene il parametro auto_support.ON nel file di configurazione smo.config. Ciò significa che AutoSupport è attivato.
+* È possibile configurare manualmente il parametro auto_support.on.
++
+.. Arrestare il server SnapManager.
+.. Nel file di configurazione smo.config, impostare il valore del parametro auto_support.on su TRUE.
++
+auto_support.on=TRUE
+
+.. Riavviare il server SnapManager.
+
+
+

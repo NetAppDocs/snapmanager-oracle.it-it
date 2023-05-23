@@ -1,0 +1,89 @@
+---
+permalink: unix-administration/reference_the_smosmsap_history_purge_command.html 
+sidebar: sidebar 
+keywords: command, enable, delete, history, snapmanager, operation, smo, purge 
+summary: Questo comando consente di eliminare la cronologia delle operazioni SnapManager. 
+---
+= Il comando di eliminazione della cronologia smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando consente di eliminare la cronologia delle operazioni SnapManager.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo history purge
+-profile \{-name profile_name \[profile_name1, profile_name2\] \| -all
+-repository
+-login \[-password repo_password\]
+-username repo_username
+-host repo_host
+-dbname repo_dbname
+-port repo_port}
+-operation \{-operations operation_name \[operation_name1, operation_name2\] \| -all\}
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il nome del profilo. Questo nome può contenere fino a 30 caratteri e deve essere univoco all'interno dell'host.
+
+* *-repository*
++
+Le opzioni che seguono -repository specificano i dettagli del database che memorizza il profilo.
+
+* *-dbname repo_dbname*
++
+Specifica il nome del database in cui è memorizzato il profilo. Utilizzare il nome globale o il SID.
+
+* *-host repo_host*
++
+Specifica il nome o l'indirizzo IP del computer host su cui viene eseguito il database del repository.
+
+* *-login*
++
+Avvia i dettagli di accesso al repository.
+
+* *-nome utente repo_nome utente*
++
+Specifica il nome utente necessario per accedere al database in cui è memorizzato il repository.
+
+* *-port repo_port*
++
+Specifica il numero di porta TCP utilizzato per accedere al database in cui è memorizzato il repository.
+
+* *-operation {-operationsnome_operazione [nome_operazione 1, nome_operazione 2] | -all*
++
+Specifica l'operazione SnapManager per la quale si configura la cronologia.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio di comando
+
+[listing]
+----
+
+          smo  history purge -profile -name PROFILE1 -operation -operations backup
+ -verbose
+----

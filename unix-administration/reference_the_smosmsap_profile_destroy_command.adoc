@@ -1,0 +1,59 @@
+---
+permalink: unix-administration/reference_the_smosmsap_profile_destroy_command.html 
+sidebar: sidebar 
+keywords: command, delete, split, clone, database, profile, generate, snapmanager, process 
+summary: 'Questo comando elimina il clone split (database) insieme al profilo generato da SnapManager durante il processo di split del clone.' 
+---
+= Il comando smo profile Destroy
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando elimina il clone split (database) insieme al profilo generato da SnapManager durante il processo di split del clone.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo profile destroy
+-profile profile
+\[-host hostname\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il profilo generato da SnapManager dopo un processo di suddivisione dei cloni riuscito.
+
+* *-host hostname*
++
+Specifica il nome host in cui esiste il clone di split.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio di comando
+
+Nell'esempio riportato di seguito viene eliminato il profilo SALES1.
+
+[listing]
+----
+smo profile destroy -profile SALES1
+----

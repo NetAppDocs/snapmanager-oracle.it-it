@@ -1,0 +1,17 @@
+---
+permalink: windows/task_deleting_backup_schedules.html 
+sidebar: sidebar 
+keywords: delete, backup, schedule, longer, necessary, deleting 
+summary: È possibile eliminare le pianificazioni di backup quando non sono più necessarie. 
+---
+= Eliminazione delle pianificazioni di backup
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eliminare le pianificazioni di backup quando non sono più necessarie.
+
+. Per eliminare la pianificazione di backup, immettere il seguente comando: smo schedule delete -profile profile_name-schedule-nameschedulename [-quiet | -verbose]
+

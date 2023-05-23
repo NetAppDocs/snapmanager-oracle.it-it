@@ -1,0 +1,26 @@
+---
+permalink: unix-administration/task_restoring_backups_from_an_alternate_location.html 
+sidebar: sidebar 
+keywords: restore, backup, alternate, location, data, file, intermediate, system, active, smo, xml 
+summary: È possibile ripristinare i backup da una posizione alternativa per ripristinare i file di dati da un file system intermedio a un file system attivo o per ripristinare i blocchi di dati da un dispositivo raw intermedio a un dispositivo raw attivo. 
+---
+= Ripristino dei backup da una posizione alternativa
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile ripristinare i backup da una posizione alternativa per ripristinare i file di dati da un file system intermedio a un file system attivo o per ripristinare i blocchi di dati da un dispositivo raw intermedio a un dispositivo raw attivo.
+
+* Creare un file XML con specifica di ripristino e specificare il tipo di metodo di ripristino che si desidera utilizzare.
+
+
+È possibile utilizzare il comando smo backup restore e specificare il file XML delle specifiche di ripristino creato per ripristinare il backup da una posizione alternativa.
+
+. Immettere il seguente comando: smo backup restore -profileprofile-labellabel-complete-alllogs-restorespecrestorespec
+
+
+*Informazioni correlate*
+
+xref:reference_the_smosmsapbackup_restore_command.adoc[Il comando di ripristino del backup smo]

@@ -1,0 +1,75 @@
+---
+permalink: windows/reference_how_to_locate_dump_files.html 
+sidebar: sidebar 
+keywords: dump, file, locate, client, system, easy, access, file, helpful, troubleshoot, problem, profile, system, operation 
+summary: Il file dump si trova nel sistema client per un facile accesso. Questi file sono utili per risolvere un problema relativo al profilo, al sistema o a qualsiasi operazione. 
+---
+= Come individuare i file dump
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il file dump si trova nel sistema client per un facile accesso. Questi file sono utili per risolvere un problema relativo al profilo, al sistema o a qualsiasi operazione.
+
+Il file dump si trova nella home directory dell'utente sul sistema client.
+
+* Se si utilizza l'interfaccia grafica utente (GUI), il file dump si trova in:
++
+[listing]
+----
+user_home\Application Data\NetApp\smo\3.3.0\smo_dump dump_file_type_name
+server_host.jar
+----
+* Se si utilizza l'interfaccia della riga di comando (CLI), il file dump si trova in:
++
+[listing]
+----
+user_home\.netapp\smo\3.3.0\smo_dump_dump_file_type_name server_host.jar
+----
+
+
+Il file dump contiene l'output del comando dump. Il nome del file dipende dalle informazioni fornite. La tabella seguente mostra i tipi di operazioni di dump e i nomi dei file risultanti:
+
+|===
+
+
+| Tipo di operazione di dump | Nome file risultante 
+
+
+ a| 
+Comando dump dell'operazione con ID dell'operazione
+ a| 
+smo_dump_operation-id.jar
+
+
+
+ a| 
+Comando dump dell'operazione senza ID operazione
+ a| 
+Operazione smo dump -profile VH1-verbose viene visualizzato il seguente output:
+
+[listing]
+----
+smo operation dump -profile VH1 -verbose
+[ INFO] SMO-13048: Dump Operation Status: SUCCESS
+[ INFO] SMO-13049: Elapsed Time: 0:00:01.404
+Dump file created.
+Path: user_home\Application Data\ontap\smo\3.3.0\smo_dump_VH1_kaw.rtp.foo.com.jar
+----
+
+
+ a| 
+Comando dump del sistema
+ a| 
+smo_dump_host-name.jar
+
+
+
+ a| 
+Comando di dump del profilo
+ a| 
+smo_dump_profile-name_host-name.jar
+
+|===

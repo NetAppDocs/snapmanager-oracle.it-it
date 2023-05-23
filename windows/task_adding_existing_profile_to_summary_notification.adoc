@@ -1,0 +1,17 @@
+---
+permalink: windows/task_adding_existing_profile_to_summary_notification.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, exist, profile, summary, email, notification, updating 
+summary: 'SnapManager consente di aggiungere un profilo esistente a una notifica email di riepilogo durante l"aggiornamento del profilo.' 
+---
+= Aggiunta di un profilo esistente alle notifiche email di riepilogo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager consente di aggiungere un profilo esistente a una notifica email di riepilogo durante l'aggiornamento del profilo.
+
+. Immettere il seguente comando: smo profile update -profileprofile_name [-profile-passwordprofile_password] -repository-dbnamerepo_service_name-hostrepo_host-portrepo_port-login-username-username_username_dbnamedb_hostdb_host [-sidddb_name] [-{-{-nomescort]] [-nomescrivo] [-nomescrivo] [-nomescrivo-} }]] [-nomescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescrescr
+

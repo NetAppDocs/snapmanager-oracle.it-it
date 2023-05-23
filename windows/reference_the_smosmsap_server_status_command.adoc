@@ -1,0 +1,51 @@
+---
+permalink: windows/reference_the_smosmsap_server_status_command.html 
+sidebar: sidebar 
+keywords: smo, server, status, command, host 
+summary: È possibile eseguire il comando smo_server status per visualizzare lo stato del server host SnapManager. 
+---
+= Il comando smo_server status
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando smo_server status per visualizzare lo stato del server host SnapManager.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo_server status
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-quiet*
++
+Specifica che nella console vengono visualizzati solo i messaggi di errore. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Specifica che i messaggi di errore, di avviso e informativi vengono visualizzati nella console.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente viene visualizzato lo stato del server host:
+
+[listing]
+----
+smo_server status
+SMO-17104: SnapManager Server version 3.3.1 is running on secure port 25204 with PID 11250
+  and has 0 operations in progress.
+----

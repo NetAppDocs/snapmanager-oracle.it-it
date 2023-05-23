@@ -1,0 +1,20 @@
+---
+permalink: unix-administration/concept_restoration_of_the_data_from_raw_devices.html 
+sidebar: sidebar 
+keywords: restore, alternate, location, connect, necessary, raw, device, local, host 
+summary: 'Prima di eseguire il ripristino da una posizione alternativa, è necessario connettersi ai dispositivi raw necessari presenti sull"host locale.' 
+---
+= Ripristino dei dati dai dispositivi raw
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di eseguire il ripristino da una posizione alternativa, è necessario connettersi ai dispositivi raw necessari presenti sull'host locale.
+
+È possibile richiamare il ripristino da un'operazione di posizione alternativa per copiare i blocchi di dati da dispositivi raw alternativi a dispositivi raw attivi. Per eseguire questa operazione, è necessario specificare il dispositivo raw alternativo da cui ripristinare il dispositivo raw originale creando una specifica di ripristino.
+
+*Informazioni correlate*
+
+xref:task_creating_restore_specifications.adoc[Creazione di specifiche di ripristino]

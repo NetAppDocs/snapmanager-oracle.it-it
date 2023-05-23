@@ -1,0 +1,96 @@
+---
+permalink: unix-administration/reference_the_smosmsap_history_set_command.html 
+sidebar: sidebar 
+keywords: run, history, set, command, configure, operation, history, smo, profile 
+summary: È possibile eseguire il comando history set per configurare le operazioni per le quali si desidera visualizzare la cronologia. 
+---
+= Il comando smo history set
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando history set per configurare le operazioni per le quali si desidera visualizzare la cronologia.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo history set
+-profile \{-name profile_name \[profile_name1, profile_name2\] \| -all
+-repository
+-login \[password repo_password\]
+-username repo_username
+-host repo_host
+-dbname repo_dbname
+-port repo_port}
+-operation \{-operations operation_name \[operation_name1, operation_name2\] \| -all\}
+-retain
+{-count retain_count \| -daily daily_count \| -monthly monthly_count \| -weekly weekly_count}
+[-quiet | -verbose]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il nome del profilo. Il nome può contenere fino a 30 caratteri e deve essere univoco all'interno dell'host.
+
+* *-repository*
++
+Specifica i dettagli del database in cui è memorizzato il profilo.
+
+* *-dbname repo_dbname*
++
+Specifica il nome del database in cui è memorizzato il profilo. È possibile utilizzare il nome globale o l'identificatore di sistema.
+
+* *-host repo_host*
++
+Specifica il nome o l'indirizzo IP dell'host in cui risiede il database del repository.
+
+* *-login*
++
+Specifica i dettagli di accesso al repository.
+
+* *-nome utente repo_nome utente*
++
+Specifica il nome utente richiesto per accedere al database del repository.
+
+* *-port repo_port*
++
+Specifica il numero di porta TCP (Transmission Control Protocol) utilizzato per accedere al database del repository.
+
+* *-operation {-operationsnome_operazione [nome_operazione 1, nome_operazione 2] | -all*
++
+Specifica le operazioni SnapManager per cui si desidera configurare la cronologia.
+
+* *-retain {-countretain_count | -dailydaily_count | -mensile-mensile_count | -settimanale_count}*
++
+Specifica la classe di conservazione delle operazioni di creazione del backup, verifica del backup, ripristino e ripristino, creazione e suddivisione del clone. La classe di conservazione viene impostata in base al numero di operazioni, al numero di giorni, settimane o mesi.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio di comando
+
+Nell'esempio seguente vengono visualizzate informazioni sull'operazione di backup:
+
+[listing]
+----
+smo history set -profile -name PROFILE1 -operation -operations backup -retain -daily 6
+ -verbose
+----

@@ -1,0 +1,57 @@
+---
+permalink: unix-administration/reference_troubleshooting_storage_system_renaming_issue.html 
+sidebar: sidebar 
+keywords: face, issue, renaming, storage, system, succesful, rename, storage, system, troubleshoot 
+summary: Si potrebbero verificare problemi durante la ridenominazione di un sistema storage o dopo aver rinominato correttamente il sistema. 
+---
+= Risoluzione dei problemi relativi alla ridenominazione del sistema storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si potrebbero verificare problemi durante la ridenominazione di un sistema storage o dopo aver rinominato correttamente il sistema.
+
+Quando si tenta di rinominare il sistema di storage, l'operazione potrebbe non riuscire e visualizzare il seguente messaggio di errore: SMO-05085 Nessun controller di storage "fas3020-rtp07New" trovato associato al profilo
+
+Immettere l'indirizzo IP o il nome del sistema di storage elencato quando si esegue il comando smo storage list.
+
+Dopo aver rinominato il sistema di storage, le operazioni SnapManager potrebbero non riuscire se SnapManager non riconosce il sistema di storage. Per risolvere il problema, è necessario eseguire alcuni passaggi aggiuntivi nell'host del server DataFabric Manager e nell'host del server SnapManager.
+
+Eseguire le seguenti operazioni nell'host del server DataFabric Manager:
+
+. Eliminare l'indirizzo IP e l'host del sistema di storage precedente nel file host che si trova in /etc/hosts nell'host del server DataFabric Manager.
+. Aggiungere il nuovo indirizzo IP e l'host del nuovo sistema di storage nel file host che si trova in /etc/hosts nell'host del server DataFabric Manager.
+. Modificare il nome host dello storage immettendo il seguente comando: dfm host rename -a old_host_namenew_host_name
+. Impostare il nuovo indirizzo IP nell'host immettendo il seguente comando: host dfm set old_host_name_or_ObjId hostPrimaryAddress = new_storage_controller_ip_address
++
+
+NOTE: Eseguire questa operazione solo se è stato specificato l'indirizzo IP come nuovo nome del sistema di storage.
+
+. Aggiornare il nuovo nome del sistema di storage nell'host del server DataFabric Manager immettendo il seguente comando: dfm host diag old_storage_name
++
+È possibile verificare che il nome del controller di storage precedente venga sostituito con il nuovo nome del controller di storage immettendo il seguente comando: host dfm Discover new_storage_name
+
+
+
+Eseguire le seguenti operazioni come utente root nell'host del server SnapManager.
+
+
+NOTE: Quando si inserisce il nuovo nome del controller di storage, assicurarsi di utilizzare il nome alias del sistema e non il nome di dominio completo (FQDN).
+
+. Eliminare il nome del sistema di storage precedente immettendo il seguente comando: SnapDrive config delete old_storage_name
++
+
+NOTE: Se non si elimina il nome del sistema di storage precedente, tutte le operazioni SnapManager non vengono eseguite correttamente.
+
+. Eliminare l'indirizzo IP e l'host del sistema di storage precedente nel file host situato in etc/hosts nell'host del database di destinazione.
+. Aggiungere il nuovo indirizzo IP e l'host del nuovo sistema di storage nel file host che si trova in /etc/hosts nell'host del database di destinazione.
+. Aggiungere il nuovo nome del sistema di storage immettendo il seguente comando: SnapDrive config set root new_storage_name
+. Mappare i nomi dei sistemi di storage precedenti e successivi immettendo il seguente comando: SnapDrive config migra set old_storage_namenew_storage_name
+. Eliminare il percorso di gestione del sistema di storage precedente immettendo il seguente comando:snapdrive config delete -mgmtpath old_storage_name
+. Aggiungere il percorso di gestione per il nuovo sistema di storage immettendo il seguente comando: SnapDrive config set -mgmtpath new_storage_name
+. Aggiornare il set di dati per i file di dati e i file di log dell'archivio con il nuovo nome del sistema di storage immettendo il seguente comando: SnapDrive DataSet changehostname -dndataset_name-oldnameold_storage_name-newnamenew_storage_name
+. Aggiornare il profilo per il nuovo nome del sistema di storage immettendo il seguente comando: smo storage rename -profileprofile_name-oldnameold_storage_name-newnamenew_storage_name
+. Verificare il sistema storage associato al profilo immettendo il seguente comando: smo storage list -profileprofile_name
+

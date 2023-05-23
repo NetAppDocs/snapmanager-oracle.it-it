@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/task_post_rollback_tasks.html 
+sidebar: sidebar 
+keywords: perform, additional, step, rollback, repository, database, downgrade, snapmanager, host, post, task, smo 
+summary: 'Per visualizzare le pianificazioni create nella versione precedente del database del repository, è necessario eseguire alcuni passaggi aggiuntivi dopo il rollback di un database del repository e il downgrade dell"host SnapManager da SnapManager 3.2 a SnapManager 3.0.' 
+---
+= Attività di post-rollback
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per visualizzare le pianificazioni create nella versione precedente del database del repository, è necessario eseguire alcuni passaggi aggiuntivi dopo il rollback di un database del repository e il downgrade dell'host SnapManager da SnapManager 3.2 a SnapManager 3.0.
+
+. Accedere a cd /opt/NetApp/smo/Repository.
++
+La directory dei repository potrebbe contenere due file per ciascun repository. Il nome del file con il numero viene creato utilizzando SnapManager 3.1 o versione successiva e il nome del file con il trattino (-) viene creato utilizzando SnapManager 3.0.
+
++
+I nomi dei file potrebbero essere i seguenti:
+
++
+** Repository SMO300A SMOREPO1 10.72.197.141 1521
+** repository-smo300a-smorepo1-10.72.197.141-1521
+
+
+. Sostituire il segno del numero (n.) nel nome del file con il trattino (-).
++
+Il nome del file con il numero (n.), ora contiene il trattino (-): Repository-SMO300a-SMOREPO1-10.72.197.141-1521.
+
+

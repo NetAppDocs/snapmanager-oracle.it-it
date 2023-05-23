@@ -1,0 +1,17 @@
+---
+permalink: windows/task_viewing_a_list_of_snapmanager_history_operation_as_a_report.html 
+sidebar: sidebar 
+keywords: view, history, specific, snapmanager, operation, report, base, retention, setting 
+summary: È possibile visualizzare la cronologia di una o di tutte le operazioni SnapManager come report in base alle impostazioni di conservazione. 
+---
+= Visualizzazione di un elenco della cronologia delle operazioni SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile visualizzare la cronologia di una o di tutte le operazioni SnapManager come report in base alle impostazioni di conservazione.
+
+. Per visualizzare un elenco delle operazioni della cronologia SnapManager, immettere il seguente comando: smo history list -profile {-name, profile_name [profile_name1,profile_name2] | -all-repository-login [-passwordrepo_password] -usernamerepo_dbnamerepo_dbname-ostrepo_host-portrepo_port} -operation {} -nome1-nomefile [-operazione_disquiet] -nome1_operazione_nome_server] [-server_server_server_server_server_server_server_server_server_server_server_server_server_server_server_server_server
+

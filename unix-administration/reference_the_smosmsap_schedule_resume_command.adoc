@@ -1,0 +1,40 @@
+---
+permalink: unix-administration/reference_the_smosmsap_schedule_resume_command.html 
+sidebar: sidebar 
+keywords: command, resume, suspend, backup, schedule, smo 
+summary: Questo comando ripristina la pianificazione del backup sospeso. 
+---
+= Il comando smo schedule resume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando ripristina la pianificazione del backup sospeso.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo schedule resume
+-profile profile_name
+-schedule-name schedule_name
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il nome del profilo correlato al database che si desidera ripristinare la pianificazione di backup sospesa. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-schedule-name nome_schedule*
++
+Specifica il nome della pianificazione fornito durante la creazione di una pianificazione di backup.
+
+

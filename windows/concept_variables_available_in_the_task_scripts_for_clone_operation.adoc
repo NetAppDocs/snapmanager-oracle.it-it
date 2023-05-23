@@ -1,0 +1,121 @@
+---
+permalink: windows/concept_variables_available_in_the_task_scripts_for_clone_operation.html 
+sidebar: sidebar 
+keywords: provide, context, information, environment, variable, relate, clone, operation, perform, host 
+summary: 'SnapManager fornisce informazioni di contesto sotto forma di variabili di ambiente correlate all"operazione di cloni eseguita. Ad esempio, lo script può recuperare il nome dell"host originale, il nome del database clone e l"etichetta del backup.' 
+---
+= Variabili disponibili negli script di attività per l'operazione di cloni
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager fornisce informazioni di contesto sotto forma di variabili di ambiente correlate all'operazione di cloni eseguita. Ad esempio, lo script può recuperare il nome dell'host originale, il nome del database clone e l'etichetta del backup.
+
+La tabella seguente elenca le variabili di ambiente che è possibile utilizzare negli script:
+
+|===
+
+
+| Variabili | Descrizione | Formato 
+
+
+ a| 
+SM_ORIGINAL_SID
+ a| 
+SID del database originale
+ a| 
+stringa
+
+
+
+ a| 
+SM_ORIGINAL_HOST
+ a| 
+Nome host associato al database originale
+ a| 
+stringa
+
+
+
+ a| 
+SM_ORIGINAL_OS_USER
+ a| 
+Proprietario del sistema operativo del database originale
+ a| 
+stringa
+
+
+
+ a| 
+SM_ORIGINAL_OS_GROUP
+ a| 
+Gruppo di sistemi operativi del database originale
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_SID
+ a| 
+SID del database clone
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_HOST
+ a| 
+Nome host associato al database clone
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_OS_USER
+ a| 
+Proprietario del sistema operativo del database clone
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_OS_GROUP
+ a| 
+Gruppo di sistemi operativi del database clone
+ a| 
+stringa
+
+
+
+ a| 
+SM_TARGET_DB_PORT
+ a| 
+Porta del database di destinazione
+ a| 
+intero
+
+
+
+ a| 
+SM_TARGET_GLOBAL_DB_NAME
+ a| 
+Nome del database globale del database di destinazione
+ a| 
+stringa
+
+
+
+ a| 
+SM_BACKUP_LABEL
+ a| 
+Etichetta del backup utilizzato per il clone
+ a| 
+stringa
+
+|===

@@ -1,0 +1,31 @@
+---
+permalink: unix-administration/concept_support_for_asmlib.html 
+sidebar: sidebar 
+keywords: snapmanager, asmlib, support 
+summary: SnapManager supporta diverse versioni di ASMLib, sebbene vi siano diversi fattori da considerare quando si utilizza SnapManager con ASMLib. 
+---
+= Supporto per ASMLib
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager supporta diverse versioni di ASMLib, sebbene vi siano diversi fattori da considerare quando si utilizza SnapManager con ASMLib.
+
+SnapManager supporta ASMLib 2.1.4, 2.1.7 e 2.1.8. Tutte le operazioni SnapManager possono essere eseguite con ASMLib 2.1.4, 2.1.7 e 2.1.8.
+
+Se è stato eseguito l'aggiornamento da ASMLib 2.1.4 ad ASM 2.1.7, è possibile utilizzare gli stessi profili e backup creati con ASMLib 2.1.4 per ripristinare i backup e creare i cloni.
+
+Quando si utilizza SnapManager con ASMLib, è necessario considerare quanto segue:
+
+* SnapManager 3.1 non supporta ASMLib 2.1.7.
++
+SnapManager 3.1p4 o versioni successive supportano ASMLib 2.1.4, 2.1.7 e 2.1.8.
+
+* Dopo aver eseguito un aggiornamento rolling da SnapManager 3.1 a 3.2, i backup creati utilizzando ASMLib 2.1.7 funzionano solo se il repository viene rollback a SnapManager 3.1 e ASMLib 2.1.7 viene rollgrade a ASMLib 2.1.4.
+* Dopo aver eseguito un aggiornamento a rotazione da SnapManager 3.1 a 3.2, i backup creati utilizzando ASMLib 2.1.7 non funzionano se il repository viene rollback a SnapManager 3.1 con ASMLib 2.1.7.
++
+Il rollback ha esito positivo, ma i profili e i backup non possono essere utilizzati.
+
+

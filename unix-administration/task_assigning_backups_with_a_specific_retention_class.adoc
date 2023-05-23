@@ -1,0 +1,17 @@
+---
+permalink: unix-administration/task_assigning_backups_with_a_specific_retention_class.html 
+sidebar: sidebar 
+keywords: dba, assign, specific, retention, class, hourly, daily, weekly, monthly, backup, assign 
+summary: 'I DBA possono assegnare ai backup una classe di conservazione specifica di ogni ora, giornaliera, settimanale o mensile. L"assegnazione di una classe di conservazione specifica rende idonei all"eliminazione i backup eseguiti in base a questa modifica.' 
+---
+= Assegnazione di backup con una classe di conservazione specifica
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I DBA possono assegnare ai backup una classe di conservazione specifica di ogni ora, giornaliera, settimanale o mensile. L'assegnazione di una classe di conservazione specifica rende idonei all'eliminazione i backup eseguiti in base a questa modifica.
+
+. Per assegnare una classe di conservazione del backup specifica, immettere questo comando:smo backup update -profileprofile_name {-labellabel [data | -archivefacs] | -idid | All} -retain [-hourly | -daily | -settimanale | -mensile]
+

@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/reference_the_smosmsap_clone_split_result_command.html 
+sidebar: sidebar 
+keywords: smo, clone, split-result, command 
+summary: Il comando clone smo split-risultato. 
+---
+= Il comando clone smo split-risultato
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== Sintassi
+
+Questo comando consente di visualizzare il risultato del processo di suddivisione dei cloni.
+
+[listing]
+----
+
+        smo clone split-result
+-profile profile
+\[-host hostname\]
+\[-label split-label \| -id split-id\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il nome del profilo del clone.
+
+* *-host hostname*
++
+Specifica il nome host in cui esiste il clone.
+
+* *-label split-label*
++
+Specifica il nome dell'etichetta generato dal processo di avvio della suddivisione del clone.
+
+* *-id split-id*
++
+Specifica l'ID univoco generato dal processo di avvio della suddivisione del clone.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+

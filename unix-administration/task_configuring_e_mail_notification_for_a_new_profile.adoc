@@ -1,0 +1,60 @@
+---
+permalink: unix-administration/task_configuring_e_mail_notification_for_a_new_profile.html 
+sidebar: sidebar 
+keywords: creating, new, profile, configure, receive, email, notification, completeion, database, operation, comma-seperated, list, multiple, address 
+summary: 'Quando si crea un nuovo profilo, è possibile configurare per ricevere una notifica via email al completamento dell"operazione del database.' 
+---
+= Configurazione della notifica e-mail per un nuovo profilo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando si crea un nuovo profilo, è possibile configurare per ricevere una notifica via email al completamento dell'operazione del database.
+
+* È necessario configurare l'indirizzo e-mail da cui vengono inviati gli avvisi.
+* È necessario utilizzare un elenco separato da virgole per più indirizzi e-mail.
++
+Assicurarsi che non vi sia spazio tra la virgola e l'indirizzo e-mail successivo.
+
++
+.. Immettere il seguente comando: smo profile create -profileprofile [-profile-passwordprofile_password] -repository-dbnamerepo_service_name-hostrepo_host-portrepo_port-login-username-username_username_username_name_db_host [-siddsdpub][-nomespaint.nomes.com] {-{-nomes.com] [-} }-nomespaint.com] [-nomes.com]-nomes.com] [-nomes.com]--nomes.com]--nomes.com] [-nomes.com]_nome_nome_account [-] [-nomeself]_nome_account [-nomeself]_nome_account [-]] [-nomeself]_nome_nome_account [-nomeself]] [-nomeself]_nome_nome_nome_nome_nome_nome_] [-nomeself]_nomeself]] [-nomeself]]_nome_nome
++
+Le altre opzioni per questo comando sono le seguenti:
+
++
+[-force] (forza)
+
++
+
+NOTE: SnapManager supporta fino a 1000 caratteri per gli indirizzi e-mail.
+
++
+Quando si crea un backup dei file di dati e dei file di log di archiviazione insieme utilizzando il profilo (per la creazione di backup del log di archiviazione separati) e la creazione del backup del file di dati non riesce, viene inviata una notifica e-mail con il backup dei dati come nome dell'operazione invece del backup dei dati e del backup dei log di archiviazione. Una volta eseguita correttamente l'operazione di backup del file di dati e del file di log dell'archivio, viene visualizzato il seguente output:
+
++
+[listing]
+----
+
+Profile Name    : PROF_31
+Operation Name 	: Data Backup and Archive Logs Backup
+Database SID   	: TENDB1
+Database Host 	 : repo1.rtp.org.com
+Start Date 	    : Fri Sep 23 13:37:21 EDT 2011
+End Date 	      : Fri Sep 23 13:45:24 EDT 2011
+Status 	        : SUCCESS
+Error messages 	:
+----
+
+
+
+
+Nell'esempio seguente viene visualizzata la notifica e-mail configurata durante la creazione di un nuovo profilo:
+
+[listing]
+----
+
+smo profile create -profile sales1 -profile-password sales1 -repository -dbname repo2 -host 10.72.197.133 -port 1521 -login -username oba5 -database -dbname DB1 -host 10.72.197.142 -sid DB1 -osaccount oracle
+-osgroup dba -notification -success -email admin1@org.com -subject {profile}_{operation-name}_{db-sid}_{db-host}_{start-date}_{end-date}_{status}
+----

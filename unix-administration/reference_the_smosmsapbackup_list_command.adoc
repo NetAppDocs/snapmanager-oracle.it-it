@@ -1,0 +1,80 @@
+---
+permalink: unix-administration/reference_the_smosmsapbackup_list_command.html 
+sidebar: sidebar 
+keywords: run, backup, list, command, display, information, profile, including, information, retention, class, smo 
+summary: 'È possibile eseguire il comando dell"elenco di backup per visualizzare le informazioni sui backup di un profilo, incluse le informazioni sulla classe di conservazione e sullo stato di protezione.' 
+---
+= Il comando smo backup list
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando dell'elenco di backup per visualizzare le informazioni sui backup di un profilo, incluse le informazioni sulla classe di conservazione e sullo stato di protezione.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo backup list
+-profile profile_name
+-delimiter character
+[-data | -archivelogs | -all]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il profilo per il quale si desidera elencare i backup. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* carattere *-delimitatore*
++
+Visualizza ogni riga su una riga separata. Gli attributi nella riga sono separati dal carattere specificato.
+
+* *-dati*
++
+Specifica i file di dati.
+
+* *-archivelogs*
++
+Specifica i file di log dell'archivio.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console. Includere l'opzione -verbose per visualizzare gli ID di backup.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente sono elencati i backup per il profilo SALES1:
+
+[listing]
+----
+smo backup list -profile SALES1 -verbose
+Start Date          Status  Scope  Mode    Primary  Label      Retention   Protection
+------------------- ------- ------ ------- -------- -----      --------    ----------
+2007-08-10 14:31:27 SUCCESS FULL   ONLINE  EXISTS   backup1    DAILY       PROTECTED
+2007-08-10 14:12:31 SUCCESS FULL   ONLINE  EXISTS   backup2    HOURLY      NOT PROTECTED
+2007-08-10 10:52:06 SUCCESS FULL   ONLINE  EXISTS   backup3    HOURLY      PROTECTED
+2007-08-05 12:08:37 SUCCESS FULL   ONLINE  EXISTS   backup4    UNLIMITED   NOT PROTECTED
+2007-08-05 09:22:08 SUCCESS FULL   OFFLINE EXISTS   backup5    HOURLY      PROTECTED
+2007-08-04 22:03:09 SUCCESS FULL   ONLINE  EXISTS   backup6    UNLIMITED   NOT REQUESTED
+2007-07-30 18:31:05 SUCCESS FULL   OFFLINE EXISTS   backup7    HOURLY      PROTECTED
+----
+*Informazioni correlate*
+
+xref:task_viewing_a_list_of_backups.adoc[Visualizzazione di un elenco di backup]

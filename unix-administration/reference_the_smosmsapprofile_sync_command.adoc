@@ -1,0 +1,81 @@
+---
+permalink: unix-administration/reference_the_smosmsapprofile_sync_command.html 
+sidebar: sidebar 
+keywords: command, load, profile-to-repository, mapping, repository, file, home, directory, local, host, smo, sync 
+summary: 'Questo comando carica le mappature da profilo a repository per quel repository in un file nella home directory dell"host locale.' 
+---
+= Il comando smo profile Sync
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando carica le mappature da profilo a repository per quel repository in un file nella home directory dell'host locale.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo profile sync
+-repository
+-dbname repo_service_name
+-host repo_host
+-port repo_port
+-login
+-username repo_username
+				\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-repository*
++
+Le opzioni che seguono -repository specificano i dettagli del database per il repository.
+
+* *-dbname repo_service_name*
++
+Specifica il database repository per il profilo da sincronizzare.
+
+* *-host*
++
+Specifica l'host del database.
+
+* *-porta*
++
+Specifica la porta per l'host.
+
+* *-login*
++
+Specifica il processo di accesso per l'utente host.
+
+* *-nome utente*
++
+Specifica il nome utente dell'host.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio di comando
+
+Nell'esempio seguente viene illustrato il risultato del comando per sincronizzare le mappature da profilo a repository per il database.
+
+[listing]
+----
+smo profile sync -repository -dbname smrepo -host Host2 -port 1521 -login -username user2
+SMO-12345 [INFO ]: Loading profile mappings for repository "user2@Host2:smrepo" into cache for OS User "admin".
+Operation Id [Nff8080810da9018f010da901a0170001] succeeded.
+----

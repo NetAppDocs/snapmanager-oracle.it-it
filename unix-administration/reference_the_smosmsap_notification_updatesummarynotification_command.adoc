@@ -1,0 +1,108 @@
+---
+permalink: unix-administration/reference_the_smosmsap_notification_updatesummarynotification_command.html 
+sidebar: sidebar 
+keywords: run, notification, update-summary-notification, command, summary, enable, repository, database, smo 
+summary: È possibile eseguire il comando di notifica update-summary-notification per attivare la notifica di riepilogo per un database repository. 
+---
+= Il comando smo notification update-summary-notification
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di notifica update-summary-notification per attivare la notifica di riepilogo per un database repository.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo notification update-summary-notification
+-repository
+-port repo_port
+-dbname  repo_service_name
+-host repo_host
+-login -username repo_username
+-email email-address1,email-address2
+-subject subject-pattern
+-frequency
+[-daily –time daily_time \|
+-hourly –time hourly_time \|
+-monthly –time monthly_time -date \[1\|2\|3\|...\|31\] \|
+-weekly  –time weekly_time -day \[1\|2\|3\|4\|5\|6\|7\]\]
+-profiles profile1,profile2
+-notification-host notification-host
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-repository*
++
+Specifica i dettagli del database del repository.
+
+* *-port repo_port*
++
+Specifica il numero di porta TCP utilizzato per accedere al database del repository.
+
+* *-dbname repo_service_name*
++
+Specifica il nome del database del repository. È possibile utilizzare il nome globale o l'identificatore di sistema.
+
+* *-host repo_host*
++
+Specifica il nome o l'indirizzo IP dell'host su cui risiede il database del repository.
+
+* *-login*
++
+Specifica i dettagli di accesso al repository. Questa opzione è facoltativa. Se non viene specificato, SnapManager passa automaticamente alla modalità di connessione autenticazione del sistema operativo.
+
+* *-nome utente repo_nome utente*
++
+Specifica il nome utente richiesto per accedere al database del repository.
+
+* *-email-address1,email-address2*
++
+Specifica gli indirizzi e-mail dei destinatari.
+
+* *-subject-pattern*
++
+Specifica il modello dell'oggetto del messaggio di posta elettronica.
+
+* *-frequency { -daily --time daily_time | -hourly --time hourly_time | -monthly --time mensile_time -date {1|2|3...|31 } | -settimanale --time daily_time -day {1|2|3|4|5|6|7 } }*
++
+Specifica il tipo di pianificazione e l'ora in cui si desidera ricevere la notifica via email.
+
+* *-profile1, profile2*
++
+Specifica i nomi dei profili che richiedono la notifica via email.
+
+* *-notification-host notification-host*
++
+Specifica l'host del server SnapManager da cui viene inviata l'email di notifica di riepilogo ai destinatari. È possibile specificare il nome host o l'indirizzo IP dell'host di notifica. È inoltre possibile aggiornare l'IP host o il nome host.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente viene attivata la notifica di riepilogo per un database di repository:
+
+[listing]
+----
+
+smo notification update-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login –username oba5 –email admin@org.com –subject success –frequency -daily -time 19:30:45 –profiles sales1
+----

@@ -1,0 +1,67 @@
+---
+permalink: windows/concept_managing_profiles_for_efficient_backups.html 
+sidebar: sidebar 
+keywords: profile, database, operation, efficient, backup 
+summary: 'È necessario creare un profilo in SnapManager per il database sul quale si desidera eseguire un"operazione. Selezionare il profilo e quindi l"operazione che si desidera eseguire.' 
+---
+= Gestione dei profili per backup efficienti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario creare un profilo in SnapManager per il database sul quale si desidera eseguire un'operazione. Selezionare il profilo e quindi l'operazione che si desidera eseguire.
+
+
+
+== Attività correlate ai profili
+
+È possibile eseguire le seguenti operazioni:
+
+* Creare profili per abilitare backup completi o parziali e backup su storage primario o secondario.
++
+È inoltre possibile creare profili per separare i backup del registro di archiviazione dai backup del file di dati.
+
+* Verificare i profili.
+* Aggiornare i profili.
+* Eliminare i profili.
+
+
+
+
+== Informazioni sui profili e sull'autenticazione
+
+Quando si crea un profilo, è possibile specificare un database e scegliere uno dei seguenti metodi per connettersi al database:
+
+* Autenticazione Oracle con nome utente, password e porta
+* Autenticazione del sistema operativo senza nome utente, password o porta.
++
+Per l'autenticazione del sistema operativo, è necessario immettere le informazioni relative all'utente e al gruppo dell'account del sistema operativo.
+
+* Autenticazione del database quando sqlnet.authentication_services è impostato SU NESSUNO. SnapManager utilizza quindi il nome utente e la password del database per tutte le connessioni al database di destinazione. SnapManager può anche utilizzare l'autenticazione nativa di Windows quando sqlnet.authentication_services è impostato su NTS.
+
+
+È possibile impostare sqlnet.authentication_services su NONE solo nei seguenti ambienti:
+
+|===
+
+
+| Layout del database | Versione di Oracle | È supportata l'autenticazione del database per il database di destinazione 
+
+
+ a| 
+Qualsiasi database non ASM e non RAC
+ a| 
+Oracle 10g e Oracle 11g (meno di 11.2.0.3)
+ a| 
+Sì
+
+|===
+*Nota:* dopo aver disattivato sqlnet.authentication_services e modificato il metodo di autenticazione in autenticazione del database, è necessario impostare sqlnet.authentication_services su NONE.
+
+Se si accede a un profilo per la prima volta, è necessario inserire la password del profilo. Dopo aver immesso le credenziali, è possibile visualizzare i backup del database all'interno del profilo.
+
+*Informazioni correlate*
+
+xref:concept_what_profiles_are.adoc[Quali sono i profili]

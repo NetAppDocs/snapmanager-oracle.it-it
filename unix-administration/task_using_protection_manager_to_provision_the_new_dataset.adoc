@@ -1,0 +1,44 @@
+---
+permalink: unix-administration/task_using_protection_manager_to_provision_the_new_dataset.html 
+sidebar: sidebar 
+keywords: smo_paydb, dataset, create, storage, administrator, protection, manager, assign, provision, node, netapp 
+summary: 'Una volta creato il set di dati smo_paydb, l"amministratore dello storage utilizza Protection Manager per assegnare le risorse del sistema storage per il provisioning del nodo Backup del set di dati.' 
+---
+= Utilizzo di Protection Manager per il provisioning del nuovo set di dati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una volta creato il set di dati smo_paydb, l'amministratore dello storage utilizza Protection Manager per assegnare le risorse del sistema storage per il provisioning del nodo di backup del set di dati.
+
+Prima di eseguire il provisioning del dataset appena creato, l'amministratore dello storage conferisce al partner DBA il nome del dataset specificato nel profilo.
+
+In questo caso, il nome del dataset è smo_payroll.tech.com_PAYDB.
+
+. Accedere alla NetApp Management Console di Protection Manager.
+. Dalla barra dei menu, fare clic su *dati* > *dataset* > *Panoramica*.
++
+Nella scheda dataset della finestra dataset viene visualizzato un elenco di set di dati che include il set di dati appena creato tramite SnapManager.
+
+. Individuare e selezionare il set di dati *smo_payroll.tech.com_PAYDB*.
++
+Quando si seleziona questo set di dati, l'area del grafico visualizza il set di dati smo_paydb con il relativo nodo di backup senza provisioning. Lo stato di conformità viene contrassegnato come non conforme.
+
+. Con il set di dati smo_paydb ancora evidenziato, fare clic su *Edit* (Modifica).
++
+NetApp Management Console di Protection Manager visualizza la finestra Edit Dataset (Modifica dataset) per il set di dati *smo_payroll.tech.com_PAYDB*. Il riquadro di navigazione della finestra visualizza le opzioni di configurazione per il nodo primario del dataset, la connessione di backup e il nodo di backup.
+
+. Dal riquadro di navigazione, individuare le opzioni per il nodo di backup del dataset e selezionare *provisioning/resource pool*.
++
+La finestra Edit Dataset (Modifica set di dati) visualizza un'impostazione per il criterio di provisioning predefinito e un elenco di pool di risorse disponibili.
+
+. Per questo esempio, selezionare il pool di risorse *paydb_backup_resource* e fare clic su *>*.
++
+Il pool di risorse selezionato viene elencato nel campo "Pool di risorse per questo nodo".
+
+. Fare clic su *fine* per salvare le modifiche.
+
+
+Protection Manager effettua automaticamente il provisioning del nodo di backup secondario con le risorse del pool di risorse paydb_backup_resource.

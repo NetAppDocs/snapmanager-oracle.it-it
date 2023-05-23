@@ -1,0 +1,21 @@
+---
+permalink: unix-installation-7mode/task_configuring_the_target_database.html 
+sidebar: sidebar 
+keywords: target, database, oracle, configure, standalone, real, application, cluster, rac, automatic, storage 
+summary: 'Il database di destinazione è un database Oracle che può essere configurato come standalone, Real Application Clusters (RAC), Automatic Storage Management (ASM) o qualsiasi altra combinazione supportata.' 
+---
+= Configurazione del database di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il database di destinazione è un database Oracle che può essere configurato come standalone, Real Application Clusters (RAC), Automatic Storage Management (ASM) o qualsiasi altra combinazione supportata.
+
+. Configurare il database di destinazione facendo riferimento a _TR-3633_.
+
+
+*Informazioni correlate*
+
+http://www.netapp.com/us/media/tr-3633.pdf["Report tecnico di NetApp 3633: Best practice per i database Oracle su storage NetApp"]

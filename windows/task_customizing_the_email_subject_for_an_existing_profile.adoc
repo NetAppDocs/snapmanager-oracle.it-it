@@ -1,0 +1,17 @@
+---
+permalink: windows/task_customizing_the_email_subject_for_an_existing_profile.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, customize, email, subject, pattern, existing, profile, customize, update, customizing 
+summary: 'SnapManager consente di personalizzare il modello di oggetto dell"e-mail per un profilo esistente aggiornando tale profilo. Questo modello di soggetto personalizzato è applicabile solo al profilo aggiornato.' 
+---
+= Personalizzazione dell'oggetto e-mail per un profilo esistente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager consente di personalizzare il modello di oggetto dell'e-mail per un profilo esistente aggiornando tale profilo. Questo modello di soggetto personalizzato è applicabile solo al profilo aggiornato.
+
+. Immettere il seguente comando: smo profile update -profileprofile [-profile-passwordprofile_password][-database-dbnamedb_dbname-host db_host [-siddb_sid] [-login -username_username_username_password-password_db_port] [{-rman_controlfile | {-login -nomeaddressman] [-nomeaddress.com] [-nomeemail] [-nomeemail] [-nomeutente] [-nomeutente]_email [-nomeutente]_email [-}}}]_nsuteemail][-nomeemail [-nomeemail]_email][-nomeemail [-nomeutente]_email [-timeself]_email]_email [-{]_email [-timeself]_email][-nomeself]_email [-nomeemail][-]_email]_email]_email [-]_email [-]_email]_email [-nomead
+

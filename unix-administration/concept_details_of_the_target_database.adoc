@@ -1,0 +1,31 @@
+---
+permalink: unix-administration/concept_details_of_the_target_database.html 
+sidebar: sidebar 
+keywords: integrated, database, protection, payroll, techco, dba, 3000-person, atlanta 
+summary: 'Questo esempio di protezione integrata del database descrive la protezione di un database delle retribuzioni. Nell"esempio vengono utilizzati i seguenti dati.' 
+---
+= Dettagli del database di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo esempio di protezione integrata del database descrive la protezione di un database delle retribuzioni. Nell'esempio vengono utilizzati i seguenti dati.
+
+L'amministratore del database (DBA) di TechCo, un'azienda con 3000 persone con sede ad Atlanta, deve creare un backup coerente del database delle retribuzioni di produzione, PAYDB. La strategia di protezione per il backup su storage primario e secondario richiede che DBA e l'amministratore dello storage collaborino per eseguire il backup del database Oracle sia localmente sullo storage primario che in remoto, su storage secondario in una posizione remota.
+
+* *Informazioni sul profilo*
++
+Quando si crea un profilo in SnapManager, sono necessari i seguenti dati:
+
++
+** Nome database: PAYDB
+** Nome host: payroll.techco.com
+** ID database: Payrolldb
+** Nome profilo: Payroll_prod
+** Connection mode (modalità di connessione): Autenticazione del database
+** Schema di denominazione Snapshot: smo_hostname_dbsid_smoprofile_scope_mode_smid (che si traduce in "smo_payroll.xyz.com_payrolldb_payroll_prod_f_h_x")
+
+
+

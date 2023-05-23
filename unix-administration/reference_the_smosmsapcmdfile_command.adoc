@@ -1,0 +1,70 @@
+---
+permalink: unix-administration/reference_the_smosmsapcmdfile_command.html 
+sidebar: sidebar 
+keywords: cmdfile, command, run, shell, host, limit, number, character, appear, line, smo 
+summary: 'È possibile utilizzare il comando cmdfile per eseguire qualsiasi comando se la shell sull"host limita il numero di caratteri che possono essere visualizzati su una riga di comando.' 
+---
+= Il comando cmdfile smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare il comando cmdfile per eseguire qualsiasi comando se la shell sull'host limita il numero di caratteri che possono essere visualizzati su una riga di comando.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo cmdfile
+-file file_name
+\[-quiet \| -verbose\]
+----
+È possibile includere il comando in un file di testo e utilizzare il comando cmdfile smo per eseguire il comando. È possibile aggiungere un solo comando in un file di testo. Non includere smo nella sintassi del comando.
+
+
+NOTE: Il comando cmdfile smo sostituisce il comando pfile smo. Il cmdfile smo non è compatibile con il comando pfile smo.
+
+
+
+== Parametri
+
+* *-file_name*
++
+Specifica il percorso del file di testo contenente il comando da eseguire.
+
+* *-quiet*
++
+Specifica che nella console vengono visualizzati solo i messaggi di errore. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Specifica che i messaggi di errore, di avviso e informativi vengono visualizzati nella console.
+
+
+
+
+
+== Esempio
+
+Questo esempio crea un profilo includendo il comando di creazione del profilo in command.txt che si trova in /tmp. È quindi possibile eseguire il comando cmdfile smo.
+
+Il file di testo contiene le seguenti informazioni:
+
+[listing]
+----
+profile create -profile SALES1 -repository -dbname SNAPMGRR
+-login -username server1_user -password ontap -port 1521 -host server1
+-database -dbname SMO -sid SMO -login -username sys -password oracle -port 1521
+-host Host2 -osaccount oracle -osgroup db2
+----
+È ora possibile creare il profilo eseguendo il comando cmdfile smo con il file command.txt:
+
+[listing]
+----
+smo cmdfile -file /tmp/command.txt
+----

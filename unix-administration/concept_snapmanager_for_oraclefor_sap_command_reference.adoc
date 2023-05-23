@@ -1,0 +1,39 @@
+---
+permalink: unix-administration/concept_snapmanager_for_oraclefor_sap_command_reference.html 
+sidebar: sidebar 
+keywords: snapmanager, syntax, options, parameters, argument, oracle, command, reference 
+summary: Il riferimento al comando SnapManager include la sintassi di utilizzo valida, le opzioni, i parametri e gli argomenti da fornire con i comandi, insieme agli esempi. 
+---
+= Riferimento al comando SnapManager per Oracle
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il riferimento al comando SnapManager include la sintassi di utilizzo valida, le opzioni, i parametri e gli argomenti da fornire con i comandi, insieme agli esempi.
+
+I seguenti problemi si applicano all'utilizzo dei comandi:
+
+* I comandi sono sensibili al maiuscolo/minuscolo.
+* SnapManager accetta fino a 200 caratteri ed etichette fino a 80 caratteri.
+* Se la shell sull'host limita il numero di caratteri che possono essere visualizzati su una riga di comando, è possibile utilizzare il comando cmdfile.
+* Non utilizzare spazi nei nomi dei profili o delle etichette.
+* Nella specifica del clone, non utilizzare spazi nella posizione del clone.
+
+
+SnapManager può visualizzare tre livelli di messaggi per la console:
+
+* Messaggi di errore
+* Messaggi di avviso
+* Messaggi informativi
+
+
+È possibile specificare la modalità di visualizzazione dei messaggi. Se non si specifica nulla, SnapManager visualizza solo messaggi di errore e avvisi sulla console. Per controllare la quantità di output che SnapManager visualizza sulla console, utilizzare una delle seguenti opzioni della riga di comando:
+
+* -Quiet: Visualizza solo i messaggi di errore sulla console.
+* -Verbose: Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+NOTE: Indipendentemente dal comportamento predefinito o dal livello di dettaglio specificato per la visualizzazione, SnapManager scrive sempre tutti i tipi di messaggio nei file di registro.

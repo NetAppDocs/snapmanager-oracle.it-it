@@ -1,0 +1,23 @@
+---
+permalink: unix-administration/task_adding_new_profile_to_summary_notification.html 
+sidebar: sidebar 
+keywords: configure, summary, email, notification, repository, database, add, new, profile 
+summary: Dopo aver configurato una notifica e-mail di riepilogo per il database del repository, è possibile aggiungere un nuovo profilo alla notifica di riepilogo utilizzando il comando di notifica di riepilogo. 
+---
+= Aggiunta di un nuovo profilo alle notifiche email di riepilogo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver configurato una notifica e-mail di riepilogo per il database del repository, è possibile aggiungere un nuovo profilo alla notifica di riepilogo utilizzando il comando di notifica di riepilogo.
+
+. Immettere il seguente comando: smo profile create -profileprofile_name [-profile-passwordprofile_password] -repository-dbnamerepo_service_name-hostrepo_host-portrepo_port-login-username-username-username-username][-{-contacourly][-nomespaint.com]_nomespaint.com [-{]_nomespaint.com] [-nomespaint.com]_nomespaint.com] [-} }]_nomespaint.com]_nomespaint.com] [-]_nomes.com]_nomespaint.com]_nome_nomes.com] [-]_nomes.com] [-]_nomes.com] [-nomes.com]_nomespaintes.com] [-nomes.com]_nomes.com]_nome_nomes.com]_nomes.com] [-]_nomes.com]_nome_nomes.com] [-]_nomes.com]_nomes.com]_nomes.com]_nomes.com
++
+Le altre opzioni per questo comando sono le seguenti:
+
++
+[-force] (forza)
+
+

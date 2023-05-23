@@ -1,0 +1,70 @@
+---
+permalink: unix-administration/reference_the_smosmsapprofile_verify_command.html 
+sidebar: sidebar 
+keywords: run, profile, verify, command, verify, set, up, database, smo 
+summary: Per verificare la configurazione del profilo, eseguire il comando di verifica del profilo. È necessario montare il database prima di eseguire questo comando. 
+---
+= Il comando di verifica del profilo smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per verificare la configurazione del profilo, eseguire il comando di verifica del profilo. È necessario montare il database prima di eseguire questo comando.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo profile verify
+-profile profile_name
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo*
++
+Specifica il profilo da verificare. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Il seguente esempio verifica il profilo:
+
+[listing]
+----
+smo profile verify -profile test_profile  -verbose
+[ INFO] SMO-07431: Saving starting state of the database: racb1(OPEN).
+[ INFO] SMO-07431: Saving starting state of the database: racb2(SHUTDOWN), racb1(OPEN).
+[ INFO] SD-00019: Discovering storage resources for all system devices.
+[ INFO] SD-00020: Finished storage discovery for all system devices.
+[ INFO] SD-00019: Discovering storage resources for all system devices.
+[ INFO] SD-00020: Finished storage discovery for all system devices.
+[ INFO] SD-00019: Discovering storage resources for all system devices.
+[ INFO] SD-00020: Finished storage discovery for all system devices.
+[ INFO] SMO-05070: Database profile test_profile is eligible for fast restore.
+[ INFO] SMO-07433: Returning the database to its initial state: racb2(SHUTDOWN), racb1(OPEN).
+[ INFO] SMO-13048: Profile Verify Operation Status: SUCCESS
+[ INFO] SMO-13049: Elapsed Time: 0:04:14.919
+Operation Id [Nfffde14ac88cd1a21597c37e8d21fe90] succeeded.
+----
+*Informazioni correlate*
+
+xref:task_verifying_profiles.adoc[Verifica dei profili in corso]

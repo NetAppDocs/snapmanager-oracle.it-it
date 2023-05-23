@@ -1,0 +1,40 @@
+---
+permalink: unix-administration/reference_the_smosmsap_schedule_delete_command.html 
+sidebar: sidebar 
+keywords: command, delete, backup, schedule, smo, necessary 
+summary: Questo comando elimina una pianificazione di backup quando non è più necessaria. 
+---
+= Il comando smo schedule delete
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando elimina una pianificazione di backup quando non è più necessaria.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo schedule delete
+-profile profile_name
+-schedule-name schedule_name
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il nome del profilo correlato al database che si desidera eliminare. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-schedule-name nome_schedule*
++
+Specifica il nome della pianificazione fornito durante la creazione di una pianificazione di backup.
+
+

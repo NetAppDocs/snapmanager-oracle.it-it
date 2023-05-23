@@ -1,0 +1,16 @@
+---
+permalink: windows/concept_preparing_to_install_snapmanager_for_oracle.html 
+sidebar: sidebar 
+keywords: environment, install, software, hardware, browser, database, operating, system 
+summary: 'L"ambiente in cui si installa SnapManager per Oracle deve soddisfare determinati requisiti software, hardware, browser, database e sistema operativo. Per informazioni aggiornate sui requisiti, consulta la matrice di interoperabilità.' 
+---
+= Preparazione all'installazione di SnapManager per Oracle
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'ambiente in cui si installa SnapManager per Oracle deve soddisfare determinati requisiti software, hardware, browser, database e sistema operativo. Per informazioni aggiornate sui requisiti, consulta la matrice di interoperabilità.
+
+http://support.netapp.com/NOW/products/interoperability/["Matrice di interoperabilità: support.netapp.com/NOW/products/interoperability"]

@@ -1,0 +1,1206 @@
+---
+permalink: unix-administration/reference_error_messages.html 
+sidebar: sidebar 
+keywords: information, error, message, associate, snapmanager, operation 
+summary: Sono disponibili informazioni sui messaggi di errore associati alle diverse operazioni SnapManager. 
+---
+= Messaggi di errore
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sono disponibili informazioni sui messaggi di errore associati alle diverse operazioni SnapManager.
+
+
+
+== Messaggi di errore più comuni
+
+La tabella seguente elenca alcuni degli errori più comuni e importanti associati a SnapManager per Oracle:
+
+|===
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SD-10038: Il file system non è scrivibile.
+ a| 
+Il processo SnapManager non dispone dell'accesso in scrittura al file system.
+ a| 
+Assicurarsi che il processo SnapManager disponga dell'accesso in scrittura al file system. Una volta corretto, potrebbe essere necessario acquisire un'altra istantanea.
+
+
+
+ a| 
+SMO-05075: Impossibile creare il profilo. È necessario configurare correttamente la relazione DP/XDP o scegliere la policy di protezione corretta in base alla relazione sottostante.
+ a| 
+I volumi sottostanti non si trovano in una relazione SnapVault o SnapMirror.
+ a| 
+È necessario configurare una relazione di protezione dei dati tra i volumi di origine e di destinazione e inizializzare la relazione.
+
+
+
+ a| 
+SMO-05503: È stato specificato lo stesso nome per il profilo. Specificare un nome diverso per rinominare il profilo.
+ a| 
+I profili con nomi identici non possono esistere in un repository.
+ a| 
+Fornire un nome di profilo non in uso.
+
+
+
+ a| 
+SMO-05505: Impossibile aggiornare i metadati del dataset.
+ a| 
+Il set di dati potrebbe essere stato eliminato o non esistere.
+ a| 
+Prima di aggiornare i metadati del set di dati, verificare che il set di dati esista utilizzando la NetApp Management Console.
+
+
+
+ a| 
+SMO-05506: Impossibile aggiornare il profilo poiché sono in esecuzione operazioni sul profilo. È necessario attendere il completamento delle operazioni, quindi aggiornare il profilo.
+ a| 
+Impossibile aggiornare il profilo durante le operazioni di backup, ripristino e clonazione.
+ a| 
+Aggiornare il profilo al termine dell'operazione corrente.
+
+
+
+ a| 
+SMO-05509: Durata conservazione primaria archiviatelog non valida - specificare un valore intero positivo.
+ a| 
+La durata di conservazione dei backup del log di archiviazione non può essere negativa.
+ a| 
+Specificare un valore positivo per la durata di conservazione dei backup del registro di archiviazione.
+
+
+
+ a| 
+SMO-07463: Questo ripristino di backup richiede che il database sia nello stato richiesto. Impossibile portare il database nello stato richiesto.
+ a| 
+Il database non si trova nello stato richiesto per un'operazione di backup.
+ a| 
+Prima di creare una copia di backup, verificare che il database si trovi in uno stato rilevante. Lo stato del database da ripristinare dipende dal tipo di processo di ripristino che si desidera eseguire e dal tipo di file da includere.
+
+
+
+ a| 
+SMO-09315: Dopo aver eseguito l'aggiornamento del repository o l'operazione di aggiornamento, è possibile che non si riceva la notifica di riepilogo per le notifiche impostate nella versione precedente, a meno che non si aggiorni la notifica di riepilogo con i dettagli dell'host di notifica.
+ a| 
+Le impostazioni di notifica non sono configurate per il repository dopo un aggiornamento in sequenza.
+ a| 
+Dopo un aggiornamento in sequenza, aggiorna le impostazioni di notifica riepilogativa per ricevere le notifiche.
+
+
+
+ a| 
+SM0-02076: Il nome dell'etichetta non deve contenere caratteri speciali diversi dal carattere di sottolineatura.
+ a| 
+Il nome dell'etichetta contiene caratteri speciali diversi dal carattere di sottolineatura.
+ a| 
+Il nome dell'etichetta deve essere univoco all'interno del profilo. Il nome può contenere lettere, numeri, un carattere di sottolineatura (_) e un trattino (-) (ma non può iniziare con un trattino). Assicurarsi che le etichette non contengano caratteri speciali ad eccezione del carattere di sottolineatura.
+
+
+
+ a| 
+SMO-06308: Eccezione quando si tenta di avviare la pianificazione: java.lang.NullPointerException
+ a| 
+Il nome di dominio completo (FQDN) dell'host del profilo viene configurato al posto del nome host del sistema e l'FQDN dell'host del profilo non può essere risolto.
+ a| 
+Assicurarsi di utilizzare il nome host del sistema e non l'FQDN.
+
+
+
+ a| 
+Errore in ExecuteRestoreSteps: ORACLE-10003: Errore nell'esecuzione di SQL "DROP DISKGROUP;control diskgroup name; INCLUDING CONTENTS" nei confronti del database Oracle +ASM1: ORA-15039: Diskgroup non rilasciato ora-15027: Utilizzo attivo del diskgroup; "control diskgroup name;" ne preclude la dismount
+ a| 
+L'operazione di ripristino di un backup con file di controllo non consente di eliminare il gruppo di dischi di controllo. Questo problema si verifica se nel gruppo di dischi di controllo sono presenti file di controllo di backup obsoleti.
+ a| 
+Identificare i file di controllo di backup obsoleti ed eliminarli manualmente.
+
+
+
+ a| 
+RMAN-06004: Errore ORACLE dal database del catalogo di ripristino: ORA-01424: Carattere mancante o non valido che segue il carattere di escape
+ a| 
+L'operazione di creazione del backup non è riuscita a rimuovere la copia di backup dal catalogo quando SnapManager è integrato con RMAN.
+ a| 
+Controllare se sono presenti script esterni utilizzati per rimuovere i backup da RMAN. Eseguire IL comando CROSSCHECK BACKUP in RMAN per aggiornare il repository RMAN e il comando resync catalog per sincronizzare il file di controllo del database di destinazione con il catalogo di ripristino.
+
+
+
+ a| 
+[DEBUG]: Eccezione durante l'eliminazione del backup. java.lang.IllegalStateException: [Assertion failed] - questo stato invariante deve essere true
+ a| 
+Vengono create più copie Snapshot per un singolo ID operazione.
+ a| 
+Eliminare manualmente le copie Snapshot e utilizzare gli script per eliminare le voci dal repository.
+
+
+
+ a| 
+L'ora di sistema e l'ora visualizzate da SnapManager nei file di log non corrispondono o non sono sincronizzate.
+ a| 
+Java 7 non supporta ancora la modifica del fuso orario.
+ a| 
+Applicare la patch tzupdater fornita da Oracle.
+
+
+
+ a| 
+DISC-00001: Impossibile rilevare lo storage: Il seguente identificatore non esiste o non è del tipo previsto: File ASM
+ a| 
+I file di dati o di controllo o i log di ripristino vengono multiplati in un database ASM.
+ a| 
+Rimuovere il multiplazione Oracle.
+
+
+
+ a| 
+ORA-01031: Privilegi insufficienti. Verificare che il servizio Windows di SnapManager sia impostato per essere eseguito come utente con i privilegi corretti e che l'utente sia incluso nel gruppo ora_DBA.
+ a| 
+Privilegi insufficienti in SnapManager. L'account del servizio SnapManager non fa parte del gruppo ora_DBA.
+ a| 
+Fare clic con il pulsante destro del mouse sull'icona *computer* sul desktop e selezionare *Gestisci* per verificare che l'account utente per il servizio SnapManager faccia parte del gruppo ora_DBA. Controllare gli utenti e i gruppi locali e assicurarsi che l'account faccia parte del gruppo ora_DBA. Se l'utente è l'amministratore locale, assicurarsi che l'utente sia nel gruppo e non nell'amministratore di dominio.
+
+
+
+ a| 
+0001-con-10002: I dischi ASM connessi con percorsi <paths> non sono stati rilevati dall'istanza ASM <asm_instance_sid>. Verificare che il parametro ASM_DISKSTRING e le autorizzazioni del file system consentano di rilevare questi percorsi.
+ a| 
+I dischi ASM erano connessi all'host, ma l'istanza ASM non è in grado di rilevarli.
+ a| 
+Se si utilizza ASM su NFS, assicurarsi che il parametro ASM_DISKSTRING per l'istanza di ASM includa i file di disco ASM. Ad esempio, se l'errore indica: smo/mnt/<dir_name>/<disk_name>, aggiungere /smo/mnt/*/* a asm_diskstring.
+
+
+
+ a| 
+0001-DS-10021: Impossibile impostare il criterio di protezione del set di dati <dataset-name> su <new-protection-policy> perché il criterio di protezione è già impostato su <old-protection-policy>. Utilizzare Protection Manager per modificare la policy di protezione
+ a| 
+Una volta impostato il criterio di protezione di un set di dati, SnapManager non consente di modificare il criterio di protezione, in quanto potrebbe richiedere la ridefinizione delle relazioni di base e causare la perdita dei backup esistenti sullo storage secondario.
+ a| 
+Aggiornare il criterio di protezione utilizzando la console di gestione di Protection Manager, che fornisce più opzioni per la migrazione da un criterio di protezione a un altro.
+
+
+
+ a| 
+0001-SD-10028: Errore SnapDrive (id:2618 code:102) Impossibile rilevare il dispositivo associato a "lun_path". Se si utilizza il multipathing, potrebbe essere presente un errore di configurazione multipathing. Verificare la configurazione e riprovare.
+ a| 
+L'host non è in grado di rilevare le LUN create sui sistemi storage.
+ a| 
+Assicurarsi che il protocollo di trasporto sia installato e configurato correttamente. Assicurarsi che SnapDrive sia in grado di creare e rilevare un LUN sul sistema storage.
+
+
+
+ a| 
+0001-SD-10028: Errore SnapDrive (codice id:2836:110) Impossibile acquisire il blocco del set di dati sul volume "nome storage":"nome_volume_temp"
+ a| 
+Si è tentato di eseguire il ripristino utilizzando il metodo di storage indiretto e il volume temporaneo specificato non esiste nello storage primario.
+ a| 
+Creare un volume temporaneo sullo storage primario. In alternativa, specificare il nome corretto del volume, se è già stato creato un volume temporaneo.
+
+
+
+ a| 
+0001-SMO-02016: Alcune tabelle esterne nel database potrebbero non essere state sottoposte a backup come parte di questa operazione di backup (poiché il database non era APERTO durante questo backup, NON è stato possibile eseguire query SU ALL_EXTERNAL_LOCATIONS per determinare se esistono o meno tabelle esterne).
+ a| 
+SnapManager non esegue il backup di tabelle esterne (ad esempio, tabelle non memorizzate in file .dbf). Questo problema si verifica perché il database non è stato aperto durante il backup. SnapManager non è in grado di determinare se vengono utilizzate tabelle esterne.
+ a| 
+Nel database potrebbero essere presenti tabelle esterne non sottoposte a backup durante questa operazione (perché il database non è stato aperto durante il backup).
+
+
+
+ a| 
+0001-SMO-11027: Impossibile clonare o montare snapshot dallo storage secondario perché le snapshot sono occupate. Provare a clonare o montare da un backup precedente.
+ a| 
+Si è tentato di creare un clone o montare copie Snapshot dallo storage secondario dell'ultimo backup protetto.
+ a| 
+Clonare o montare da un backup precedente.
+
+
+
+ a| 
+0001-SMO-12346: Impossibile elencare i criteri di protezione perché il prodotto Protection Manager non è installato o SnapDrive non è configurato per utilizzarlo. Installare Gestione protezione e/o configurare SnapDrive...
+ a| 
+Si è tentato di elencare i criteri di protezione su un sistema in cui SnapDrive non è configurato per l'utilizzo di Gestione protezione.
+ a| 
+Installare Gestione protezione e configurare SnapDrive per l'utilizzo di Gestione protezione.
+
+
+
+ a| 
+0001-SMO-13032: Impossibile eseguire l'operazione: Eliminazione del backup. Causa principale: 0001-SMO-02039: Impossibile eliminare il backup del set di dati: SD-10028: Errore SnapDrive (id:2406 codice:102) Impossibile eliminare l'id di backup: "Backup_id" per il set di dati, errore(23410):Snapshot "nome_snapshot" sul volume "nome_volume" è occupato.
+ a| 
+Si è tentato di liberare o eliminare l'ultimo backup protetto o un backup contenente copie Snapshot che sono linee di base in una relazione mirror.
+ a| 
+Liberare o eliminare il backup protetto.
+
+
+
+ a| 
+0002-332 errore di amministrazione: Impossibile controllare l'accesso a SD.snapshot.Clone sul volume "nome_volume" per il nome utente sui server di Operations Manager "server_dfm". Motivo: Risorsa specificata non valida. Impossibile trovare l'ID sul server di Operations Manager "dfm_server"
+ a| 
+I ruoli e i privilegi di accesso corretti non sono impostati.
+ a| 
+Impostare i privilegi o i ruoli di accesso per gli utenti che stanno tentando di eseguire il comando.
+
+
+
+ a| 
+[WARN] FLOW-11011: Operazione interrotta [ERRORE] FLOW-11008: Operazione non riuscita: Spazio heap Java.
+ a| 
+Il numero di file di log di archiviazione nel database è superiore al numero massimo consentito.
+ a| 
+. Accedere alla directory di installazione di SnapManager.
+. Aprire il file java di avvio.
+. Aumentare il valore di `java -Xmx160m` Java heap space parameter . Ad esempio, è possibile modificare il valore dal valore predefinito 160m a 200m AS `java -Xmx200m`.
+
+
+
+
+ a| 
+SD-10028: Errore SnapDrive (id:2868 codice:102) impossibile individuare snapshot remoto o qtree remoto.
+ a| 
+SnapManager visualizza i backup come protetti anche se il processo di protezione in Gestione protezione ha esito positivo solo parzialmente. Questa condizione si verifica quando è in corso la conformità del dataset (quando le snapshot di riferimento vengono mirrorate).
+ a| 
+Eseguire un nuovo backup dopo che il set di dati è conforme.
+
+
+
+ a| 
+SMO-21019: Eliminazione del log di archiviazione non riuscita per la destinazione: "/mnt/destination_name/" con il motivo: "ORACLE-00101: Errore durante l'esecuzione del comando RMAN: [DELETE NOSPROMPT ARCHIVELOG '/mnt/destination_name/']
+ a| 
+L'eliminazione del log di archiviazione non riesce in una delle destinazioni. In uno scenario del genere, SnapManager continua a eseguire l'eliminazione dei file di log dell'archivio dalle altre destinazioni. Se alcuni file vengono eliminati manualmente dal file system attivo, RMAN non riesce a eliminare i file di log dell'archivio da quella destinazione.
+ a| 
+Connettersi a RMAN dall'host SnapManager. Eseguire il comando CROSSCHECK ARCHIVELOG ALL di RMAN ed eseguire nuovamente l'operazione di eliminazione dei file di log dell'archivio.
+
+
+
+ a| 
+SMO-13032: Impossibile eseguire l'operazione: Log di archiviazione Prune. Causa principale: Eccezione RMAN: ORACLE-00101: Errore durante l'esecuzione del comando RMAN.
+ a| 
+I file di log dell'archivio vengono eliminati manualmente dalle destinazioni del log dell'archivio.
+ a| 
+Connettersi a RMAN dall'host SnapManager. Eseguire il comando CROSSCHECK ARCHIVELOG ALL di RMAN ed eseguire nuovamente l'operazione di eliminazione dei file di log dell'archivio.
+
+
+
+ a| 
+Impossibile analizzare l'output della shell: (java.util.regex.Matcher[pattern=comando completo. Region=0,18 lastmatch=]) non corrisponde (name:backup_script) Impossibile analizzare l'output della shell: (java.util.regex.Matcher[pattern=Command complete. region=0,25 lastmatch=]) non corrisponde (description:backup script)
+
+Impossibile analizzare l'output della shell: (java.util.regex.Matcher[pattern=comando completo. region=0,9 lastmatch=]) non corrisponde (timeout:0)
+ a| 
+Le variabili di ambiente non sono impostate correttamente negli script pre-task o post-task.
+ a| 
+Controllare se gli script pre-task o post-task seguono la struttura standard del plug-in SnapManager. Per ulteriori informazioni sull'utilizzo delle variabili ambientali nello script, vedere xref:concept_operations_in_task_scripts.adoc[Operazioni negli script di attività].
+
+
+
+ a| 
+ORA-01450: Lunghezza massima chiave superata (6398).
+ a| 
+Quando si esegue un aggiornamento da SnapManager 3.2 per Oracle a SnapManager 3.3 per Oracle, l'operazione di aggiornamento non riesce e viene visualizzato questo messaggio di errore. Questo problema potrebbe verificarsi a causa di uno dei seguenti motivi:
+
+* La dimensione del blocco dello spazio tabella in cui si trova il repository è inferiore a 8k.
+* Il parametro nls_length_semantics è impostato su char.
+
+ a| 
+È necessario assegnare i valori ai seguenti parametri:
+
+* block_size=8192
+* nls_length=byte
+
+
+Dopo aver modificato i valori dei parametri, è necessario riavviare il database.
+
+Per ulteriori informazioni, vedere l'articolo della Knowledge base 2017632.
+
+|===
+
+
+== Messaggi di errore associati al processo di backup del database (serie 2000)
+
+La seguente tabella elenca gli errori comuni associati al processo di backup del database:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-02066: Non è possibile eliminare o liberare i "registri dei dati" di backup del registro di archiviazione, poiché il backup è associato ai "registri dei dati" di backup.
+ a| 
+Il backup del registro di archiviazione viene eseguito insieme al backup dei file di dati e si è tentato di eliminare il backup del registro di archiviazione.
+ a| 
+Utilizzare l'opzione -force per eliminare o liberare il backup.
+
+
+
+ a| 
+SMO-02067: Non è possibile eliminare o liberare i "registri dei dati" di backup del registro di archiviazione, poiché il backup è associato ai "registri dei dati" di backup e rientra nella durata di conservazione assegnata.
+ a| 
+Il backup del registro di archiviazione è associato al backup del database e rientra nel periodo di conservazione ed è stato tentato di eliminare il backup del registro di archiviazione.
+ a| 
+Utilizzare l'opzione -force per eliminare o liberare il backup.
+
+
+
+ a| 
+SMO-07142: Registri archiviati esclusi a causa del modello di esclusione <exclusion>.
+ a| 
+Durante l'operazione di creazione del profilo o di backup, si escludono alcuni file di log dell'archivio.
+ a| 
+Non è richiesta alcuna azione.
+
+
+
+ a| 
+SMO-07155: I file di log archiviati di <count> non esistono nel file system attivo. Questi file di log archiviati non verranno inclusi nel backup.
+ a| 
+I file di log dell'archivio non esistono nel file system attivo durante l'operazione di creazione del profilo o di backup. Questi file di log archiviati non sono inclusi nel backup.
+ a| 
+Non è richiesta alcuna azione.
+
+
+
+ a| 
+SMO-07148: I file di log archiviati non sono disponibili.
+ a| 
+Durante l'operazione di creazione del profilo o di backup, non vengono creati file di log dell'archivio per il database corrente.
+ a| 
+Non è richiesta alcuna azione.
+
+
+
+ a| 
+SMO-07150: Impossibile trovare i file di log archiviati.
+ a| 
+Tutti i file di log dell'archivio sono mancanti nel file system o esclusi durante l'operazione di creazione del profilo o di backup.
+ a| 
+Non è richiesta alcuna azione.
+
+
+
+ a| 
+SMO-13032: Impossibile eseguire l'operazione: Creazione del backup. Causa principale: ORACLE-20001: Errore nel tentativo di modificare lo stato in OPEN for database instance dfcln1: ORACLE-20004: Attesa di essere in grado di aprire il database senza l'opzione RESETLOGS, ma oracle sta segnalando che il database deve essere aperto con l'opzione RESETLOGS. Per evitare che i registri vengano reimpostati in modo imprevisto, il processo non proseguirà. Assicurarsi che il database possa essere aperto senza l'opzione RESETLOGS e riprovare.
+ a| 
+Si tenta di eseguire il backup del database clonato creato con l'opzione -no-resetlogs. Il database clonato non è un database completo.tuttavia, è possibile eseguire operazioni SnapManager come la creazione di profili e backup, la suddivisione di cloni e così via con il database clonato, ma le operazioni SnapManager non riescono perché il database clonato non è configurato come database completo.
+ a| 
+Ripristinare il database clonato o convertire il database in un database di standby Data Guard.
+
+|===
+
+
+== Errori di protezione dei dati
+
+La seguente tabella mostra gli errori comuni associati alla protezione dei dati:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+È richiesta la protezione del backup, ma il profilo del database non dispone di criteri di protezione. Aggiornare il criterio di protezione nel profilo del database o non utilizzare l'opzione "Proteggi" durante la creazione dei backup.
+ a| 
+Si tenta di creare un backup con protezione sullo storage secondario; tuttavia, il profilo associato a questo backup non ha un criterio di protezione specificato.
+ a| 
+Modificare il profilo e selezionare un criterio di protezione. Ricreare il backup.
+
+
+
+ a| 
+Impossibile eliminare il profilo perché la protezione dei dati è attivata, ma Protection Manager non è temporaneamente disponibile. Riprovare più tardi.
+ a| 
+Si tenta di eliminare un profilo con la protezione attivata; tuttavia, Protection Manager non è disponibile.
+ a| 
+Assicurarsi che i backup appropriati siano memorizzati nello storage primario o secondario. Disattiva la protezione nel profilo. Quando Protection Manager è nuovamente disponibile, tornare al profilo ed eliminarlo.
+
+
+
+ a| 
+Impossibile elencare i criteri di protezione perché Protection Manager non è temporaneamente disponibile. Riprovare più tardi.
+ a| 
+Durante la configurazione del profilo di backup, è stata attivata la protezione sul backup in modo che il backup venga memorizzato sullo storage secondario. Tuttavia, SnapManager non è in grado di recuperare i criteri di protezione dalla console di gestione di Protection Manager.
+ a| 
+Disattivare temporaneamente la protezione nel profilo. Continuare a creare un nuovo profilo o ad aggiornare un profilo esistente. Quando Protection Manager è nuovamente disponibile, tornare al profilo.
+
+
+
+ a| 
+Impossibile elencare i criteri di protezione perché il prodotto Protection Manager non è installato o SnapDrive non è configurato per utilizzarlo. Installare Gestione protezione e/o configurare SnapDrive.
+ a| 
+Durante la configurazione del profilo di backup, è stata attivata la protezione sul backup in modo che il backup venga memorizzato sullo storage secondario. Tuttavia, SnapManager non può recuperare i criteri di protezione dalla console di gestione di Protection Manager. Protection Manager non è installato o SnapDrive non è configurato.
+ a| 
+Installare Protection Manager. Configurare SnapDrive.
+
+Tornare al profilo, riabilitare la protezione e selezionare i criteri di protezione disponibili nella console di gestione di Protection Manager.
+
+
+
+ a| 
+Impossibile impostare il criterio di protezione perché Protection Manager non è temporaneamente disponibile. Riprovare più tardi.
+ a| 
+Durante la configurazione del profilo di backup, è stata attivata la protezione sul backup in modo che il backup venga memorizzato sullo storage secondario. Tuttavia, SnapManager non può recuperare i criteri di protezione dalla console di gestione di Protection Manager.
+ a| 
+Disattivare temporaneamente la protezione nel profilo. Continuare a creare o aggiornare il profilo. Quando la console di gestione di Protection Manager è disponibile, tornare al profilo.
+
+
+
+ a| 
+Creazione di un nuovo dataset <dataset_name> per il database <dbname> su host <host>.
+ a| 
+Si è tentato di creare un profilo di backup. SnapManager crea un dataset per questo profilo.
+ a| 
+Nessuna azione necessaria.
+
+
+
+ a| 
+La protezione dei dati non è disponibile perché Protection Manager non è installato.
+ a| 
+Durante la configurazione del profilo di backup, si è tentato di attivare la protezione sul backup in modo che il backup venga memorizzato sullo storage secondario. Tuttavia, SnapManager non può accedere alle policy di protezione dalla console di gestione di Protection Manager. Protection Manager non è installato.
+ a| 
+Installare Protection Manager.
+
+
+
+ a| 
+Eliminato il dataset <dataset_name> per questo database.
+ a| 
+Hai eliminato un profilo. SnapManager eliminerà il dataset associato.
+ a| 
+Non è necessaria alcuna azione.
+
+
+
+ a| 
+Eliminazione del profilo con la protezione attivata e Protection Manager non è più configurato. Eliminazione del profilo da SnapManager ma non pulizia del set di dati in Gestione protezione.
+ a| 
+Si è tentato di eliminare un profilo con la protezione attivata; tuttavia, Protection Manager non è più installato, non è più configurato o è scaduto. SnapManager eliminerà il profilo, ma non il dataset del profilo dalla console di gestione di Protection Manager.
+ a| 
+Reinstallare o riconfigurare Protection Manager. Tornare al profilo ed eliminarlo.
+
+
+
+ a| 
+Classe di conservazione non valida. Utilizzare "smo help backup" per visualizzare un elenco delle classi di conservazione disponibili.
+ a| 
+Durante l'impostazione del criterio di conservazione, si è tentato di utilizzare una classe di conservazione non valida.
+ a| 
+Creare un elenco di classi di conservazione valide immettendo questo comando: Backup della guida smo
+
+Aggiornare il criterio di conservazione con una delle classi disponibili.
+
+
+
+ a| 
+Policy di protezione specificata non disponibile. Utilizzare "smo Protection-policy list" (elenco criteri di protezione smo) per visualizzare un elenco dei criteri di protezione disponibili.
+ a| 
+Durante la configurazione del profilo, è stata attivata la protezione e inserita una policy di protezione non disponibile.
+ a| 
+Identificare i criteri di protezione disponibili immettendo il seguente comando: smo Protection-policy list
+
+
+
+ a| 
+Utilizzo del set di dati esistente <dataset_name> per il database <dbname> su <host> host poiché il set di dati esiste già.
+ a| 
+Si è tentato di creare un profilo; tuttavia, il dataset per lo stesso profilo di database esiste già.
+ a| 
+Controllare le opzioni del profilo esistente e assicurarsi che corrispondano a quanto richiesto nel nuovo profilo.
+
+
+
+ a| 
+L'utilizzo del dataset <dataset_name> esistente per il database RAC <dbname> poiché il profilo <profile_name> per lo stesso database RAC esiste già, ad esempio, <SID> sul <hostname> host.
+ a| 
+Si è tentato di creare un profilo per un database RAC; tuttavia, il dataset per lo stesso profilo di database RAC esiste già.
+ a| 
+Controllare le opzioni del profilo esistente e assicurarsi che corrispondano a quanto richiesto nel nuovo profilo.
+
+
+
+ a| 
+Il set di dati <dataset_name> con il criterio di protezione <existing_policy_name> esiste già per questo database. È stato specificato il criterio di protezione <new_policy_name>. La policy di protezione del set di dati verrà modificata in <new_policy_name>. È possibile modificare il criterio di protezione aggiornando il profilo.
+ a| 
+Si è tentato di creare un profilo con la protezione attivata e una policy di protezione selezionata. Tuttavia, il set di dati per lo stesso profilo di database esiste già, ma ha una policy di protezione diversa. SnapManager utilizzerà la policy appena specificata per il dataset esistente.
+ a| 
+Esaminare questo criterio di protezione e determinare se si tratta del criterio che si desidera utilizzare per il dataset. In caso contrario, modificare il profilo e il criterio.
+
+
+
+ a| 
+Protection Manager elimina i backup locali creati da SnapManager per Oracle
+ a| 
+La console di gestione di Protection Manager elimina o libera i backup locali creati da SnapManager in base ai criteri di conservazione definiti in Protection Manager. La classe di conservazione impostata per i backup locali non viene presa in considerazione durante l'eliminazione o la liberazione dei backup locali.quando i backup locali vengono trasferiti a un sistema di storage secondario, la classe di conservazione impostata per i backup locali sul sistema di storage primario non viene presa in considerazione. La classe di conservazione specificata nella pianificazione del trasferimento viene assegnata al backup remoto.
+ a| 
+Eseguire il comando dfpm dataset fix_smo dal server Protection Manager ogni volta che viene creato un nuovo dataset.ora i backup non vengono cancellati in base al criterio di conservazione impostato nella console di gestione di Protection Manager.
+
+
+
+ a| 
+Hai scelto di disattivare la protezione per questo profilo. Ciò potrebbe potenzialmente eliminare il dataset associato in Protection Manager e distruggere le relazioni di replica create per tale dataset. Inoltre, non sarà possibile eseguire operazioni SnapManager come il ripristino o la clonazione dei backup secondari o terziari per questo profilo. Continuare (S/N)?
+ a| 
+Si è tentato di disattivare la protezione per un profilo protetto durante l'aggiornamento del profilo dalla CLI o dalla GUI di SnapManager. È possibile disattivare la protezione per il profilo utilizzando l'opzione -noprotect dall'interfaccia utente di SnapManager o deselezionando la casella di controllo *criterio di protezione gestore protezione* nella finestra delle proprietà dei criteri dall'interfaccia utente di SnapManager. Quando si disattiva la protezione per il profilo, SnapManager per Oracle elimina il dataset dalla console di gestione di Protection Manager, che annulla la registrazione di tutte le copie di backup secondarie e terziarie associate al dataset.
+
+Dopo l'eliminazione di un set di dati, tutte le copie di backup secondarie e terziarie vengono orfane. Né Protection Manager né SnapManager per Oracle possono accedere a tali copie di backup. Le copie di backup non possono più essere ripristinate utilizzando SnapManager per Oracle.
+
+
+NOTE: Lo stesso messaggio di avviso viene visualizzato anche quando il profilo non è protetto.
+ a| 
+Si tratta di un problema noto in SnapManager per Oracle e del comportamento previsto in Protection Manager quando si distrugge un dataset. Non esiste alcuna soluzione alternativa. I backup orfani devono essere gestiti manualmente.
+
+|===
+
+
+== Messaggi di errore associati al processo di ripristino (serie 3000)
+
+La seguente tabella mostra gli errori più comuni associati al processo di ripristino:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-03031:la specifica di ripristino è necessaria per ripristinare il <variable> di backup perché le risorse di storage per il backup sono già state liberate.
+ a| 
+Si è tentato di ripristinare un backup con le risorse di storage liberate senza specificare una specifica di ripristino.
+ a| 
+Specificare una specifica di ripristino.
+
+
+
+ a| 
+SMO-03032:la specifica Restore deve contenere mappature per i file da ripristinare perché le risorse di storage per il backup sono già state liberate. I file che necessitano di mappature sono: <variable> da Snapshot: <variable>
+ a| 
+Si è tentato di ripristinare un backup che ha liberato le risorse di storage e una specifica di ripristino che non contiene il mapping per tutti i file da ripristinare.
+ a| 
+Correggere il file delle specifiche di ripristino in modo che le mappature corrispondano ai file da ripristinare.
+
+
+
+ a| 
+ORACLE-30028: Impossibile eseguire il dump del file di log <filename>. Il file potrebbe essere mancante/inaccessibile/corrotto. Questo file di log non verrà utilizzato per il ripristino.
+ a| 
+I file di log di ripristino online o i file di log dell'archivio non possono essere utilizzati per il ripristino.questo errore si verifica per i seguenti motivi:
+
+* I file di log di ripristino online o i file di log archiviati menzionati nel messaggio di errore non dispongono di numeri di modifica sufficienti per richiedere il ripristino. Ciò si verifica quando il database è online senza transazioni. Il log di ripristino o i file di log archiviati non hanno numeri di modifica validi che possono essere applicati per il ripristino.
+* Il file di log di ripristino online o il file di log archiviato menzionato nel messaggio di errore non dispone di privilegi di accesso sufficienti per Oracle.
+* Il file di log di ripristino online o il file di log archiviato menzionato nel messaggio di errore è corrotto e non può essere letto da Oracle.
+* Il file di log di ripristino online o il file di log archiviato menzionato nel messaggio di errore non viene trovato nel percorso indicato.
+
+ a| 
+Se il file menzionato nel messaggio di errore è un file di log archiviato e se è stato fornito manualmente per il ripristino, assicurarsi che il file disponga delle autorizzazioni di accesso completo a Oracle.anche se il file dispone delle autorizzazioni complete, e il messaggio continua, il file di log dell'archivio non dispone di numeri di modifica da applicare per il ripristino e questo messaggio può essere ignorato.
+
+
+
+ a| 
+SMO-03038: Impossibile eseguire il ripristino da secondario perché le risorse di storage sono ancora presenti su primario. Eseguire il ripristino da primario.
+ a| 
+Si è tentato di eseguire il ripristino dallo storage secondario, ma sullo storage primario sono presenti copie Snapshot.
+ a| 
+Eseguire sempre il ripristino dal primario se il backup non è stato liberato.
+
+
+
+ a| 
+SM0-03054: Montaggio di archbkp1 di backup per alimentare gli archivi. DS-10001: Collegamento dei punti di montaggio. [ERRORE] FLOW-11019: Errore in ExecuteConnectionSteps: SD-10028: Errore SnapDrive (id:2618 codice:305). Impossibile eliminare i seguenti file. I volumi corrispondenti potrebbero essere di sola lettura. Riprovare il comando con le snapshot meno recenti.[ERRORE] FLOW-11010: Operazione in transizione per interrompere a causa di un guasto precedente.
+ a| 
+Durante il ripristino, SnapManager tenta di montare l'ultimo backup da secondario per alimentare i file di log dell'archivio da secondario.tuttavia, se sono presenti altri backup, il ripristino può avere esito positivo. Tuttavia, se non sono presenti altri backup, il ripristino potrebbe non riuscire.
+ a| 
+Non eliminare i backup più recenti da primario, in modo che SnapManager possa utilizzare il backup primario per il ripristino.
+
+|===
+
+
+== Messaggi di errore associati al processo di clonazione (serie 4000)
+
+La seguente tabella mostra gli errori comuni associati al processo di clonazione:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-04133: La destinazione di dump non deve esistere
+ a| 
+Si utilizza SnapManager per creare nuovi cloni; tuttavia, le destinazioni di dump da utilizzare per il nuovo clone esistono già. SnapManager non può creare un clone se esistono destinazioni di dump.
+ a| 
+Rimuovere o rinominare le vecchie destinazioni di dump prima di creare un clone.
+
+
+
+ a| 
+SMO-04908: Non è un FlexClone.
+ a| 
+Il clone è un clone del LUN. Questo vale per Data ONTAP 8.1 7-mode e Clustered Data ONTAP.
+ a| 
+SnapManager supporta la suddivisione dei cloni solo sulla tecnologia FlexClone.
+
+
+
+ a| 
+SMO-04904: Nessuna operazione di split clone eseguita con split-idsplit_id
+ a| 
+L'ID operazione non è valido o non è in corso alcuna operazione di suddivisione del clone.
+ a| 
+Fornire un ID di divisione o un'etichetta di divisione validi per lo stato di divisione del clone, il risultato e le operazioni di arresto.
+
+
+
+ a| 
+SMO-04906: Operazione di interruzione del clone split non riuscita con split-idsplit_id
+ a| 
+L'operazione di divisione è completata.
+ a| 
+Controllare se il processo di split è in corso utilizzando il comando clone split-status o clone split-risultato.
+
+
+
+ a| 
+SMO-13032:Impossibile eseguire l'operazione: Creazione clone. Causa principale: ORACLE-00001: Errore durante l'esecuzione di SQL: [ALTER DATABASE OPEN RESETLOGS;]. Il comando ha restituito: ORA-38856: Cannot mark instance UNNAMED_INSTANCE_2 (redo thread 2) as enabled.
+ a| 
+La creazione del clone non riesce quando si crea il clone dal database di standby utilizzando la seguente configurazione:
+
+* Il database principale è un'installazione RAC e il database di standby è standalone.
+* Lo standby viene creato utilizzando RMAN per eseguire il backup dei file di dati.
+
+ a| 
+Aggiungere il parametro _no_recovery_through_resetlogs=TRUE nel file di specifica del clone prima di creare il clone. Per ulteriori informazioni, consultare la documentazione Oracle (ID 334899.1). Assicurarsi di disporre del nome utente e della password Oracle metalink.
+
+
+
+ a| 
+ a| 
+Non è stato fornito un valore per un parametro nel file di specifica del clone.
+ a| 
+È necessario fornire un valore per il parametro o eliminarlo se non è richiesto dal file di specifica del clone.
+
+|===
+
+
+== Messaggi di errore associati al processo di gestione del profilo (serie 5000)
+
+La seguente tabella mostra gli errori comuni associati al processo di clonazione:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-20600: Profilo "profile1" non trovato nel repository "repo_name". Eseguire la sincronizzazione del profilo per aggiornare le mappature da profilo a repository.
+ a| 
+L'operazione di dump non può essere eseguita quando la creazione del profilo non riesce.
+ a| 
+USA smosystem dump.
+
+|===
+
+
+== Messaggi di errore associati alla liberazione delle risorse di backup (backup serie 6000)
+
+La seguente tabella mostra gli errori comuni associati alle attività di backup:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-06030: Impossibile rimuovere il backup perché è in uso: <variable>
+ a| 
+Si è tentato di eseguire l'operazione senza backup utilizzando i comandi, quando il backup è montato, o ha cloni, o è contrassegnato per essere conservato su una base illimitata.
+ a| 
+Smontare il backup o modificare il criterio di conservazione senza limiti. Se esistono cloni, eliminarli.
+
+
+
+ a| 
+SMO-06045: Impossibile liberare <variable> di backup perché le risorse di storage per il backup sono già state liberate
+ a| 
+Si è tentato di eseguire l'operazione senza backup utilizzando i comandi, quando il backup è già stato liberato.
+ a| 
+Non è possibile liberare il backup se è già stato liberato.
+
+
+
+ a| 
+SMO-06047: È possibile liberare solo i backup riusciti. Lo stato del <ID> di backup è <status>.
+ a| 
+Si è tentato di eseguire l'operazione senza backup utilizzando i comandi, quando lo stato del backup non è riuscito.
+ a| 
+Riprovare dopo aver eseguito correttamente il backup.
+
+
+
+ a| 
+SMO-13082: Impossibile eseguire Operation <variable> su <ID> di backup perché le risorse di storage per il backup sono state liberate.
+ a| 
+Utilizzando i comandi, si è tentato di montare un backup con le risorse di storage liberate.
+ a| 
+Non è possibile montare, clonare o verificare un backup che abbia liberato le risorse di storage.
+
+|===
+
+
+== Errori dell'interfaccia dello storage virtuale (interfaccia dello storage virtuale serie 8000)
+
+La seguente tabella mostra gli errori comuni associati alle attività dell'interfaccia dello storage virtuale:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-08017 errore durante il rilevamento dello storage per /.
+ a| 
+SnapManager ha tentato di individuare le risorse di storage, ma ha trovato file di dati, file di controllo o log nella directory root/. Questi file devono risiedere in una sottodirectory. Il file system root potrebbe essere un disco rigido nel computer locale. SnapDrive non può eseguire copie Snapshot in questa posizione e SnapManager non può eseguire operazioni su questi file.
+ a| 
+Controllare se i file di dati, i file di controllo o i log di ripristino si trovano nella directory principale. In tal caso, spostarli nelle posizioni corrette o ricreare i file di controllo o ripetere i log nelle posizioni corrette. Ad esempio: Spostare redo.log in /data/oracle/redo.log, dove /data/oracle è il punto di montaggio.
+
+|===
+
+
+== Messaggi di errore associati al processo di aggiornamento in corso (serie 9000)
+
+La seguente tabella mostra gli errori comuni associati al processo di aggiornamento in sequenza:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-09234:gli host seguenti non esistono nel vecchio repository. <hostnames>.
+ a| 
+Si è tentato di eseguire l'aggiornamento in sequenza di un host, che non esiste nella versione precedente del repository.
+ a| 
+Controllare se l'host esiste nel repository precedente utilizzando il comando repository show-repository della versione precedente dell'interfaccia utente di SnapManager.
+
+
+
+ a| 
+SMO-09255:gli host seguenti non esistono nel nuovo repository. <hostnames>.
+ a| 
+Si è tentato di eseguire il rollback di un host, che non esiste nella nuova versione del repository.
+ a| 
+Controllare se l'host esiste nel nuovo repository utilizzando il comando show-repository del repository della versione successiva dell'interfaccia utente di SnapManager.
+
+
+
+ a| 
+SMO-09256:rollback non supportato, poiché esistono nuovi profili <profilenames>.per gli host specificati <hostnames>.
+ a| 
+Si è tentato di eseguire il rollback di un host che contiene nuovi profili esistenti nel repository. Tuttavia, questi profili non esistevano nell'host della versione precedente di SnapManager.
+ a| 
+Eliminare i nuovi profili nella versione successiva o aggiornata di SnapManager prima del rollback.
+
+
+
+ a| 
+SMO-09257:rollback non supportato, in quanto i backup <backupid> sono montati nei nuovi host.
+ a| 
+Si è tentato di eseguire il rollback di una versione successiva dell'host SnapManager che ha montato i backup. Questi backup non sono montati nella versione precedente dell'host SnapManager.
+ a| 
+Smontare i backup nella versione successiva dell'host SnapManager, quindi eseguire il rollback.
+
+
+
+ a| 
+SMO-09258:rollback non supportato, in quanto i backup <backupid> sono smontati nei nuovi host.
+ a| 
+Si è tentato di eseguire il rollback di una versione successiva dell'host SnapManager in cui sono stati disinstallati i backup.
+ a| 
+Montare i backup nella versione successiva dell'host SnapManager, quindi eseguire il rollback.
+
+
+
+ a| 
+SMO-09298:Impossibile aggiornare questo repository, in quanto dispone già di altri host nella versione successiva. Eseguire il rollingupdgrade per tutti gli host.
+ a| 
+È stato eseguito un aggiornamento in sequenza su un singolo host, quindi è stato aggiornato il repository per tale host.
+ a| 
+Eseguire un aggiornamento in sequenza su tutti gli host.
+
+
+
+ a| 
+SMO-09297: Errore durante l'abilitazione dei vincoli. Il repository potrebbe essere in uno stato incoerente. Si consiglia di ripristinare il backup del repository eseguito prima dell'operazione corrente.
+ a| 
+Si è tentato di eseguire un'operazione di rollback o aggiornamento in sequenza se il database del repository viene lasciato in uno stato incoerente.
+ a| 
+Ripristinare il repository di cui è stato eseguito il backup in precedenza.
+
+|===
+
+
+== Esecuzione delle operazioni (serie 12,000)
+
+La seguente tabella mostra gli errori comuni associati alle operazioni:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-12347 [ERRORE]: Server SnapManager non in esecuzione su host <host> e porta <port>. Eseguire questo comando su un host che esegue il server SnapManager.
+ a| 
+Durante la configurazione del profilo, sono state immesse informazioni sull'host e sulla porta. Tuttavia, SnapManager non può eseguire queste operazioni perché il server SnapManager non è in esecuzione sull'host e sulla porta specificati.
+ a| 
+Immettere il comando su un host che esegue il server SnapManager. È possibile controllare la porta con il comando lsnrctl status e visualizzare la porta su cui viene eseguito il database. Modificare la porta nel comando di backup, se necessario.
+
+|===
+
+
+== Esecuzione dei componenti di processo (serie 13,000)
+
+La seguente tabella mostra gli errori comuni associati al componente di processo di SnapManager:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-13083: Il modello Snapname con valore "x" contiene caratteri diversi da lettere, numeri, caratteri di sottolineatura, trattini e parentesi graffe.
+ a| 
+Durante la creazione di un profilo, è stato personalizzato il modello Snapname; tuttavia, sono stati inclusi caratteri speciali non consentiti.
+ a| 
+Rimuovere caratteri speciali diversi da lettere, numeri, caratteri di sottolineatura, trattini e parentesi graffe.
+
+
+
+ a| 
+SMO-13084: Il modello Snapname con valore "x" non contiene lo stesso numero di parentesi graffe sinistra e destra.
+ a| 
+Durante la creazione di un profilo, è stato personalizzato il modello Snapname; tuttavia, le parentesi graffe sinistra e destra non corrispondono.
+ a| 
+Inserire le parentesi di apertura e chiusura corrispondenti nel modello Snapname.
+
+
+
+ a| 
+SMO-13085: Il modello Snapname con valore "x" contiene un nome di variabile non valido "y".
+ a| 
+Durante la creazione di un profilo, è stato personalizzato il modello Snapname; tuttavia, è stata inclusa una variabile non consentita.
+ a| 
+Rimuovere la variabile che causa l'offendere. Per visualizzare un elenco di variabili accettabili, vedere xref:concept_snapshot_copy_naming.adoc[Naming delle copie Snapshot].
+
+
+
+ a| 
+SMO-13086 il modello Snapname con valore "x" deve contenere la variabile "smid".
+ a| 
+Durante la creazione di un profilo, è stato personalizzato il modello Snapname; tuttavia, è stata omessa la variabile smid richiesta.
+ a| 
+Inserire la variabile smid richiesta.
+
+
+
+ a| 
+SMO-13902: Avvio split clone non riuscito.
+ a| 
+Questo errore potrebbe essere causato da diversi motivi:
+
+* Spazio non disponibile nel volume.
+* SnapDrive non è in esecuzione.
+* Il clone potrebbe essere un clone del LUN.
+* Il volume FlexVol ha copie Snapshot limitate.
+
+ a| 
+Verificare lo spazio disponibile nel volume utilizzando il comando clone split-estimate. Verificare che il volume FlexVol non disponga di copie Snapshot limitate.
+
+
+
+ a| 
+SMO-13904: Risultato clone split non riuscito.
+ a| 
+Ciò potrebbe essere dovuto a un guasto nel sistema SnapDrive o di storage.
+ a| 
+Provare a lavorare su un nuovo clone.
+
+
+
+ a| 
+SMO-13906: Operazione di split già in esecuzione per clone labelclone-label o IDclone-ID.
+ a| 
+Si sta tentando di separare un clone già diviso.
+ a| 
+Il clone è già diviso e i relativi metadati verranno rimossi.
+
+
+
+ a| 
+SMO-13907: Operazione di split già in esecuzione per clone labelclone-label o IDclone-ID.
+ a| 
+Si sta tentando di suddividere un clone in fase di split.
+ a| 
+È necessario attendere il completamento dell'operazione di divisione.
+
+|===
+
+
+== Messaggi di errore associati alle utilità SnapManager (serie 14,000)
+
+La seguente tabella mostra gli errori più comuni associati alle utility SnapManager:
+
+|===
+
+
+| Messaggio di errore | Spiegazione | Risoluzione 
+
+
+ a| 
+SMO-14501: L'ID e-mail non può essere vuoto.
+ a| 
+L'indirizzo e-mail non è stato immesso.
+ a| 
+Immettere un indirizzo e-mail valido.
+
+
+
+ a| 
+SMO-14502: L'oggetto della posta non può essere vuoto.
+ a| 
+L'oggetto dell'e-mail non è stato immesso.
+ a| 
+Inserire l'oggetto dell'e-mail appropriato.
+
+
+
+ a| 
+SMO-14506: Il campo del server di posta non può essere vuoto.
+ a| 
+Non è stato immesso il nome host o l'indirizzo IP del server di posta elettronica.
+ a| 
+Immettere il nome host o l'indirizzo IP del server di posta valido.
+
+
+
+ a| 
+SMO-14507: Il campo Mail Port (porta di posta) non può essere vuoto.
+ a| 
+Il numero della porta e-mail non è stato immesso.
+ a| 
+Inserire il numero della porta del server di posta elettronica.
+
+
+
+ a| 
+SMO-14508: L'ID di posta da non può essere vuoto.
+ a| 
+Non hai inserito l'indirizzo e-mail del mittente.
+ a| 
+Immettere un indirizzo e-mail valido per il mittente.
+
+
+
+ a| 
+SMO-14509: Il nome utente non può essere vuoto.
+ a| 
+È stata attivata l'autenticazione e non è stato fornito il nome utente.
+ a| 
+Immettere il nome utente per l'autenticazione tramite posta elettronica.
+
+
+
+ a| 
+SMO-14510: La password non può essere vuota. Inserire la password.
+ a| 
+È stata attivata l'autenticazione e non è stata fornita la password.
+ a| 
+Inserire la password di autenticazione dell'email.
+
+
+
+ a| 
+SMO-14550: Email status <success/failure>.
+ a| 
+Il numero di porta, il server di posta o l'indirizzo e-mail del destinatario non sono validi.
+ a| 
+Fornire i valori corretti durante la configurazione dell'e-mail.
+
+
+
+ a| 
+SMO-14559: Invio notifica e-mail non riuscito: <error>.
+ a| 
+Ciò potrebbe essere dovuto a un numero di porta non valido, a un server di posta non valido o a un indirizzo di posta del destinatario non valido.
+ a| 
+Fornire i valori corretti durante la configurazione dell'e-mail.
+
+
+
+ a| 
+SMO-14560: Notifica non riuscita: Configurazione della notifica non disponibile.
+ a| 
+Invio della notifica non riuscito, perché la configurazione della notifica non è disponibile.
+ a| 
+Aggiungere la configurazione delle notifiche.
+
+
+
+ a| 
+SMO-14565: Formato ora non valido. Inserire il formato dell'ora nel formato HH:mm.
+ a| 
+L'ora è stata immessa in un formato non corretto.
+ a| 
+Inserire l'ora nel formato: hh:mm.
+
+
+
+ a| 
+SMO-14566: Valore data non valido. L'intervallo di date valido è compreso tra 1 e 31.
+ a| 
+La data configurata non è corretta.
+ a| 
+La data deve essere compresa tra 1 e 31.
+
+
+
+ a| 
+SMO-14567: Valore del giorno non valido. L'intervallo di giorni valido è compreso tra 1 e 7.
+ a| 
+Il giorno configurato non è corretto.
+ a| 
+Immettere l'intervallo di giorni compreso tra 1 e 7.
+
+
+
+ a| 
+SMO-14569: Il server non è riuscito ad avviare il programma Summary Notification.
+ a| 
+Il server SnapManager è stato arrestato per motivi sconosciuti.
+ a| 
+Avviare il server SnapManager.
+
+
+
+ a| 
+SMO-14570: Notifica di riepilogo non disponibile.
+ a| 
+La notifica di riepilogo non è stata configurata.
+ a| 
+Configurare la notifica di riepilogo.
+
+
+
+ a| 
+SMO-14571: Non è possibile attivare la notifica di profilo e riepilogo.
+ a| 
+Sono state selezionate le opzioni di notifica del profilo e del riepilogo.
+ a| 
+Attivare la notifica del profilo o la notifica di riepilogo.
+
+
+
+ a| 
+SMO-14572: Fornire un'opzione di successo o errore per la notifica.
+ a| 
+Non sono state attivate le opzioni di successo o di errore.
+ a| 
+Selezionare l'opzione Success (riuscita) o failure (errore) oppure entrambe.
+
+|===
+
+
+== Messaggi di errore comuni di SnapDrive per UNIX
+
+La seguente tabella mostra gli errori più comuni relativi a SnapDrive per UNIX:
+
+|===
+
+
+| Messaggio di errore | Spiegazione 
+
+
+ a| 
+0001-136 errore amministratore: Impossibile accedere al filer: <filer> impostare il nome utente e/o la password per <filer>
+ a| 
+Errore di configurazione iniziale
+
+
+
+ a| 
+0001-382 errore di amministrazione: Risincronizzazione multipathing non riuscita
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+0001-462 errore amministratore: Impossibile disconfigurare multipathing per <LUN>: Spd5: Impossibile arrestare il dispositivo. Dispositivo occupato.
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+0001-476 errore amministratore: Impossibile rilevare il dispositivo associato a...
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+0001-680 errore di amministrazione: Il sistema operativo host richiede un aggiornamento dei dati interni per consentire la creazione o la connessione del LUN. Utilizzare 'SnapDrive config prepare lun' o aggiornare queste informazioni manualmente...
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+0001-710 errore amministratore: Aggiornamento del sistema operativo del LUN non riuscito...
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+0001-817 errore amministratore: Impossibile creare il clone del volume... : FlexClone non concesso in licenza
+ a| 
+Errore di configurazione iniziale
+
+
+
+ a| 
+0001-817 errore amministratore: Impossibile creare il clone del volume... : Richiesta non riuscita in quanto lo spazio non può essere garantito per il clone.
+ a| 
+Problema di spazio
+
+
+
+ a| 
+0001-878 errore di amministrazione: Assistente HBA non trovato. I comandi che coinvolgono LUN dovrebbero fallire.
+ a| 
+Errore di rilevamento LUN
+
+
+
+ a| 
+SMO-12111: Errore durante l'esecuzione del comando SnapDrive "<comando SnapDrive>": <errore SnapDrive>
+ a| 
+Errore generico di SnapDrive per UNIX
+
+|===
+*Informazioni correlate*
+
+xref:concept_snapshot_copy_naming.adoc[Naming delle copie Snapshot]

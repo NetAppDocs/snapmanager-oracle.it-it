@@ -1,0 +1,39 @@
+---
+permalink: unix-administration/task_configuring_snapdrive_when_rbac_is_enabled.html 
+sidebar: sidebar 
+keywords: role-based, access, control, rbac, enable, configure, datafabric, manager, capabilities, manager, server, snapdrive 
+summary: 'Quando il controllo degli accessi basato sui ruoli è attivato, è necessario configurare il server DataFabric Manager in modo che includa le funzionalità RBAC. È inoltre necessario registrare l"utente SnapDrive creato nel server DataFabric Manager e l"utente root del sistema di storage in SnapDrive.' 
+---
+= Configurazione del server DataFabric Manager e di SnapDrive quando RBAC è attivato
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando RBAC (role-based access control) è attivato, è necessario configurare il server DataFabric Manager in modo che includa le funzionalità RBAC. È inoltre necessario registrare l'utente SnapDrive creato nel server DataFabric Manager e l'utente root del sistema di storage in SnapDrive.
+
+. Configurare il server DataFabric Manager.
++
+.. Per aggiornare il server DataFabric Manager e aggiornare le modifiche apportate direttamente sul sistema di storage dal database di destinazione, immettere il seguente comando:host dfm Discover storage_system
+.. Creare un nuovo utente nel server DataFabric Manager e impostare la password.
+.. Per aggiungere l'utente del sistema operativo all'elenco di amministrazione del server di DataFabric Manager, immettere il seguente comando:dfm user add sd-admin
+.. Per creare un nuovo ruolo nel server DataFabric Manager, immettere il seguente comando:ruolo dfm create ruolo sd-admin-role
+.. Per aggiungere la funzionalità globale DFM.Core.AccessCheck al ruolo, immettere il seguente comando:ruolo dfm add sd-admin-role DFM.Core.AccessCheck Global
+.. Per aggiungere il ruolo di amministratore sd all'utente del sistema operativo, immettere il seguente comando:dfm user role set sd-adminsd-admin-role
+.. Per creare un altro ruolo nel server DataFabric Manager per l'utente root di SnapDrive, immettere il seguente comando:ruolo dfm create sd-Protect
+.. Per aggiungere funzionalità RBAC al ruolo creato per l'utente root di SnapDrive o l'amministratore, immettere i seguenti comandi:ruolo dfm add sd-Protect SD.Config.Read ruolo Globaldfm add sd-Protect SD.Config.Write ruolo Globaldfm add sd-Protect SD.Config.Delete ruolo Globaldfm add sd-Protect
+.. Per aggiungere l'utente oracle del database di destinazione all'elenco degli amministratori nel server DataFabric Manager e assegnare il ruolo sd-Protect, immettere il seguente comando:dfm user add -r sd-protectardb_host1/oracle
+.. Per aggiungere il sistema storage utilizzato dal database di destinazione nel server DataFabric Manager, immettere il seguente comando:dfm host set storage_system hostLogin=oracle hostPassword=password
+.. Per creare un nuovo ruolo nel sistema di storage utilizzato dal database di destinazione nel server DataFabric Manager, immettere il seguente comando:ruolo host dfm create -h storage_system-c "api-*,login-*" storage-rbac-role
+.. Per creare un nuovo gruppo nel sistema di storage e assegnare il nuovo ruolo creato nel server DataFabric Manager, immettere il seguente comando:dfm host usergroup create -h storage_system-r storage-rbac-rolestorage-rbac-group
+.. Per creare un nuovo utente nel sistema di storage e assegnare il nuovo ruolo e il gruppo creato nel server DataFabric Manager, immettere il seguente comando:dfm host user create -h storage_system-r storage-rbac-role -p password -g storage-rbac-grouptardb_host1
+
+
+. Configurare SnapDrive.
++
+.. Per registrare le credenziali dell'utente sd-admin con SnapDrive, immettere il seguente comando:snapdrive config set -dfm sd-admindfm_host
+.. Per registrare l'utente root o l'amministratore del sistema storage con SnapDrive, immettere il seguente comando:snapdrive config set tardb_host 1host_system
+
+
+

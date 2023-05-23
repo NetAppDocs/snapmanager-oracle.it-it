@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/task_creating_operation_level_dump_files.html 
+sidebar: sidebar 
+keywords: smo, operation, dump, command, name, id, fail, operation, log, information, particular, operation-level, file, creating 
+summary: 'È possibile utilizzare il comando dump dell"operazione smo con il nome o l"ID dell"operazione non riuscita per ottenere informazioni di registro su una determinata operazione. È possibile specificare diversi livelli di log per raccogliere informazioni su un"operazione, un profilo, un host o un ambiente specifico.' 
+---
+= Creazione di file dump a livello operativo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare il comando dump dell'operazione smo con il nome o l'ID dell'operazione non riuscita per ottenere informazioni di registro su una determinata operazione. È possibile specificare diversi livelli di log per raccogliere informazioni su un'operazione, un profilo, un host o un ambiente specifico.
+
+. Immettere il seguente comando:operazione smo dump -idguid
++
+
+NOTE: Il comando dump dell'operazione smo fornisce un super set delle informazioni fornite dal comando dump del profilo smo, che a sua volta fornisce un super set delle informazioni fornite dal comando dump del sistema smo.
+
++
+Posizione del file di dump:
+
++
+[listing]
+----
+Path:/<user-home>
+/.netapp/smo/3.3.0/smo_dump_8abc01c814649ebd0114649ec69d0001.jar
+----
+

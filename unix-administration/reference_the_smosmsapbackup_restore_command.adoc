@@ -1,0 +1,207 @@
+---
+permalink: unix-administration/reference_the_smosmsapbackup_restore_command.html 
+sidebar: sidebar 
+keywords: run, backup, restore, command, database, portion, optional, smo, information 
+summary: È possibile eseguire il comando di ripristino del backup per ripristinare i backup di un database o di una parte di un database, quindi ripristinare facoltativamente le informazioni del database. 
+---
+= Il comando di ripristino del backup smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire il comando di ripristino del backup per ripristinare i backup di un database o di una parte di un database, quindi ripristinare facoltativamente le informazioni del database.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo backup restore
+-profile profile_name
+\[-label label \| -id id\]
+\[-files files \[files...\] \|
+-tablespaces tablespaces \[tablespaces...\]\] \|
+-complete \| -controlfiles\]
+\[-recover \{-alllogs \| -nologs \| -until until\} \[-using-backup-controlfile\] \]
+\[-restorespec restorespec \| -from-secondary \[-temp-volume temp_volume\] \[-copy-id id\]\]
+\[-preview\]
+\[-fast \{-require \| -override \| -fallback \| -off\}\]
+\[-recover-from-location path1 \[, path2\]\]
+\[-taskspec taskspec\]
+\[-dump\]
+\[-force\]
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profile_name*
++
+Specifica il database che si desidera ripristinare. Il profilo contiene l'identificatore del database e altre informazioni del database.
+
+* *-label name*
++
+Ripristina il backup con l'etichetta specificata.
+
+* *-id guid*
++
+Ripristina il backup con il GUID specificato. Il GUID viene generato da SnapManager quando si crea un backup. È possibile utilizzare il comando smo backup list per visualizzare il GUID per ciascun backup.
+
+* *Scegliere tutti i file o i file specificati*
++
+In alternativa, è possibile utilizzare una delle seguenti opzioni:
+
++
+** -Complete (completo): Ripristina tutti i file di dati nel backup.
+** -Tablespaceslist: Ripristina dal backup solo i tablespace specificati.
++
+È necessario utilizzare gli spazi per separare i nomi nell'elenco.
+
+** -Fileslist: Ripristina solo i file di dati specificati dal backup.
++
+È necessario utilizzare gli spazi per separare i nomi nell'elenco. Se il database è in esecuzione, SnapManager garantisce che lo spazio tabella contenente i file sia offline.
+
+
+
+* *-controlfiles*
++
+Ripristina i file di controllo. SnapManager consente di ripristinare i file di controllo insieme ai file di dati dai backup in una singola operazione. L'opzione -controlfiles è indipendente da altri parametri dell'ambito di ripristino come -complete, -tablespaces e -files.
+
+* *-ripristinare*
++
+Recupera il database dopo averlo ripristinato. È inoltre necessario specificare il punto in cui si desidera che SnapManager ripristini il database utilizzando una delle seguenti opzioni:
+
++
+** -Nologs: Recupera il database al momento del backup e non applica alcun log.
++
+È possibile utilizzare questo parametro per i backup online o offline.
+
+** -Alllogs: Recupera il database all'ultima transazione o commit e applica tutti i log richiesti.
+** -Until date: Recupera il database fino alla data e all'ora specificate.
++
+È necessario utilizzare il formato anno-mese-data: Ora: Minuto: Secondo (aaaa-mm-gg:hh:mm:ss). Per le ore, utilizzare il formato 12 ore o 24 ore, a seconda dell'impostazione del database.
+
+** -Until scn: Esegue il rollforward dei file di dati fino a raggiungere il numero SCN (System Change Number) specificato.
+** -Using-backup-controlfile: Recupera il database utilizzando il file di controllo del backup.
+
+
+* *-restorespec*
++
+Consente di ripristinare i dati in un file system attivo e di eseguire il ripristino dai dati specificati, fornendo una mappatura di ciascuna copia Snapshot originale nel file system attivo. Se non si specifica un'opzione, SnapManager ripristina i dati delle copie Snapshot sullo storage primario. È possibile specificare una delle seguenti opzioni:
+
++
+** -Restorespec: Specifica i dati da ripristinare e il formato di ripristino.
+** -Da-secondario: Ripristina i dati dallo storage secondario.
++
+Non è possibile utilizzare questa opzione se il backup esiste sullo storage primario; il backup primario deve essere liberato prima di poter ripristinare un backup dallo storage secondario. Se si utilizza un volume temporaneo, è necessario specificare il volume utilizzando l'opzione -temp-volume.
+
++
+Specificare l'opzione -copy-id ogni volta che si specifica l'opzione -from-secondary. Se nel sistema di storage secondario sono presenti più backup, viene utilizzata l'opzione -copy-id per specificare quale copia di backup nello storage secondario deve essere utilizzata per l'operazione di ripristino.
+
++
+
+NOTE: Se si utilizza Data ONTAP in modalità 7, è necessario specificare un valore valido per l'opzione -copy-id. Tuttavia, se si utilizza Clustered Data ONTAP, l'opzione -copy-id non è richiesta
+
++
+Durante il ripristino dallo storage secondario, SnapManager tenta innanzitutto di ripristinare i dati direttamente dal sistema di storage secondario al sistema di storage primario (senza coinvolgere l'host). Se SnapManager non è in grado di eseguire questo tipo di ripristino (ad esempio, se i file non fanno parte del file system), SnapManager eseguirà un ripristino della copia del file sul lato host. SnapManager dispone di due metodi per eseguire un ripristino della copia del file lato host da secondario. Il metodo selezionato da SnapManager viene configurato nel file smo.config.
+
+** Diretto: SnapManager clona i dati sullo storage secondario, monta i dati clonati dal sistema di storage secondario sull'host, quindi copia i dati dal clone nell'ambiente attivo.
++
+Questo è il criterio di accesso secondario predefinito.
+
+** Indiretto: SnapManager copia prima i dati in un volume temporaneo sullo storage primario, monta i dati dal volume temporaneo all'host, quindi copia i dati dal volume temporaneo nell'ambiente attivo.
++
+Questo criterio deve essere utilizzato solo se l'host non dispone di accesso diretto al sistema di storage secondario. I ripristini con il metodo indiretto richiedono il doppio del tempo rispetto al criterio di accesso secondario diretto, poiché vengono eseguite due copie dei dati.
+
+
+
++
+La decisione di utilizzare il metodo diretto o indiretto è controllata dal valore del parametro restore.secondaryAccessPolicy nel file di configurazione smo.config.
+
+* *-anteprima*
++
+Visualizza le seguenti informazioni:
+
++
+** Quale meccanismo di ripristino (ripristino rapido, ripristino del file system lato storage, ripristino del file lato storage o ripristino della copia del file lato host) verrà utilizzato per ripristinare ciascun file
+** Perché non sono stati utilizzati meccanismi più efficienti per ripristinare ciascun file, quando si specifica l'opzione -verbose se si utilizza l'opzione -preview, è necessario conoscere quanto segue:
+** L'opzione -force non ha alcun impatto sul comando.
+** L'opzione -recover non ha alcun impatto sul comando.
+** L'opzione -fast (-request, -override, -fallback o -off) ha un impatto significativo sull'output. Per visualizzare in anteprima l'operazione di ripristino, è necessario montare il database. Se si desidera visualizzare un'anteprima di un piano di ripristino e il database non è attualmente montato, SnapManager monta il database. Se il database non può essere montato, il comando non riesce e SnapManager riporta il database allo stato originale.
+
+
++
+L'opzione -preview consente di visualizzare fino a 20 file. È possibile configurare il numero massimo di file da visualizzare nel file smo.config.
+
+* *-veloce*
++
+Consente di scegliere il processo da utilizzare nell'operazione di ripristino. È possibile forzare SnapManager a utilizzare il processo di ripristino rapido basato sul volume invece di altri processi di ripristino, se vengono soddisfatte tutte le condizioni di idoneità al ripristino obbligatorie. Se si è a conoscenza dell'impossibilità di eseguire un ripristino del volume, è possibile utilizzare questo processo anche per impedire a SnapManager di eseguire controlli di idoneità e l'operazione di ripristino utilizzando il processo di ripristino rapido.
+
++
+L'opzione -FAST include i seguenti parametri:
+
++
+** -Richiedi: Consente di forzare SnapManager ad eseguire un ripristino del volume, se vengono soddisfatte tutte le condizioni di idoneità per il ripristino.
++
+Se si specifica l'opzione -fast, ma non si specifica alcun parametro per -FAST, SnapManager utilizza il parametro -prescrivere come impostazione predefinita.
+
+** -Override: Consente di ignorare i controlli di idoneità non obbligatori ed eseguire il processo di ripristino rapido basato sul volume.
+** -Fallback: Consente di ripristinare il database utilizzando qualsiasi metodo determinato da SnapManager.
++
+Se non si specifica l'opzione -fast, SnapManager utilizza l'opzione predefinita backup restore -fast fallback.
+
+** -Off: Consente di evitare il tempo necessario per eseguire i controlli di idoneità.
+
+
+* *-recovery-from-location*
++
+Specifica la posizione del log di archiviazione esterno dei file di log di archiviazione. SnapManager preleva i file di log dell'archivio dalla posizione esterna e li utilizza per il processo di ripristino.
+
+* *-taskspec*
++
+Specifica il file XML della specifica dell'attività per l'attività di pre-elaborazione o di post-elaborazione dell'operazione di ripristino. Specificare il percorso completo del file XML per la specifica dell'attività.
+
+* *-dump*
++
+Specifica di raccogliere i file dump dopo l'operazione di ripristino.
+
+* *-force*
++
+Se necessario, cambia lo stato del database in uno stato inferiore a quello corrente. Per i cluster di applicazioni reali (RAC), è necessario includere l'opzione -force se SnapManager deve modificare lo stato di qualsiasi istanza RAC in uno stato inferiore.
+
++
+Per impostazione predefinita, SnapManager può modificare lo stato del database in uno stato superiore durante un'operazione. Questa opzione non è necessaria per consentire a SnapManager di modificare il database in uno stato superiore.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console. È possibile utilizzare questa opzione per scoprire perché non è stato possibile utilizzare processi di ripristino più efficienti per ripristinare il file.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente viene ripristinato un database insieme ai file di controllo:
+
+[listing]
+----
+smo backup restore -profile SALES1 -label full_backup_sales_May
+-complete -controlfiles -force
+----
+*Informazioni correlate*
+
+xref:concept_restoring_database_backup.adoc[Ripristino dei backup del database]
+
+xref:task_restoring_backups_from_an_alternate_location.adoc[Ripristino dei backup da una posizione alternativa]
+
+xref:task_creating_restore_specifications.adoc[Creazione di specifiche di ripristino]

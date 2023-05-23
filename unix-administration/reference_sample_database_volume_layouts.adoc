@@ -1,0 +1,379 @@
+---
+permalink: unix-administration/reference_sample_database_volume_layouts.html 
+sidebar: sidebar 
+keywords: refer, sample, database, volume, layout, configuring, database 
+summary: Per informazioni sulla configurazione del database, fare riferimento ai layout dei volumi del database di esempio. 
+---
+= Layout di volumi di database di esempio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per informazioni sulla configurazione del database, fare riferimento ai layout dei volumi del database di esempio.
+
+
+
+== Database a istanza singola
+
+|===
+| Tipi di file | Nomi dei volumi | Volume dedicato per i tipi di file | Copie Snapshot automatiche 
+
+
+ a| 
+Binari Oracle
+ a| 
+orabin_host name
+ a| 
+Sì
+ a| 
+Acceso
+
+
+
+ a| 
+File di dati
+ a| 
+oradata_sid
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di dati temporanei
+ a| 
+oatemp_sid
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di controllo
+ a| 
+Oacntrl01_sid (multiplex)
+
+Oacntrl02_sid (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di ripristino
+ a| 
+Oralog01_sid (multiplex)
+
+Oralog02_sid (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di archiviazione
+ a| 
+oraarch_sid
+ a| 
+Sì
+ a| 
+Spento
+
+|===
+
+
+== Real Application Clusters (RAC)
+
+|===
+| Tipi di file | Nomi dei volumi | Volume dedicato per i tipi di file | Copie Snapshot automatiche 
+
+
+ a| 
+Binari Oracle
+ a| 
+orabin_host name
+ a| 
+Sì
+ a| 
+Acceso
+
+
+
+ a| 
+File di dati
+ a| 
+oradata_dbname
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di dati temporanei
+ a| 
+ortamp_dbname
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di controllo
+ a| 
+Oracntrl01_dbname (multiplex)
+
+Oracntrl02_dbname (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di ripristino
+ a| 
+Oralog01_dbname (multiplato)
+
+Oralog02_dbname (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di archiviazione
+ a| 
+oraarch_dbname
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File del cluster
+ a| 
+oracrs_clustername
+ a| 
+Sì
+ a| 
+Acceso
+
+|===
+
+
+== Singola istanza di un database ASM (Automatic Storage Management)
+
+|===
+| Tipi di file | Nomi dei volumi | Nomi LUN | Volume dedicato per i tipi di file | Copie Snapshot automatiche 
+
+
+ a| 
+Binari Oracle
+ a| 
+orabin_host name
+ a| 
+orabin_host namelun
+ a| 
+Sì
+ a| 
+Acceso
+
+
+
+ a| 
+File di dati
+ a| 
+oradata_sid
+ a| 
+oradata_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di dati temporanei
+ a| 
+oatemp_sid
+ a| 
+Oratemp_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di controllo
+ a| 
+Oacntrl01_sid (multiplex)
+
+Oacntrl02_sid (multiplex)
+ a| 
+Oracntrl01_sidlun (multiplex)
+
+Oracntrl02_sidlun (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di ripristino
+ a| 
+Oralog01_dbname (multiplato)
+
+Oralog02_dbname (multiplex)
+ a| 
+Oralog01_dbnamelun (multiplex)
+
+Oralog02_dbnamelun (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di archiviazione
+ a| 
+oraarch_sid
+ a| 
+Oraarch_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+|===
+
+
+== Database RAC ASM
+
+|===
+| Tipi di file | Nomi dei volumi | Nomi LUN | Volume dedicato per i tipi di file | Copie Snapshot automatiche 
+
+
+ a| 
+Binari Oracle
+ a| 
+orabin_host name
+ a| 
+orabin_host namelun
+ a| 
+Sì
+ a| 
+Acceso
+
+
+
+ a| 
+File di dati
+ a| 
+oradata_sid
+ a| 
+oradata_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di dati temporanei
+ a| 
+oatemp_sid
+ a| 
+Oratemp_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File di controllo
+ a| 
+Oacntrl01_sid (multiplex)
+
+Oacntrl02_sid (multiplex)
+ a| 
+Oracntrl01_sidlun (multiplex)
+
+Oracntrl02_sidlun (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di ripristino
+ a| 
+Oralog01_dbname (multiplato)
+
+Oralog02_dbname (multiplex)
+ a| 
+Oralog01_dbnamelun (multiplex)
+
+Oralog02_dbnamelun (multiplex)
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+Registri di archiviazione
+ a| 
+oraarch_sid
+ a| 
+Oraarch_sidlun
+ a| 
+Sì
+ a| 
+Spento
+
+
+
+ a| 
+File del cluster
+ a| 
+oracrs_clustername
+ a| 
+oracrs_clusternamelun
+ a| 
+Sì
+ a| 
+Acceso
+
+|===

@@ -1,0 +1,23 @@
+---
+permalink: unix-installation-cmode/task_verifying_the_oracle_listener_configuration.html 
+sidebar: sidebar 
+keywords: listener, process, listen, client, connection, request, receive, incoming, client, request, traffic, status, listener, configuration 
+summary: 'L"ascoltatore è un processo che attende le richieste di connessione del client. Riceve le richieste di connessione del client in entrata e gestisce il traffico di queste richieste verso il database. Prima di connettersi a un database di destinazione o a un"istanza del database del repository, è possibile utilizzare il comando STATUS per verificare la configurazione del listener.' 
+---
+= Verifica della configurazione di Oracle listener
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'ascoltatore è un processo che attende le richieste di connessione del client. Riceve le richieste di connessione del client in entrata e gestisce il traffico di queste richieste verso il database. Prima di connettersi a un database di destinazione o a un'istanza del database del repository, è possibile utilizzare il comando STATUS per verificare la configurazione del listener.
+
+Il comando STATUS visualizza le informazioni di base sullo stato di un listener specifico, tra cui un riepilogo delle impostazioni di configurazione del listener, gli indirizzi dei protocolli di ascolto e un riepilogo dei servizi registrati con tale listener.
+
+. Immettere il seguente comando al prompt dei comandi:
+`lsnrctl STATUS`
++
+Il valore predefinito assegnato alla porta del listener è 1521.
+
+

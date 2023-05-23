@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/concept_cloning_methods.html 
+sidebar: sidebar 
+keywords: clone, database, method, create, operation, lun 
+summary: 'È possibile clonare un database utilizzando uno dei due metodi. Il metodo scelto influisce sull"operazione di creazione del clone.' 
+---
+= Metodi di cloning
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile clonare un database utilizzando uno dei due metodi. Il metodo scelto influisce sull'operazione di creazione del clone.
+
+La tabella seguente descrive i metodi di cloning e il loro effetto sull'operazione di creazione del clone e la relativa opzione -Reserve. È possibile clonare un LUN utilizzando uno dei due metodi.
+
+|===
+| Metodo di cloning 
+
+
+| Descrizione 
+
+
+| clonare create -reserve 
+
+
+ a| 
+Cloning del LUN
+
+
+
+ a| 
+Viene creato un nuovo LUN clone all'interno dello stesso volume.
+
+
+
+ a| 
+Quando l'opzione -Reserve for a LUN (riserva per LUN) è impostata su yes (sì), lo spazio viene riservato alle dimensioni del LUN completo all'interno del volume.
+
+
+
+ a| 
+Cloning di volumi
+
+
+
+ a| 
+Viene creato un nuovo FlexClone e il LUN clone esiste all'interno del nuovo volume clone. Utilizza la tecnologia FlexClone.
+
+
+
+ a| 
+Quando l'opzione -Reserve per un volume è impostata su yes, lo spazio viene riservato per l'intera dimensione del volume all'interno dell'aggregato.
+
+|===

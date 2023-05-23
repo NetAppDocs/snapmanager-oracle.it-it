@@ -1,0 +1,18 @@
+---
+permalink: unix-administration/task_viewing_a_list_of_scheduled_operations.html 
+sidebar: sidebar 
+keywords: view, list, schedule, operation, profile, smo 
+summary: È possibile visualizzare un elenco di operazioni pianificate per un profilo. 
+---
+= Visualizzazione di un elenco di operazioni pianificate
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile visualizzare un elenco di operazioni pianificate per un profilo.
+
+. Per visualizzare le informazioni relative all'operazione pianificata, immettere il seguente comando:
+`smo schedule list -profile profile_name[-quiet | -verbose]`
+

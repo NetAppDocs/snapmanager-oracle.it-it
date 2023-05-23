@@ -1,0 +1,20 @@
+---
+permalink: unix-administration/concept_supported_scripts.html 
+sidebar: sidebar 
+keywords: asmmain.sh, asmquerydisk.sh, script, grid, group, user 
+summary: 'Gli script asmmain.sh e asmquerydisk.sh consentono di modificare l"utente, il gruppo e l"utente della griglia, tutti utilizzati per eseguire query sui dischi ASM. Gli script devono essere sempre eseguiti dalla directory principale.' 
+---
+= Script supportati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli script asmmain.sh e asmquerydisk.sh consentono di modificare l'utente, il gruppo e l'utente della griglia, tutti utilizzati per eseguire query sui dischi ASM. Gli script devono essere sempre eseguiti dalla directory principale.
+
+asmmain.sh è il file di script principale chiamato da qualsiasi operazione che aggiunga o elimini dispositivi. Lo script asmmain.sh chiama un altro script internamente, che deve essere eseguito dalla directory principale che dispone di credenziali oracle Grid. Questo script interroga i dispositivi del gruppo di dischi ASM, quindi aggiunge tali voci nel file initasmdisk con l'autorizzazione e la proprietà dei dispositivi. È possibile modificare i permessi e la proprietà di questo file in base al proprio ambiente e al modello regex utilizzato per la corrispondenza solo con /dev/mapper/*p1.
+
+Lo script asmquerydisk.sh viene utilizzato per eseguire query nell'elenco dei dischi, utilizzato per creare il gruppo di dischi ASM. È necessario assegnare valori a ORACLE_BASE, ORACLE_HOME e ORACLE_SID, a seconda della configurazione.
+
+Gli script si trovano in /opt/NetApp/smo/plugins/emplies/noasmlib. Tuttavia, questi script devono essere spostati in /opt/NetApp/smo/plugins/noasmlib prima di avviare il server SnapManager per Oracle sull'host.

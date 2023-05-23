@@ -1,0 +1,122 @@
+---
+permalink: unix-administration/reference_supported_partition_devices.html 
+sidebar: sidebar 
+keywords: partition, snapmanager, support, device, red, hat, enterprise, linux, 5x, oracle 
+summary: È necessario conoscere i diversi dispositivi di partizione supportati in SnapManager. 
+---
+= Periferiche di partizione supportate
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario conoscere i diversi dispositivi di partizione supportati in SnapManager.
+
+La seguente tabella fornisce informazioni sulle partizioni e su come attivarle per i diversi sistemi operativi:
+
+|===
+| Sistema operativo | Partizione singola | Partizione multipla | Dispositivi senza partizione | File system o dispositivi RAW 
+
+
+ a| 
+Red Hat Enterprise Linux 5x o.
+
+Oracle Enterprise Linux 5 volte
+ a| 
+Sì
+ a| 
+No
+ a| 
+No
+ a| 
+ext3*
+
+
+
+ a| 
+Red Hat Enterprise Linux 6 x
+
+Oracle Enterprise Linux 6 volte
+ a| 
+Sì
+ a| 
+No
+ a| 
+No
+ a| 
+ext3 o ext4*
+
+
+
+ a| 
+SUSE Linux Enterprise Server 11
+ a| 
+Sì
+ a| 
+No
+ a| 
+No
+ a| 
+ext3*
+
+
+
+ a| 
+SUSE Linux Enterprise Server 10
+ a| 
+No
+ a| 
+No
+ a| 
+Sì
+ a| 
+ext3***
+
+
+
+ a| 
+Red Hat Enterprise Linux 5x o versione successiva
+
+Oracle Enterprise Linux 5x o versioni successive
+ a| 
+Sì
+ a| 
+No
+ a| 
+Sì
+ a| 
+ASM con ASMlib**
+
+
+
+ a| 
+SUSE Linux Enterprise Server 10 SP4OR
+
+SUSE Linux Enterprise Server 11
+ a| 
+Sì
+ a| 
+No
+ a| 
+Sì
+ a| 
+ASM con ASMlib**
+
+
+
+ a| 
+SUSE Linux Enterprise Server 10 SP4 o versione successiva
+
+SUSE Linux Enterprise Server 11
+ a| 
+Sì
+ a| 
+No
+ a| 
+No
+ a| 
+ASM senza ASMlib****
+
+|===
+Per ulteriori informazioni sulle versioni dei sistemi operativi supportate, fare riferimento alla matrice di interoperabilità.

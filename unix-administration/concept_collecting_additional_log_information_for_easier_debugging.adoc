@@ -1,0 +1,43 @@
+---
+permalink: unix-administration/concept_collecting_additional_log_information_for_easier_debugging.html 
+sidebar: sidebar 
+keywords: additional, log, debug, fail, snapmanager, operation, external, environment, variable 
+summary: 'Se sono necessari log aggiuntivi per eseguire il debug di un"operazione SnapManager non riuscita, è necessario impostare una variabile di ambiente esterna server.log.level. Questa variabile sovrascrive il livello di log predefinito e scarica tutti i messaggi di log nel file di log. Ad esempio, è possibile modificare il livello di log in DEBUG, che registra messaggi aggiuntivi e può aiutare a risolvere i problemi di debug.' 
+---
+= Raccolta di informazioni aggiuntive sui log per semplificare il debugging
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se sono necessari log aggiuntivi per eseguire il debug di un'operazione SnapManager non riuscita, è necessario impostare una variabile di ambiente esterna server.log.level. Questa variabile sovrascrive il livello di log predefinito e scarica tutti i messaggi di log nel file di log. Ad esempio, è possibile modificare il livello di log in DEBUG, che registra messaggi aggiuntivi e può aiutare a risolvere i problemi di debug.
+
+I registri SnapManager sono disponibili nelle seguenti posizioni:
+
+* /var/log/smo
+
+
+Per eseguire l'override del livello di registro predefinito, attenersi alla seguente procedura:
+
+. Creare un file di testo platform.override nella directory di installazione di SnapManager.
+. Aggiungere il parametro server.log.level nel file di testo platform.override.
+. Assegnare un valore (TRACCIA, DEBUG, INFO, AVVISO, ERRORE, FATAL, o PROGRESS) al parametro server.log.level.
++
+Ad esempio, per impostare IL livello di log SU ERROR, impostare il valore server.log.level su ERROR.
+
++
+Server.log.level=ERROR
+
+. Riavviare il server SnapManager.
+
+
+
+NOTE: Se le informazioni aggiuntive del registro non sono richieste, è possibile eliminare il parametro server.log.level dal file di testo platform.override.
+
+SnapManager gestisce il volume dei file di log del server in base ai valori definiti dall'utente dei seguenti parametri nel file smo.config:
+
+* log.max_log_files
+* log.max_log_file_size
+* log.max_rolling_operation_factory_logs
+

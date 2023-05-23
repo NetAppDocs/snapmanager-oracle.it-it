@@ -1,0 +1,13 @@
+---
+permalink: unix-installation-cmode/delete_reference_trademark.html 
+sidebar: sidebar 
+keywords: trademark, information 
+summary: marchio, informazioni 
+---
+= Informazioni sul marchio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+NetApp, il logo NetApp, Go further, faster, AltaVault, ASUP, AutoSupport, Campaign Express, Cloud ONTAP, Clustered Data ONTAP, Customer Fitness, Data ONTAP, DataMotion, Fitness, Flash Accel, Flash cache, Flash Pool, FlashRay, FlexArray, FlexCache, FlexClone, FlexPod, FlexScale, FlexShare, FlexVol, FPolicy, GetSuccessful, LockVault, Gestisci ONTAP, Marte, MetroCluster, MultiStore, NetApp Insight, OnCommand, ONTAP, ONTAPI, RAID DP, RAID-TEC, SANtricity, SecureShare, Semplicità, simulazione di ONTAP, creazione di snap, SnapCenter, SnapCopy, SnapDrive, SnapIntegrator, SnapLock, SnapManager, SnapMirror, SnapMover, SnapProtect, SnapRestore, Snapshot, SnapValidator, SnapVault, StorageGRID, Tech OnTap, Unbound Cloud e WAFL e altri nomi sono marchi o marchi registrati di NetApp, Inc., negli Stati Uniti e/o in altri paesi. Tutti gli altri marchi o prodotti sono marchi o marchi registrati dei rispettivi proprietari e devono essere trattati come tali. Un elenco aggiornato dei marchi NetApp è disponibile sul Web all'indirizzo http://www.netapp.com/us/legal/netapptmlist.aspx[].

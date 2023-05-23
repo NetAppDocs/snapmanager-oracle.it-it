@@ -1,0 +1,18 @@
+---
+permalink: unix-administration/task_purging_history_of_snapmanager_operation.html 
+sidebar: sidebar 
+keywords: delete, history, snapmanager, operation, longer, require, detail, smo 
+summary: 'È possibile eliminare la cronologia dell"operazione SnapManager, se non sono più necessari i dettagli della cronologia.' 
+---
+= Eliminazione della cronologia delle operazioni SnapManager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eliminare la cronologia dell'operazione SnapManager, se non sono più necessari i dettagli della cronologia.
+
+. Per eliminare la cronologia dell'operazione SnapManager, immettere il seguente comando:
+`smo history purge -profile {-name, profile_nameprofile_name1, profile_name2] | all-repository-login [-passwordrepo_password] -usernamerepo_username-dbnamerepo_dbname-hostrepo_host-portrepo_port} -operation {-operationsoperation_name [operation_name1, operation_name2] | -all} [-quiet | -verbose]`
+

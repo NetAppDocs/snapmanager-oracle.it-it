@@ -1,0 +1,17 @@
+---
+permalink: unix-administration/concept_post_upgrade_tasks.html 
+sidebar: sidebar 
+keywords: upgrading, version, snapmanager, exist, repository, modify, backup, retention, clone, post-upgrade, task 
+summary: 'Dopo aver eseguito l"aggiornamento a una versione successiva di SnapManager, è necessario aggiornare il repository esistente. È inoltre possibile modificare la classe di conservazione del backup assegnata ai backup esistenti e identificare il processo di ripristino che è possibile utilizzare.' 
+---
+= Attività post-aggiornamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver eseguito l'aggiornamento a una versione successiva di SnapManager, è necessario aggiornare il repository esistente. È inoltre possibile modificare la classe di conservazione del backup assegnata ai backup esistenti e identificare il processo di ripristino che è possibile utilizzare.
+
+
+NOTE: Dopo aver eseguito l'aggiornamento a SnapManager 3.3 o versioni successive, impostare sqlnet.authentication_services su NONE (NESSUNO) se si desidera utilizzare l'autenticazione del database (DB) come unico metodo di autenticazione. Questa funzione non è supportata per i database RAC.

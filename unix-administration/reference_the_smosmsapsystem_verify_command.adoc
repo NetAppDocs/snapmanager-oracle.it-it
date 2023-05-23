@@ -1,0 +1,53 @@
+---
+permalink: unix-administration/reference_the_smosmsapsystem_verify_command.html 
+sidebar: sidebar 
+keywords: command, confirm, component, environment, require, snapmanager, correct, smo 
+summary: 'Questo comando conferma che tutti i componenti dell"ambiente necessari per eseguire SnapManager sono impostati correttamente.' 
+---
+= Il comando di verifica del sistema smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando conferma che tutti i componenti dell'ambiente necessari per eseguire SnapManager sono impostati correttamente.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo system verify
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore sulla console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi sulla console.
+
+
+
+
+
+== Esempio del comando di verifica del sistema
+
+Nell'esempio seguente viene utilizzato il comando di verifica del sistema smo.
+
+[listing]
+----
+smo system verify
+SMO-13505 [INFO ]: Snapdrive verify passed.
+SMO-13037 [INFO ]: Successfully completed operation: System Verify
+SMO-13049 [INFO ]: Elapsed Time: 0:00:00.559
+Operation Id [N4f4e910004b36cfecee74c710de02e44] succeeded.
+----

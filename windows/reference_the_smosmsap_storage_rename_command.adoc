@@ -1,0 +1,64 @@
+---
+permalink: windows/reference_the_smosmsap_storage_rename_command.html 
+sidebar: sidebar 
+keywords: command, update, name, ip, address, storage, system, rename, smo 
+summary: 'Questo comando aggiorna il nome o l"indirizzo IP del sistema di storage.' 
+---
+= Comando di ridenominazione dello storage smo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo comando aggiorna il nome o l'indirizzo IP del sistema di storage.
+
+
+
+== Sintassi
+
+[listing]
+----
+
+        smo storage rename
+-profile profile
+-oldname old_storage_name
+-newname new_storage_name
+\[-quiet \| -verbose\]
+----
+
+
+== Parametri
+
+* *-profilo profilo*
++
+Specifica il nome del profilo. Questo nome può contenere fino a 30 caratteri e deve essere univoco all'interno dell'host.
+
+* *-oldname old_storage_name*
++
+Specifica l'indirizzo IP o il nome del sistema di storage prima che venga rinominato. Immettere l'indirizzo IP o il nome del sistema di storage visualizzato quando si esegue il comando smo storage list.
+
+* *-newname new_storage_name*
++
+Specifica l'indirizzo IP o il nome del sistema di storage dopo che il sistema viene rinominato.
+
+* *-quiet*
++
+Visualizza solo i messaggi di errore nella console. L'impostazione predefinita prevede la visualizzazione dei messaggi di errore e di avviso.
+
+* *-dettagliato*
++
+Visualizza messaggi di errore, di avviso e informativi nella console.
+
+
+
+
+
+== Esempio
+
+Nell'esempio seguente viene utilizzato il comando smo storage rename per rinominare il sistema di storage:
+
+[listing]
+----
+smo storage rename -profile mjullian -oldname lech -newname hudson -verbose
+----
